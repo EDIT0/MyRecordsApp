@@ -1,4 +1,4 @@
-package com.privatememo.j.ui
+package com.privatememo.j.ui.bottombar
 
 import android.os.Bundle
 import android.view.LayoutInflater

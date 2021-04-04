@@ -61,4 +61,6 @@ dependencies {
     implementation 'gun0912.ted:tedpermission:2.2.3'
 
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
+
+    implementation "androidx.cardview:cardview:1.0.0"
 }

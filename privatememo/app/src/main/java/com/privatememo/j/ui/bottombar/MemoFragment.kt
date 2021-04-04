@@ -1,34 +1,43 @@
-package com.privatememo.j.ui
+package com.privatememo.j.ui.bottombar
 
-import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.privatememo.j.R
 import com.privatememo.j.adapter.MemoViewPagerAdapter
 import com.privatememo.j.databinding.MemofragmentBinding
-import com.privatememo.j.viewmodel.MemoViewModel
+import com.privatememo.j.ui.bottombar.memo.MakeCategory
+import com.privatememo.j.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.memofragment.*
+import kotlinx.android.synthetic.main.welcomeactivity.*
 
 class MemoFragment : Fragment() {
 
     lateinit var MemoBinding: MemofragmentBinding
-    var memoViewModel = MemoViewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         MemoBinding = DataBindingUtil.inflate(inflater, R.layout.memofragment, memofrag,false)
-        memoViewModel = ViewModelProvider(this).get(MemoViewModel::class.java)
+        var act = activity as MainActivity
         MemoBinding.setLifecycleOwner(this)
-        MemoBinding.memoViewModel = memoViewModel
+        MemoBinding.memoViewModel = act.mainViewModel
+
+        MemoBinding.makeCategory.setOnClickListener{
+            var intent = Intent(context, MakeCategory::class.java)
+            intent.putExtra("email", act.mainViewModel.email.value)
+            Log.i("tag", "MakeCategory로 가는 길:  ${act.mainViewModel.email.value}")
+            startActivity(intent)
+        }
 
         return MemoBinding.root
     }
@@ -38,7 +47,6 @@ class MemoFragment : Fragment() {
         var adapter = MemoViewPagerAdapter(requireActivity())
         viewpager_setting(adapter)
         tablayout_setting()
-
     }
 
     fun viewpager_setting(adapter : MemoViewPagerAdapter){

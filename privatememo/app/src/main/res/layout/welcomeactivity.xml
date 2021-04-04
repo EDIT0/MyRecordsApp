@@ -13,9 +13,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".WelcomeActivity"
+        tools:context=".ui.login.WelcomeActivity"
         android:orientation="vertical"
-        android:id="@+id/welcomelayout">
+        android:id="@+id/welcomelayout"
+        android:background="#83EEF0F1">
 
 
         <TextView
@@ -35,6 +36,12 @@
             android:layout_weight="5"
             android:layout_margin="30dp">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/logincomment"
+                android:textStyle="bold"/>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -45,8 +52,9 @@
                     android:layout_height="wrap_content"
                     android:hint="이메일"
                     android:singleLine="true"
-                    android:background="@color/white"
-                    android:layout_marginBottom="5dp"/>
+                    android:background="@drawable/edittextround"
+                    android:layout_marginBottom="5dp"
+                    android:text="@={WelcomeViewModel.getEmailfromMember}"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -57,12 +65,14 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/inputPW"
+                    android:background="@drawable/edittextround"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="비밀번호"
                     android:singleLine="true"
-                    android:background="@color/white"
-                    android:layout_marginBottom="15dp"/>
+                    android:layout_marginBottom="15dp"
+                    android:inputType="textPassword"
+                    android:text="@={WelcomeViewModel.getPasswordfromMember}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -70,7 +80,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/buttonround"
                 android:text="로그인"
-                android:layout_margin="5dp"/>
+                android:layout_margin="5dp"
+                android:onClick="@{()->WelcomeViewModel.LoginButton()}"/>
 
             <View
                 android:layout_width="match_parent"

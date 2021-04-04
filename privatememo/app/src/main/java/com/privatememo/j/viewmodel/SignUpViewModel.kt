@@ -1,15 +1,11 @@
 package com.privatememo.j.viewmodel
 
 import android.app.Application
-import android.content.Intent
 import android.net.Uri
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ObservableField
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.privatememo.j.SignUpActivity
 import com.privatememo.j.datamodel.ReturnCheck
 import com.privatememo.j.utility.Retrofit2Module
 import retrofit2.Call
@@ -33,13 +29,12 @@ class SignUpViewModel(application: Application) : AndroidViewModel(application) 
 
     var emailStatus = ObservableField<Boolean>()
     var email_certificate = ObservableField<Boolean>()
-    var sendImageToServer = MutableLiveData<Boolean>()
+    var sendImageToServer = MutableLiveData<String>()
 
 
     init {
         emailStatus.set(true)
         email_certificate.set(false)
-        sendImageToServer.value = false
         pictureAddress.set("")
     }
 
@@ -69,9 +64,14 @@ class SignUpViewModel(application: Application) : AndroidViewModel(application) 
 
         if((email.get() != null && password.get() != null && nickname.get() != null && motto.get() != null) &&
             (email.get() != "" && password.get() != "" && nickname.get() != "" && motto.get() != "") && (duplicate_email_check.getValue() != "true") &&
-            (checkNum.value!!.contains("인증완료") && (pictureUri.get() != null))){
+            (checkNum.value!!.contains("인증완료"))){
 
-            sendImageToServer.value = true
+            if(pictureUri.get() != null){
+                sendImageToServer.value = "image_yes"
+            }
+            else{
+                sendImageToServer.value = "image_no"
+            }
 
             SignUpInsert_call(email.get().toString(), password.get().toString(),
                 nickname.get().toString(), motto.get().toString(), imageAddress+pictureAddress.get().toString())
@@ -91,15 +91,12 @@ class SignUpViewModel(application: Application) : AndroidViewModel(application) 
 
 
     fun SignUpEmailSender_call(email: String, num: String){
-
         val call: Call<String> = retrofit2module.client.EmailSender(email, num)
 
         call.enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 val result: String? = response.body()
-
             }
-
             override fun onFailure(call: Call<String>, t: Throwable) {
                 Log.i("??","error")
             }
@@ -112,9 +109,7 @@ class SignUpViewModel(application: Application) : AndroidViewModel(application) 
         call.enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 val result: String? = response.body()
-
             }
-
             override fun onFailure(call: Call<String>, t: Throwable) {
                 Log.i("??","error")
             }
@@ -122,7 +117,6 @@ class SignUpViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     fun SignUpEmailCheck_call(email: String){
-
         val call: Call<ReturnCheck> = retrofit2module.client.ProfileEmailCheck(email)
 
         call.enqueue(object : Callback<ReturnCheck> {
@@ -130,7 +124,6 @@ class SignUpViewModel(application: Application) : AndroidViewModel(application) 
                 val result: ReturnCheck? = response.body()
                 duplicate_email_check.setValue(result?.returnvalue!!)
             }
-
             override fun onFailure(call: Call<ReturnCheck>, t: Throwable) {
                 Log.i("??","error")
             }

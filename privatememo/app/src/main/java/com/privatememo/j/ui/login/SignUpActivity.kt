@@ -1,4 +1,4 @@
-package com.privatememo.j
+package com.privatememo.j.ui.login
 
 import android.app.Activity
 import android.content.Intent
@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.privatememo.j.R
 import com.privatememo.j.api.Retrofit2API
 import com.privatememo.j.databinding.SignupactivityBinding
 import com.privatememo.j.viewmodel.SignUpViewModel
@@ -38,7 +39,7 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         signupViewModel = ViewModelProvider(this).get(SignUpViewModel::class.java)
-        SignUpBinding = DataBindingUtil.setContentView(this,R.layout.signupactivity)
+        SignUpBinding = DataBindingUtil.setContentView(this, R.layout.signupactivity)
         SignUpBinding.setLifecycleOwner(this)
         SignUpBinding.signViewModel = signupViewModel
 
@@ -78,13 +79,15 @@ class SignUpActivity : AppCompatActivity() {
         }
         signupViewModel?.duplicate_email_check?.observe(SignUpBinding.lifecycleOwner!!, duplicate_email_check)
 
-        var sendImageToServer = Observer<Boolean> { result ->
-            if(result == true){
+        var sendImageToServer = Observer<String> { result ->
+            if(result == "image_yes") {
                 send_images_testRetrofit()
-
-                setResult(RESULT_OK)
-                finish()
             }
+            else if(result == "image_no") {
+
+            }
+            setResult(RESULT_OK)
+            finish()
         }
         signupViewModel?.sendImageToServer?.observe(SignUpBinding.lifecycleOwner!!, sendImageToServer)
 

@@ -12,8 +12,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".SignUpActivity"
-        android:orientation="vertical">
+        tools:context=".ui.login.SignUpActivity"
+        android:orientation="vertical"
+        android:background="#83EEF0F1">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -178,7 +179,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:hint="Motto ex)좌우명"
+                    android:hint="Motto / ex)좌우명"
                     android:id="@+id/motto"
                     android:gravity="start"
                     android:text="@={SignViewModel.motto}"

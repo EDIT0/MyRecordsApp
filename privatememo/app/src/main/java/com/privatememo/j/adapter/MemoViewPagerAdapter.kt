@@ -3,8 +3,8 @@ package com.privatememo.j.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.privatememo.j.ui.CategoryFragment
-import com.privatememo.j.ui.OnlyPicFragment
+import com.privatememo.j.ui.bottombar.memo.CategoryFragment
+import com.privatememo.j.ui.bottombar.memo.OnlyPicFragment
 
 class MemoViewPagerAdapter : FragmentStateAdapter {
 
