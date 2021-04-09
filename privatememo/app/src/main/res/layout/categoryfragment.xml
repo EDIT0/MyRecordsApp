@@ -24,7 +24,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/rcv"
+                android:id="@+id/cateRcv"
                 category_rcv="@{CategoryViewModel.items}"
                 android:visibility="@{CategoryViewModel.controler ? View.VISIBLE : View.INVISIBLE}"/>
 

@@ -7,7 +7,7 @@ import com.privatememo.j.api.AdapterListener
 import com.privatememo.j.databinding.CategoryadapterBinding
 import com.privatememo.j.datamodel.CategoryInfo2
 
-class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
+class EachMemoAdapter : RecyclerView.Adapter<EachMemoAdapter.ViewHolder>() {
 
     var items = ArrayList<CategoryInfo2>()
     lateinit var itemClick: AdapterListener
@@ -16,9 +16,9 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
         var binding = binding
 
         init {
-            itemView.setOnClickListener {
+            /*itemView.setOnClickListener {
                 itemClick.CategoryClick(this, itemView, adapterPosition)
-            }
+            }*/
         }
 
         fun bind(info : CategoryInfo2){
@@ -26,7 +26,7 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EachMemoAdapter.ViewHolder {
         var binding = CategoryadapterBinding.inflate(LayoutInflater.from(parent.context),parent,false)
 
         return ViewHolder(binding)
@@ -36,7 +36,7 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
         return items.size
     }
 
-    override fun onBindViewHolder(holder: CategoryAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: EachMemoAdapter.ViewHolder, position: Int) {
         holder.bind(items[position])
     }
 }

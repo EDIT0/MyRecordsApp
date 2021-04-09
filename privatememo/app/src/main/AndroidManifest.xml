@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Privatememo"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.bottombar.memo.MakeCategory"></activity>
+        <activity android:name=".WriteMemoActivity"></activity>
+        <activity android:name=".EachMemoActivity" />
+        <activity android:name=".ui.bottombar.memo.MakeCategory" />
         <activity android:name=".ui.login.SignUpActivity" />
         <activity android:name=".ui.login.WelcomeActivity">
             <intent-filter>

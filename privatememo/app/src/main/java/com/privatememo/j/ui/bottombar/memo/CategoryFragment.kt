@@ -1,7 +1,7 @@
 package com.privatememo.j.ui.bottombar.memo
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,16 +12,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.privatememo.j.EachMemoActivity
 import com.privatememo.j.R
 import com.privatememo.j.adapter.CategoryAdapter
+import com.privatememo.j.api.AdapterListener
 import com.privatememo.j.databinding.CategoryfragmentBinding
-import com.privatememo.j.databinding.MemofragmentBinding
 import com.privatememo.j.ui.bottombar.MainActivity
-import com.privatememo.j.ui.bottombar.MemoFragment
 import com.privatememo.j.viewmodel.CategoryViewModel
 import kotlinx.android.synthetic.main.categoryfragment.*
-import kotlinx.android.synthetic.main.memofragment.*
-import kotlinx.android.synthetic.main.searchfragment.*
 
 class CategoryFragment : Fragment() {
 
@@ -40,10 +38,9 @@ class CategoryFragment : Fragment() {
         Log.i("tag","이것은 카테고리프래그먼트의 이메일입니다. ${act.mainViewModel.email.value}")
         categoryViewModel.email.set(act.mainViewModel.email.value)
 
-        var layoutmanager = LinearLayoutManager(CategoryBinding.rcv.context)
-        CategoryBinding.rcv.layoutManager = layoutmanager
-        CategoryBinding.rcv.adapter = adapter
-
+        var layoutmanager = LinearLayoutManager(CategoryBinding.cateRcv.context)
+        CategoryBinding.cateRcv.layoutManager = layoutmanager
+        CategoryBinding.cateRcv.adapter = adapter
 
 
         var controler = Observer<Boolean> { result ->
@@ -58,6 +55,16 @@ class CategoryFragment : Fragment() {
         }
         categoryViewModel?.controler?.observe(CategoryBinding.lifecycleOwner!!, controler)
 
+
+        adapter.itemClick = object : AdapterListener{
+            override fun CategoryClick(holder: CategoryAdapter.ViewHolder?, view: View?, position: Int) {
+                var intent = Intent(context, EachMemoActivity::class.java)
+                intent.putExtra("email", categoryViewModel.email.get())
+                intent.putExtra("catename", categoryViewModel.items.get(position).catename)
+                startActivity(intent)
+            }
+
+        }
 
         return CategoryBinding.root
     }
