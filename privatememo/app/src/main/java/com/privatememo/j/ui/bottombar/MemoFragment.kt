@@ -72,10 +72,10 @@ class MemoFragment : Fragment() {
 
             when(position) {
                 0 -> {
-                    tab.text = "첫 번째"
+                    tab.setIcon(R.drawable.ic_baseline_format_list_bulleted_24)
                 }
                 1 -> {
-                    tab.text = "두 번쩨"
+                    tab.setIcon(R.drawable.ic_baseline_grid_on_24)
                 }
             }
         }.attach()

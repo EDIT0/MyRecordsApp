@@ -3,27 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:icon="@android:drawable/ic_media_play"
+        android:icon="@drawable/ic_baseline_assignment_24"
         android:title="메모"
         android:enabled="true"
         app:showAsAction="ifRoom"
         android:id="@+id/toolbar_item_memo"/>
 
     <item
-        android:icon="@android:drawable/ic_menu_gallery"
+        android:icon="@drawable/ic_baseline_manage_search_24"
         android:title="검색"
         app:showAsAction="ifRoom"
         android:id="@+id/toolbar_item_search"/>
 
     <item
-        android:icon="@android:drawable/ic_popup_reminder"
+        android:icon="@drawable/ic_baseline_edit_calendar_24"
         android:title="달력"
         android:enabled="true"
         app:showAsAction="ifRoom"
         android:id="@+id/toolbar_item_calendar"/>
 
     <item
-        android:icon="@android:drawable/ic_popup_reminder"
+        android:icon="@drawable/ic_baseline_settings_24"
         android:title="설정"
         android:enabled="true"
         app:showAsAction="ifRoom"

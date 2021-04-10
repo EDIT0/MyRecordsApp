@@ -12,14 +12,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.privatememo.j.EachMemoActivity
 import com.privatememo.j.R
 import com.privatememo.j.adapter.CategoryAdapter
+import com.privatememo.j.adapter.EachMemoAdapter
 import com.privatememo.j.api.AdapterListener
 import com.privatememo.j.databinding.CategoryfragmentBinding
 import com.privatememo.j.ui.bottombar.MainActivity
 import com.privatememo.j.viewmodel.CategoryViewModel
 import kotlinx.android.synthetic.main.categoryfragment.*
+import java.lang.Exception
 
 class CategoryFragment : Fragment() {
 
@@ -60,8 +61,18 @@ class CategoryFragment : Fragment() {
             override fun CategoryClick(holder: CategoryAdapter.ViewHolder?, view: View?, position: Int) {
                 var intent = Intent(context, EachMemoActivity::class.java)
                 intent.putExtra("email", categoryViewModel.email.get())
+                intent.putExtra("catenum", categoryViewModel.items.get(position).catenum)
+                Log.i("tag","카테고리 넘버: "+categoryViewModel.items.get(position).catenum)
                 intent.putExtra("catename", categoryViewModel.items.get(position).catename)
                 startActivity(intent)
+            }
+
+            override fun EachMemoShortClick(holder: EachMemoAdapter.ViewHolder?, view: View?, position: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun EachMemoLongClick(holder: EachMemoAdapter.ViewHolder?, view: View?, position: Int) {
+                TODO("Not yet implemented")
             }
 
         }
@@ -87,8 +98,18 @@ class CategoryFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         Log.i("fragment1", "onStart()")
+
         categoryViewModel.search()
 
+        var withTime = Thread()
+        withTime.run {
+            try {
+                Thread.sleep(200)
+            }catch (e: Exception){
+
+            }
+        }
+        adapter.notifyDataSetChanged()
     }
 
     override fun onResume() {

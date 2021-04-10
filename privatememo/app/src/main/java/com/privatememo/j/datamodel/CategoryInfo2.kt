@@ -5,7 +5,8 @@ data class CategoryInfo2(
     var explanation: String,
     var catepicPath: String,
     var email: String,
-    var bookmark: String
+    var bookmark: String,
+    var catenum: String
 ){
 
 }

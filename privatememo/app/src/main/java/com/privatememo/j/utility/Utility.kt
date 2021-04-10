@@ -9,8 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.privatememo.j.adapter.CategoryAdapter
+import com.privatememo.j.adapter.EachMemoAdapter
 import com.privatememo.j.datamodel.CategoryInfo
 import com.privatememo.j.datamodel.CategoryInfo2
+import com.privatememo.j.datamodel.MemoInfo2
 
 object Utility {
 
@@ -25,6 +27,13 @@ object Utility {
     @JvmStatic
     fun CategoryRcv (rcv: RecyclerView, items : ArrayList<CategoryInfo2>){
         (rcv.adapter as CategoryAdapter).items = items
+        rcv.adapter?.notifyDataSetChanged()
+    }
+
+    @BindingAdapter("memo_rcv")
+    @JvmStatic
+    fun MemoRcv (rcv: RecyclerView, items : ArrayList<MemoInfo2>){
+        (rcv.adapter as EachMemoAdapter).items = items
         rcv.adapter?.notifyDataSetChanged()
     }
 
