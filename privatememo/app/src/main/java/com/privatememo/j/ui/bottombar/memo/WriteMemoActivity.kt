@@ -207,7 +207,7 @@ class WriteMemoActivity : AppCompatActivity() {
             }
         }
         else if(requestCode == 111 && resultCode == RESULT_CANCELED){
-            Toast.makeText(this,"취소", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this,"취소", Toast.LENGTH_SHORT).show();
         }
 
     }

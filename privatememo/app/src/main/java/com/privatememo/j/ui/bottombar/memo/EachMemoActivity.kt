@@ -96,7 +96,7 @@ class EachMemoActivity : AppCompatActivity() {
             override fun EachMemoLongClick(holder: EachMemoAdapter.ViewHolder?, view: View?, position: Int) {
                 var deletedialog = AlertDialog.Builder(EachMemoBinding.root.context)
                         .setTitle("알림")
-                        .setMessage("삭제하시겠습니까? ${eachMemoViewModel.items.get(position).contentnum}")
+                        .setMessage("삭제하시겠습니까?")
                         .setPositiveButton("네", DialogInterface.OnClickListener { dialog, which ->
                             eachMemoViewModel.deleteMemo_call(eachMemoViewModel.items.get(position).contentnum)
                             eachMemoViewModel.items.removeAt(position)

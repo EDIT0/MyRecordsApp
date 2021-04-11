@@ -94,7 +94,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="#83EEF0F1">
 
                 <HorizontalScrollView
                     android:layout_width="match_parent"
@@ -190,6 +191,7 @@
             tools:context=".ui.bottombar.memo.ShowAndReviseMemo"
             android:orientation="vertical"
             android:id="@+id/showdelete"
+            android:background="#83EEF0F1"
             android:visibility="@{showAndReviseMemoViewModel.controler ? View.VISIBLE : View.INVISIBLE}">
 
             <com.google.android.material.appbar.AppBarLayout
