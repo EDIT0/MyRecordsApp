@@ -1,5 +1,6 @@
 package com.privatememo.j.ui.bottombar.memo
 
+import android.app.Activity
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
@@ -70,16 +71,26 @@ class EachMemoActivity : AppCompatActivity() {
 
         adapter.itemClick = object : AdapterListener {
             override fun CategoryClick(holder: CategoryAdapter.ViewHolder?, view: View?, position: Int) {
-                /*var intent = Intent(context, EachMemoActivity::class.java)
-                intent.putExtra("email", categoryViewModel.email.get())
-                intent.putExtra("catenum", categoryViewModel.items.get(position).catenum)
-                Log.i("tag","카테고리 넘버: "+categoryViewModel.items.get(position).catenum)
-                intent.putExtra("catename", categoryViewModel.items.get(position).catename)
-                startActivity(intent)*/
+
             }
 
             override fun EachMemoShortClick(holder: EachMemoAdapter.ViewHolder?, view: View?, position: Int) {
-                Toast.makeText(applicationContext, "구현예정",Toast.LENGTH_SHORT).show()
+                var intent = Intent(EachMemoBinding.root.context, ShowAndReviseMemo::class.java)
+                var bundle = Bundle()
+                bundle.putInt("contentNum",eachMemoViewModel.items.get(position).contentnum)
+                bundle.putString("title",eachMemoViewModel.items.get(position).title)
+                bundle.putString("memo",eachMemoViewModel.items.get(position).memo)
+                bundle.putString("date",eachMemoViewModel.items.get(position).date)
+                bundle.putString("revisedate",eachMemoViewModel.items.get(position).revicedate)
+                bundle.putString("time",eachMemoViewModel.items.get(position).time)
+                bundle.putString("revisetime",eachMemoViewModel.items.get(position).revicetime)
+                bundle.putString("ConBookmark",eachMemoViewModel.items.get(position).ConBookmark)
+                bundle.putString("email",eachMemoViewModel.items.get(position).memberlist_email)
+                bundle.putInt("cateNum",eachMemoViewModel.items.get(position).category_catenum)
+
+                Log.i("tag", "보내는 데이터 ${eachMemoViewModel.items.get(position).contentnum} ${eachMemoViewModel.items.get(position).title}")
+                intent.putExtras(bundle)
+                startActivityForResult(intent, 900)
             }
 
             override fun EachMemoLongClick(holder: EachMemoAdapter.ViewHolder?, view: View?, position: Int) {
@@ -97,6 +108,10 @@ class EachMemoActivity : AppCompatActivity() {
                         .create()
 
                 deletedialog.show()
+            }
+
+            override fun CategoryImageClick(holder: CategoryAdapter.ViewHolder?, view: View?, position: Int) {
+                TODO("Not yet implemented")
             }
 
         }
@@ -117,6 +132,13 @@ class EachMemoActivity : AppCompatActivity() {
         }
 
         adapter.notifyDataSetChanged()
+
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
 
     }
 }

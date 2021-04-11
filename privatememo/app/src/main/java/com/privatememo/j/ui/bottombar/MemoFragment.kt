@@ -6,20 +6,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.privatememo.j.R
+import com.privatememo.j.utility.WholeImageActivity
 import com.privatememo.j.adapter.MemoViewPagerAdapter
 import com.privatememo.j.databinding.MemofragmentBinding
 import com.privatememo.j.ui.bottombar.memo.MakeCategory
-import com.privatememo.j.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.memofragment.*
-import kotlinx.android.synthetic.main.welcomeactivity.*
 
 class MemoFragment : Fragment() {
 
@@ -36,6 +32,12 @@ class MemoFragment : Fragment() {
             var intent = Intent(context, MakeCategory::class.java)
             intent.putExtra("email", act.mainViewModel.email.value)
             Log.i("tag", "MakeCategory로 가는 길:  ${act.mainViewModel.email.value}")
+            startActivity(intent)
+        }
+
+        MemoBinding.profilePicture.setOnClickListener {
+            val intent = Intent(MemoBinding.root.context, WholeImageActivity::class.java)
+            intent.putExtra("imageUri", act.mainViewModel.picPath.value)
             startActivity(intent)
         }
 

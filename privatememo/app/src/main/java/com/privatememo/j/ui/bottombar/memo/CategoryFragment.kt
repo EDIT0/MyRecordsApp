@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.privatememo.j.R
+import com.privatememo.j.utility.WholeImageActivity
 import com.privatememo.j.adapter.CategoryAdapter
 import com.privatememo.j.adapter.EachMemoAdapter
 import com.privatememo.j.api.AdapterListener
@@ -73,6 +74,12 @@ class CategoryFragment : Fragment() {
 
             override fun EachMemoLongClick(holder: EachMemoAdapter.ViewHolder?, view: View?, position: Int) {
                 TODO("Not yet implemented")
+            }
+
+            override fun CategoryImageClick(holder: CategoryAdapter.ViewHolder?, view: View?, position: Int) {
+                val intent = Intent(CategoryBinding.root.context, WholeImageActivity::class.java)
+                intent.putExtra("imageUri", categoryViewModel.items.get(position).catepicPath)
+                startActivity(intent)
             }
 
         }

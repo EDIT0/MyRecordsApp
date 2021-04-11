@@ -32,6 +32,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:scaleType="fitXY"
+                    android:id="@+id/cateimage"
                     category_rcv_image="@{CategoryInfo2Model.catepicPath}"
                     error="@{@drawable/ic_baseline_block_24}"/>
 

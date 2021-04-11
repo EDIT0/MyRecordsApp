@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.privatememo.j.api.AdapterListener
 import com.privatememo.j.databinding.CategoryadapterBinding
 import com.privatememo.j.datamodel.CategoryInfo2
+import kotlinx.android.synthetic.main.categoryadapter.view.*
 
 class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
@@ -18,6 +19,9 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
         init {
             itemView.setOnClickListener {
                 itemClick.CategoryClick(this, itemView, adapterPosition)
+            }
+            itemView.cateimage.setOnClickListener {
+                itemClick.CategoryImageClick(this, itemView, adapterPosition)
             }
         }
 

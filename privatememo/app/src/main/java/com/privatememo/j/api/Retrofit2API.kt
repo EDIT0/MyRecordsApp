@@ -112,4 +112,30 @@ interface Retrofit2API {
             @Field("cateNum") cateNum: Int
     ): Call<ContentNumberInfo>
 
+    @FormUrlEncoded
+    @POST("MyRecords/Memo/getMemoImage.php")
+    fun getMemoImage(
+        @Field("contentNum") contentNum: Int
+    ): Call<MemoImageInfo>
+
+    @FormUrlEncoded
+    @POST("MyRecords/Memo/UpdateMemo.php")
+    fun UpdateMemo(
+            @Field("contentnum") contentnum : Int,
+            @Field("title") title: String,
+            @Field("memo") memo: String,
+            @Field("date") date: String,
+            @Field("reviseDate") reviseDate: String,
+            @Field("time") time: String,
+            @Field("reviseTime") reviseTime : String,
+            @Field("ConBookmark") ConBookmark: String,
+            @Field("memberlist_email") email: String,
+            @Field("category_catenum") catenum: Int
+    ): Call<String>
+
+    @FormUrlEncoded
+    @POST("MyRecords/Memo/DeleteImage.php")
+    fun DeleteImage(
+        @Field("imagePath") imagePath: String
+    ): Call<String>
 }
