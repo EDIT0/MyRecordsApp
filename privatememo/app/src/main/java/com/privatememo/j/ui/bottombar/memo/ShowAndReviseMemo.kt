@@ -1,17 +1,22 @@
 package com.privatememo.j.ui.bottombar.memo
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.database.Cursor
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -64,8 +69,8 @@ class ShowAndReviseMemo : AppCompatActivity() {
         ShowAndReviseMemoBinding.setLifecycleOwner(this)
         ShowAndReviseMemoBinding.showAndReviseMemoViewModel = showAndReviseMemoViewModel
 
-        var getintent = getIntent();
-        var getbundle = getintent.getExtras();
+        var getintent = getIntent()
+        var getbundle = getintent.getExtras()
 
         showAndReviseMemoViewModel.contentNum.set(getbundle?.getInt("contentNum"))
         showAndReviseMemoViewModel.title = getbundle?.getString("title")!!
@@ -180,19 +185,27 @@ class ShowAndReviseMemo : AppCompatActivity() {
 
 
         deletememo.setOnClickListener {
-            var deletedialog = AlertDialog.Builder(ShowAndReviseMemoBinding.root.context)
-                    .setTitle("알림")
-                    .setMessage("삭제하시겠습니까?")
-                    .setPositiveButton("네", DialogInterface.OnClickListener { dialog, which ->
-                        showAndReviseMemoViewModel.deleteMemo_call(showAndReviseMemoViewModel.contentNum.get()!!)
-                        finish()
-                    })
-                    .setNegativeButton("아니오", DialogInterface.OnClickListener { dialog, which ->
+            lateinit var ShowAndReviseMemoDialog: Dialog
 
-                    })
-                    .create()
+            ShowAndReviseMemoDialog = Dialog(ShowAndReviseMemoBinding.root.context)
+            ShowAndReviseMemoDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            ShowAndReviseMemoDialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            ShowAndReviseMemoDialog.setContentView(R.layout.onlypiccustomdialog);
+            var params: WindowManager.LayoutParams = ShowAndReviseMemoDialog?.getWindow()?.getAttributes()!!
+            params.width = 600
+            params.height = WindowManager.LayoutParams.WRAP_CONTENT
+            ShowAndReviseMemoDialog?.getWindow()?.setAttributes(params)
 
-            deletedialog.show()
+            ShowAndReviseMemoDialog.show();
+
+            ShowAndReviseMemoDialog.findViewById<TextView>(R.id.onlypicDelete).setOnClickListener {
+                showAndReviseMemoViewModel.deleteMemo_call(showAndReviseMemoViewModel.contentNum.get()!!)
+                ShowAndReviseMemoDialog.dismiss()
+                finish()
+            }
+            ShowAndReviseMemoDialog.findViewById<TextView>(R.id.finish).setOnClickListener {
+                ShowAndReviseMemoDialog.dismiss()
+            }
         }
 
 

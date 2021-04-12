@@ -18,10 +18,14 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
         init {
             itemView.setOnClickListener {
-                itemClick.CategoryClick(this, itemView, adapterPosition)
+                itemClick.CategoryShortClick(this, itemView, adapterPosition)
             }
             itemView.cateimage.setOnClickListener {
                 itemClick.CategoryImageClick(this, itemView, adapterPosition)
+            }
+            itemView.setOnLongClickListener {
+                itemClick.CategoryLongClick(this, itemView, adapterPosition)
+                return@setOnLongClickListener true
             }
         }
 

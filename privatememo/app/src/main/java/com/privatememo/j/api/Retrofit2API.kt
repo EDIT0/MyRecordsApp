@@ -138,4 +138,39 @@ interface Retrofit2API {
     fun DeleteImage(
         @Field("imagePath") imagePath: String
     ): Call<String>
+
+    @FormUrlEncoded
+    @POST("MyRecords/Memo/DeleteCategory.php")
+    fun DeleteCategory(
+        @Field("cateNum") cateNum: Int
+    ): Call<String>
+
+    @FormUrlEncoded
+    @POST("MyRecords/Memo/UpdateCategory.php")
+    fun UpdateCategory(
+        @Field("email") email: String,
+        @Field("catename") catename: String,
+        @Field("explanation") explanation: String,
+        @Field("catepicPath") catepicPath: String,
+        @Field("catenum") catenum: Int,
+        @Field("CateBookmark") catebookmark: String
+    ): Call<String>
+
+    @FormUrlEncoded
+    @POST("MyRecords/Memo/UpdateCategoryImageDelete.php")
+    fun UpdateCategoryImageDelete(
+        @Field("catenum") catenum: Int
+    ): Call<String>
+
+    @FormUrlEncoded
+    @POST("MyRecords/Memo/getMemoCount.php")
+    fun getMemoCount(
+        @Field("email") email: String
+    ): Call<MemoCountInfo>
+
+    @FormUrlEncoded
+    @POST("MyRecords/Memo/getOnlyPic.php")
+    fun getOnlyPic(
+        @Field("email") email: String
+    ): Call<OnlyPicInfo>
 }

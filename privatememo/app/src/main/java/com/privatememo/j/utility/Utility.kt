@@ -2,17 +2,17 @@ package com.privatememo.j.utility
 
 import android.graphics.drawable.Drawable
 import android.util.Log
-import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.privatememo.j.adapter.OnlyPicAdapter
 import com.privatememo.j.adapter.CategoryAdapter
 import com.privatememo.j.adapter.EachMemoAdapter
-import com.privatememo.j.datamodel.CategoryInfo
 import com.privatememo.j.datamodel.CategoryInfo2
 import com.privatememo.j.datamodel.MemoInfo2
+import com.privatememo.j.datamodel.OnlyPicInfo2
 
 object Utility {
 
@@ -43,4 +43,16 @@ object Utility {
         Glide.with(iv.context).load(url).apply(RequestOptions.circleCropTransform()).override(1000,1000).error(error).into(iv)
     }
 
+    @BindingAdapter("onlypic_rcv")
+    @JvmStatic
+    fun OnlyPicRcv (rcv: RecyclerView, items : ArrayList<OnlyPicInfo2>){
+        (rcv.adapter as OnlyPicAdapter).items = items
+        rcv.adapter?.notifyDataSetChanged()
+    }
+
+    @BindingAdapter("onlypic_rcv_image", "error")
+    @JvmStatic
+    fun OnlyPicRcvImage (iv : ImageView, url : String?, error : Drawable){
+        Glide.with(iv.context).load(url).override(1000,1000).error(error).into(iv)
+    }
 }

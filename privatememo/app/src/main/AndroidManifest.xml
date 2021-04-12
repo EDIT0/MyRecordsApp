@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Privatememo"
         android:usesCleartextTraffic="true">
-        <activity android:name=".utility.WholeImageActivity"></activity>
+        <activity android:name=".adapter.OnlyPicAdapter"></activity>
+        <activity android:name=".ui.bottombar.memo.ReviseCategory" />
+        <activity android:name=".utility.WholeImageActivity" />
         <activity android:name=".ui.bottombar.memo.ShowAndReviseMemo" />
         <activity android:name=".ui.bottombar.memo.WriteMemoActivity" />
         <activity android:name=".ui.bottombar.memo.EachMemoActivity" />

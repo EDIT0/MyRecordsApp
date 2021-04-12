@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.privatememo.j.*
 import com.privatememo.j.databinding.ActivityMainBinding
+import com.privatememo.j.ui.bottombar.memo.CategoryFragment
 import com.privatememo.j.viewmodel.MainViewModel
 import com.privatememo.j.viewmodel.WelcomeViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -28,6 +31,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         MainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         MainBinding.setLifecycleOwner(this)
         MainBinding.mainViewModel = mainViewModel
+
+
 
         //fm.beginTransaction().replace(R.id.framelayout, fragment2()).commit()
         with(fm.beginTransaction()){
@@ -52,6 +57,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 "${getbundle?.getString("motto")} ${getbundle?.getString("picPath")}")
         Log.i("TAG", "넘어온 데이터2 ${mainViewModel.email.getValue()}, ${mainViewModel.nickname.getValue()} ${mainViewModel.motto.getValue()} " +
                 "${mainViewModel.picPath.getValue()}")
+
     }
 
     override fun onDestroy() {

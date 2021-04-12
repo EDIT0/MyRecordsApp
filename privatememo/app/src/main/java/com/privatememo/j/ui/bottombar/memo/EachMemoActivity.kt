@@ -1,18 +1,21 @@
 package com.privatememo.j.ui.bottombar.memo
 
-import android.app.Activity
-import android.content.DialogInterface
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
+import android.view.Window
+import android.view.WindowManager
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.privatememo.j.adapter.OnlyPicAdapter
 import com.privatememo.j.R
 import com.privatememo.j.adapter.CategoryAdapter
 import com.privatememo.j.adapter.EachMemoAdapter
@@ -29,6 +32,8 @@ class EachMemoActivity : AppCompatActivity() {
     var eachMemoViewModel = EachMemoViewModel()
     var adapter = EachMemoAdapter()
 
+    lateinit var EachMemoDialog: Dialog
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -36,6 +41,15 @@ class EachMemoActivity : AppCompatActivity() {
         EachMemoBinding = DataBindingUtil.setContentView(this, R.layout.eachmemoactivity)
         EachMemoBinding.setLifecycleOwner(this)
         EachMemoBinding.eachMemoViewModel = eachMemoViewModel
+
+        EachMemoDialog = Dialog(EachMemoBinding.root.context)
+        EachMemoDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        EachMemoDialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        EachMemoDialog.setContentView(R.layout.onlypiccustomdialog);
+        var params: WindowManager.LayoutParams = EachMemoDialog?.getWindow()?.getAttributes()!!
+        params.width = 600
+        params.height = WindowManager.LayoutParams.WRAP_CONTENT
+        EachMemoDialog?.getWindow()?.setAttributes(params)
 
         var getintent = getIntent()
         eachMemoViewModel.email = getintent.getStringExtra("email")!!
@@ -70,8 +84,8 @@ class EachMemoActivity : AppCompatActivity() {
         eachMemoViewModel?.controler?.observe(EachMemoBinding.lifecycleOwner!!, controler)
 
         adapter.itemClick = object : AdapterListener {
-            override fun CategoryClick(holder: CategoryAdapter.ViewHolder?, view: View?, position: Int) {
-
+            override fun CategoryShortClick(holder: CategoryAdapter.ViewHolder?, view: View?, position: Int) {
+                TODO("Not yet implemented")
             }
 
             override fun EachMemoShortClick(holder: EachMemoAdapter.ViewHolder?, view: View?, position: Int) {
@@ -94,26 +108,39 @@ class EachMemoActivity : AppCompatActivity() {
             }
 
             override fun EachMemoLongClick(holder: EachMemoAdapter.ViewHolder?, view: View?, position: Int) {
-                var deletedialog = AlertDialog.Builder(EachMemoBinding.root.context)
-                        .setTitle("알림")
-                        .setMessage("삭제하시겠습니까?")
-                        .setPositiveButton("네", DialogInterface.OnClickListener { dialog, which ->
-                            eachMemoViewModel.deleteMemo_call(eachMemoViewModel.items.get(position).contentnum)
-                            eachMemoViewModel.items.removeAt(position)
-                            adapter.notifyDataSetChanged()
-                        })
-                        .setNegativeButton("아니오", DialogInterface.OnClickListener { dialog, which ->
-
-                        })
-                        .create()
-
-                deletedialog.show()
+                showCustomDialog(position)
             }
 
             override fun CategoryImageClick(holder: CategoryAdapter.ViewHolder?, view: View?, position: Int) {
                 TODO("Not yet implemented")
             }
 
+            override fun CategoryLongClick(holder: CategoryAdapter.ViewHolder?, view: View?, position: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun OnlyPicShortClick(holder: OnlyPicAdapter.ViewHolder?, view: View?, position: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun OnlyPicLongClick(holder: OnlyPicAdapter.ViewHolder?, view: View?, position: Int) {
+                TODO("Not yet implemented")
+            }
+
+        }
+    }
+
+    fun showCustomDialog(position: Int){
+        EachMemoDialog.show();
+
+        EachMemoDialog.findViewById<TextView>(R.id.onlypicDelete).setOnClickListener {
+            eachMemoViewModel.deleteMemo_call(eachMemoViewModel.items.get(position).contentnum)
+            EachMemoDialog.dismiss()
+            eachMemoViewModel.items.removeAt(position)
+            adapter.notifyDataSetChanged()
+        }
+        EachMemoDialog.findViewById<TextView>(R.id.finish).setOnClickListener {
+            EachMemoDialog.dismiss()
         }
     }
 

@@ -7,22 +7,20 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.privatememo.j.datamodel.CategoryInfo
 import com.privatememo.j.datamodel.CategoryInfo2
-import com.privatememo.j.datamodel.MemoCountInfo
+import com.privatememo.j.datamodel.OnlyPicInfo
+import com.privatememo.j.datamodel.OnlyPicInfo2
 import com.privatememo.j.utility.Retrofit2Module
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
-class CategoryViewModel : ViewModel() {
+class OnlyPicViewModel : ViewModel(){
 
     var retrofit2module = Retrofit2Module()
 
-    var items = ObservableArrayList<CategoryInfo2>()
+    var items = ObservableArrayList<OnlyPicInfo2>()
     var email = ObservableField<String>()
     var controler = MutableLiveData<Boolean>()
-
 
     init {
         controler.value = false
@@ -39,16 +37,17 @@ class CategoryViewModel : ViewModel() {
 
     fun search(){
         items.clear()
-        getCategoryList_call()
+        getOnlyPic_call()
     }
 
-    fun getCategoryList_call(){
 
-        val call: Call<CategoryInfo> = retrofit2module.client.getCategoryList(email.get().toString())
+    fun getOnlyPic_call(){
 
-        call.enqueue(object : Callback<CategoryInfo> {
-            override fun onResponse(call: Call<CategoryInfo>, response: Response<CategoryInfo>) {
-                val result: CategoryInfo? = response.body()
+        val call: Call<OnlyPicInfo> = retrofit2module.client.getOnlyPic(email.get().toString())
+
+        call.enqueue(object : Callback<OnlyPicInfo> {
+            override fun onResponse(call: Call<OnlyPicInfo>, response: Response<OnlyPicInfo>) {
+                val result: OnlyPicInfo? = response.body()
 
                 for (i in 0 until result?.result?.size!!) {
                     items.add(result.result.get(i))
@@ -58,26 +57,32 @@ class CategoryViewModel : ViewModel() {
                 switching()
             }
 
-            override fun onFailure(call: Call<CategoryInfo>, t: Throwable) {
+            override fun onFailure(call: Call<OnlyPicInfo>, t: Throwable) {
                 Log.i("??","error")
             }
         })
     }
 
-    fun DeleteCategory(position: Int){
-        val call: Call<String> = retrofit2module.client.DeleteCategory(Integer.parseInt(items.get(position).catenum))
+
+    fun deleteMemo_call(contentNum: Int){
+        val call: Call<String> = retrofit2module.client.DeleteMemo(contentNum)
 
         call.enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 val result: String? = response.body()
-                Log.i("??","딜리트카테고리ok")
+
+                Log.i("tag","이거 출력됩니까?")
+
+                //Log.i("tag","설명 입니다. ${result?.result?.get(0)?.explanation}")
+
             }
 
             override fun onFailure(call: Call<String>, t: Throwable) {
-                Log.i("??","딜리트카테고리error")
+                Log.i("??","이거 출력 안됩니까?")
             }
         })
     }
+
 
 
 }

@@ -14,6 +14,7 @@ import com.privatememo.j.R
 import com.privatememo.j.utility.WholeImageActivity
 import com.privatememo.j.adapter.MemoViewPagerAdapter
 import com.privatememo.j.databinding.MemofragmentBinding
+import com.privatememo.j.ui.bottombar.memo.CategoryFragment
 import com.privatememo.j.ui.bottombar.memo.MakeCategory
 import kotlinx.android.synthetic.main.memofragment.*
 
