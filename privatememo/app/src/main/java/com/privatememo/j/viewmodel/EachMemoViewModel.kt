@@ -16,7 +16,7 @@ import retrofit2.Response
 
 class EachMemoViewModel : ViewModel() {
 
-    var retrofit2module = Retrofit2Module()
+    val retrofit2module = Retrofit2Module.getInstance()
 
     var cateName = String()
     var email = String()
@@ -45,7 +45,7 @@ class EachMemoViewModel : ViewModel() {
 
     fun getMemoList_call(){
 
-        val call: Call<MemoInfo> = retrofit2module.client.getMemoList(Integer.parseInt(cateNum))
+        val call: Call<MemoInfo> = retrofit2module.BaseModule().getMemoList(Integer.parseInt(cateNum))
 
         call.enqueue(object : Callback<MemoInfo> {
             override fun onResponse(call: Call<MemoInfo>, response: Response<MemoInfo>) {
@@ -66,7 +66,7 @@ class EachMemoViewModel : ViewModel() {
     }
 
     fun deleteMemo_call(contentNum: Int){
-        val call: Call<String> = retrofit2module.client.DeleteMemo(contentNum)
+        val call: Call<String> = retrofit2module.BaseModule().DeleteMemo(contentNum)
 
         call.enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {

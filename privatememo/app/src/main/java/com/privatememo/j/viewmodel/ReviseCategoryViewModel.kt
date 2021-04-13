@@ -12,7 +12,7 @@ import retrofit2.Response
 
 class ReviseCategoryViewModel : ViewModel() {
 
-    var retrofit2module = Retrofit2Module()
+    val retrofit2module = Retrofit2Module.getInstance()
 
     var cateNum = ObservableField<Int>()
     var cateName = String()
@@ -62,7 +62,7 @@ class ReviseCategoryViewModel : ViewModel() {
     }
 
     fun UpdateCategory_call(vararg str: String){
-        val call: Call<String> = retrofit2module.client.UpdateCategory(str[0], str[1], str[2], str[3], Integer.parseInt(str[4]), str[5])
+        val call: Call<String> = retrofit2module.BaseModule().UpdateCategory(str[0], str[1], str[2], str[3], Integer.parseInt(str[4]), str[5])
 
         call.enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
@@ -75,7 +75,7 @@ class ReviseCategoryViewModel : ViewModel() {
     }
 
     fun UpdateCategoryImageDelete_call(){
-        val call: Call<String> = retrofit2module.client.UpdateCategoryImageDelete(Integer.parseInt(cateNum.get().toString()))
+        val call: Call<String> = retrofit2module.BaseModule().UpdateCategoryImageDelete(Integer.parseInt(cateNum.get().toString()))
 
         call.enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {

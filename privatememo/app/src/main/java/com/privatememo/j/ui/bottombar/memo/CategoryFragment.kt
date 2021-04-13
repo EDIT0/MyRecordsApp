@@ -21,6 +21,7 @@ import com.privatememo.j.adapter.EachMemoAdapter
 import com.privatememo.j.api.AdapterListener
 import com.privatememo.j.databinding.CategoryfragmentBinding
 import com.privatememo.j.ui.bottombar.MainActivity
+import com.privatememo.j.utility.Utility
 import com.privatememo.j.utility.WholeImageActivity
 import com.privatememo.j.viewmodel.CategoryViewModel
 import kotlinx.android.synthetic.main.categoryfragment.*
@@ -137,6 +138,7 @@ class CategoryFragment : Fragment() {
             categoryViewModel.items.removeAt(position)
             var act = activity as MainActivity
             act.mainViewModel.totalCateNum.value = adapter.getItemCount()
+            act.mainViewModel.getMemoCount_call()
             adapter.notifyDataSetChanged()
         }
         CategoryDialog.findViewById<TextView>(R.id.finish).setOnClickListener {

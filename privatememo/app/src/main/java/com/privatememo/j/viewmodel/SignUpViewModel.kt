@@ -15,7 +15,7 @@ import kotlin.random.Random
 
 class SignUpViewModel(application: Application) : AndroidViewModel(application) {
 
-    var retrofit2module = Retrofit2Module()
+    val retrofit2module = Retrofit2Module.getInstance()
 
     var email = ObservableField<String>()
     var password = ObservableField<String>()
@@ -91,7 +91,7 @@ class SignUpViewModel(application: Application) : AndroidViewModel(application) 
 
 
     fun SignUpEmailSender_call(email: String, num: String){
-        val call: Call<String> = retrofit2module.client.EmailSender(email, num)
+        val call: Call<String> = retrofit2module.BaseModule().EmailSender(email, num)
 
         call.enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
@@ -104,7 +104,7 @@ class SignUpViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     fun SignUpInsert_call(vararg str: String){
-        val call: Call<String> = retrofit2module.client.ProfileInsert(str[0], str[1], str[2], str[3], str[4])
+        val call: Call<String> = retrofit2module.BaseModule().ProfileInsert(str[0], str[1], str[2], str[3], str[4])
 
         call.enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
@@ -117,7 +117,7 @@ class SignUpViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     fun SignUpEmailCheck_call(email: String){
-        val call: Call<ReturnCheck> = retrofit2module.client.ProfileEmailCheck(email)
+        val call: Call<ReturnCheck> = retrofit2module.BaseModule().ProfileEmailCheck(email)
 
         call.enqueue(object : Callback<ReturnCheck> {
             override fun onResponse(call: Call<ReturnCheck>, response: Response<ReturnCheck>) {

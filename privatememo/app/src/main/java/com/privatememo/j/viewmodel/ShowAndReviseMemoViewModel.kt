@@ -25,7 +25,7 @@ import kotlin.collections.ArrayList
 
 class ShowAndReviseMemoViewModel : ViewModel() {
 
-    var retrofit2module = Retrofit2Module()
+    val retrofit2module = Retrofit2Module.getInstance()
 
     var contentNum = ObservableField<Int>()
     var title = String()
@@ -76,7 +76,7 @@ class ShowAndReviseMemoViewModel : ViewModel() {
     fun getMemoImage_call(){
 
         Log.i("tag","무슨 숫자가 나옵니까? ${contentNum.get()}")
-        val call: Call<MemoImageInfo> = retrofit2module.client.getMemoImage(contentNum.get()!!)
+        val call: Call<MemoImageInfo> = retrofit2module.BaseModule().getMemoImage(contentNum.get()!!)
 
         call.enqueue(object : Callback<MemoImageInfo> {
             override fun onResponse(call: Call<MemoImageInfo>, response: Response<MemoImageInfo>) {
@@ -123,7 +123,7 @@ class ShowAndReviseMemoViewModel : ViewModel() {
 
 
     fun deleteMemo_call(contentNum: Int){
-        val call: Call<String> = retrofit2module.client.DeleteMemo(contentNum)
+        val call: Call<String> = retrofit2module.BaseModule().DeleteMemo(contentNum)
 
         call.enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
@@ -173,7 +173,7 @@ class ShowAndReviseMemoViewModel : ViewModel() {
     }
 
     fun UpdateMemo_call(vararg str: String){
-        val call: Call<String> = retrofit2module.client.UpdateMemo(Integer.parseInt(str[0]), str[1], str[2], str[3],
+        val call: Call<String> = retrofit2module.BaseModule().UpdateMemo(Integer.parseInt(str[0]), str[1], str[2], str[3],
                 str[4], str[5], str[6], str[7], str[8], Integer.parseInt(str[9]))
 
         call.enqueue(object : Callback<String> {
@@ -210,7 +210,7 @@ class ShowAndReviseMemoViewModel : ViewModel() {
 
 
     fun DeleteImage(imageuri: String){
-        val call: Call<String> = retrofit2module.client.DeleteImage(imageuri)
+        val call: Call<String> = retrofit2module.BaseModule().DeleteImage(imageuri)
 
         call.enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {

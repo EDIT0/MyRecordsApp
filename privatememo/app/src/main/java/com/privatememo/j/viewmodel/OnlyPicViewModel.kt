@@ -16,7 +16,7 @@ import retrofit2.Response
 
 class OnlyPicViewModel : ViewModel(){
 
-    var retrofit2module = Retrofit2Module()
+    val retrofit2module = Retrofit2Module.getInstance()
 
     var items = ObservableArrayList<OnlyPicInfo2>()
     var email = ObservableField<String>()
@@ -43,7 +43,7 @@ class OnlyPicViewModel : ViewModel(){
 
     fun getOnlyPic_call(){
 
-        val call: Call<OnlyPicInfo> = retrofit2module.client.getOnlyPic(email.get().toString())
+        val call: Call<OnlyPicInfo> = retrofit2module.BaseModule().getOnlyPic(email.get().toString())
 
         call.enqueue(object : Callback<OnlyPicInfo> {
             override fun onResponse(call: Call<OnlyPicInfo>, response: Response<OnlyPicInfo>) {
@@ -55,6 +55,7 @@ class OnlyPicViewModel : ViewModel(){
 
                 //Log.i("tag","설명 입니다. ${result?.result?.get(0)?.explanation}")
                 switching()
+                Log.i("tag","싱글톤 객체: ${retrofit2module}")
             }
 
             override fun onFailure(call: Call<OnlyPicInfo>, t: Throwable) {
@@ -65,7 +66,7 @@ class OnlyPicViewModel : ViewModel(){
 
 
     fun deleteMemo_call(contentNum: Int){
-        val call: Call<String> = retrofit2module.client.DeleteMemo(contentNum)
+        val call: Call<String> = retrofit2module.BaseModule().DeleteMemo(contentNum)
 
         call.enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {

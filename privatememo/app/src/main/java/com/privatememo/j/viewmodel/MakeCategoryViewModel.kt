@@ -12,7 +12,7 @@ import retrofit2.Response
 
 class MakeCategoryViewModel : ViewModel() {
 
-    var retrofit2module = Retrofit2Module()
+    val retrofit2module = Retrofit2Module.getInstance()
 
     var email = ObservableField<String>()
     var cateName = ObservableField<String>()
@@ -59,7 +59,7 @@ class MakeCategoryViewModel : ViewModel() {
 
 
     fun CategoryInsert_call(vararg str: String){
-        val call: Call<String> = retrofit2module.client.CategoryInsert(str[0], str[1], str[2], str[3])
+        val call: Call<String> = retrofit2module.BaseModule().CategoryInsert(str[0], str[1], str[2], str[3])
 
         call.enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {

@@ -12,7 +12,7 @@ import retrofit2.Response
 
 class MainViewModel : ViewModel(){
 
-    var retrofit2module = Retrofit2Module()
+    val retrofit2module = Retrofit2Module.getInstance()
 
     var email = MutableLiveData<String>()
     var nickname = MutableLiveData<String>()
@@ -30,7 +30,7 @@ class MainViewModel : ViewModel(){
 
 
     fun getMemoCount_call(){
-        val call: Call<MemoCountInfo> = retrofit2module.client.getMemoCount(email.value?:"")
+        val call: Call<MemoCountInfo> = retrofit2module.BaseModule().getMemoCount(email.value?:"")
 
         call.enqueue(object : Callback<MemoCountInfo> {
             override fun onResponse(call: Call<MemoCountInfo>, response: Response<MemoCountInfo>) {
@@ -41,6 +41,7 @@ class MainViewModel : ViewModel(){
 
             override fun onFailure(call: Call<MemoCountInfo>, t: Throwable) {
                 Log.i("??","겟메모카운트error")
+                totalConNum.value = 0
             }
         })
     }

@@ -18,6 +18,7 @@ import com.google.gson.GsonBuilder
 import com.privatememo.j.R
 import com.privatememo.j.api.Retrofit2API
 import com.privatememo.j.databinding.SignupactivityBinding
+import com.privatememo.j.utility.Retrofit2Module
 import com.privatememo.j.viewmodel.SignUpViewModel
 import kotlinx.android.synthetic.main.signupactivity.*
 import okhttp3.MediaType
@@ -112,11 +113,6 @@ class SignUpActivity : AppCompatActivity() {
 
     fun send_images_testRetrofit(){
 
-        /*var date = SimpleDateFormat()
-        var dt = Date()
-        date = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss")
-        println(date.format(dt).toString())*/
-        //var date_filename = date.format(dt).toString()
         Log.i("TAG","아아아아아"+signupViewModel.pictureUri.get()!!)
         var path = absolutelyPath(signupViewModel.pictureUri.get()!!)
         println("경로 받아라 ! "+path)
@@ -127,20 +123,8 @@ class SignUpActivity : AppCompatActivity() {
         signupViewModel.pictureAddress.set(fileName)
 
 
-        var requestBody : RequestBody = RequestBody.create(MediaType.parse("image/jpg"),file)
-        var body : MultipartBody.Part = MultipartBody.Part.createFormData("uploaded_file", fileName, requestBody)
-
-        var gson : Gson =  GsonBuilder()
-            .setLenient()
-            .create()
-
-        var retrofit = Retrofit.Builder()
-            .baseUrl("http://edit0.dothome.co.kr/")
-            .addConverterFactory(GsonConverterFactory.create(gson))
-            .build()
-
-        var server = retrofit.create(Retrofit2API::class.java)
-
+        val retrofit2module = Retrofit2Module.getInstance()
+        var (server, body) = retrofit2module.SendImageModule(file, fileName)
         server.ProfileImageSender("name2.png",body).enqueue(object: Callback<String> {
             override fun onFailure(call: Call<String>, t: Throwable) {
                 Log.d("레트로핏 결과1","에러")

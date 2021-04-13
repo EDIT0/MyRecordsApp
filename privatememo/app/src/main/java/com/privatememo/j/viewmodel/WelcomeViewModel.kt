@@ -13,7 +13,7 @@ import retrofit2.Response
 
 class WelcomeViewModel : ViewModel() {
 
-    var retrofit2module = Retrofit2Module()
+    val retrofit2module = Retrofit2Module.getInstance()
 
     var getEmailfromMember = ObservableField<String>()
     var getPasswordfromMember = ObservableField<String>()
@@ -28,7 +28,7 @@ class WelcomeViewModel : ViewModel() {
 
     //나중에 초기화 지워줘야 함
     init {
-        getEmailfromMember.set("akdmadl34@naver.com")
+        getEmailfromMember.set("ej4159@naver.com")
         getPasswordfromMember.set("123")
     }
 
@@ -40,7 +40,7 @@ class WelcomeViewModel : ViewModel() {
 
 
     fun Login_call(email: String, password: String){
-        val call: Call<MemberInfo> = retrofit2module.client.Login(email, password)
+        val call: Call<MemberInfo> = retrofit2module.BaseModule().Login(email, password)
 
         call.enqueue(object : Callback<MemberInfo> {
             override fun onResponse(call: Call<MemberInfo>, response: Response<MemberInfo>) {

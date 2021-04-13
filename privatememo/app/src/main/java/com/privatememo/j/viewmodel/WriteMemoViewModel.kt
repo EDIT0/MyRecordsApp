@@ -15,7 +15,7 @@ import java.util.*
 
 class WriteMemoViewModel : ViewModel() {
 
-    var retrofit2module = Retrofit2Module()
+    val retrofit2module = Retrofit2Module.getInstance()
 
     var title = String()
     var textMemo = ObservableField<String>()
@@ -54,7 +54,7 @@ class WriteMemoViewModel : ViewModel() {
 
     var contentnum = String() //메모 넣고 나온 auto숫자로 이미지 저장을 위한
     fun MemoInsert_call(vararg str: String){
-        val call: Call<String> = retrofit2module.client.MemoInsert(str[0], str[1], str[2], str[3], str[4], Integer.parseInt(str[5]))
+        val call: Call<String> = retrofit2module.BaseModule().MemoInsert(str[0], str[1], str[2], str[3], str[4], Integer.parseInt(str[5]))
 
         call.enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
@@ -69,7 +69,7 @@ class WriteMemoViewModel : ViewModel() {
     }
 
     fun getImageStorageContentNumber_call(vararg str: String){
-        val call: Call<ContentNumberInfo> = retrofit2module.client.getImageStorageContentNumber(str[0], str[1], Integer.parseInt(str[2]))
+        val call: Call<ContentNumberInfo> = retrofit2module.BaseModule().getImageStorageContentNumber(str[0], str[1], Integer.parseInt(str[2]))
 
         Log.i("tag","들어가는 정보: ${str[0]} ${str[1]} ${str[2]}")
         call.enqueue(object : Callback<ContentNumberInfo> {

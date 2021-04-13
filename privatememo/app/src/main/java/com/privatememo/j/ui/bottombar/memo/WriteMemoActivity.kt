@@ -230,40 +230,17 @@ class WriteMemoActivity : AppCompatActivity() {
 
         var path = absolutelyPath(uri)
         println("경로 받아라 ! "+path)
-
         val file = File(path)
         var fileName = file.getName()
-
         var random = Random
         var randomNum = 0
         randomNum = random.nextInt(100000, 999999)
-
         fileName = "${writeMemoViewModel.email}_${randomNum}_"+fileName+"_${count}.png"
 
-        var requestBody : RequestBody = RequestBody.create(MediaType.parse("image/jpg"),file)
-        var body : MultipartBody.Part = MultipartBody.Part.createFormData("uploaded_file", fileName, requestBody)
+        InsertImageAddressToServer(fileName)//DB에 주소 넣기
 
-        //DB에 주소 넣기
-        InsertImageAddressToServer(fileName)
-
-
-        //The gson builder
-        var gson : Gson =  GsonBuilder()
-            .setLenient()
-            .create()
-
-        //creating retrofit object
-        var retrofit =
-            Retrofit.Builder()
-                .baseUrl("http://edit0.dothome.co.kr/")
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build()
-
-        //creating our api
-
-        var server = retrofit.create(Retrofit2API::class.java)
-
-        // 파일, 사용자 아이디, 파일이름
+        val retrofit2module = Retrofit2Module.getInstance()
+        var (server, body) = retrofit2module.SendImageModule(file, fileName)
         server.MemoImageSender("name2.png",body).enqueue(object: Callback<String> {
             override fun onFailure(call: Call<String>, t: Throwable) {
                 Log.d("레트로핏 결과1","에러")
@@ -280,10 +257,10 @@ class WriteMemoActivity : AppCompatActivity() {
     }
 
     fun InsertImageAddressToServer(fileName: String){
-        var retrofit2module = Retrofit2Module()
+        val retrofit2module = Retrofit2Module.getInstance()
 
         var imageAddress = "http://edit0@edit0.dothome.co.kr/MyRecords/OnlyImage/Memo/"
-        val call: Call<String> = retrofit2module.client.InsertImageAddressToServer(imageAddress+fileName, writeMemoViewModel.email, Integer.parseInt(writeMemoViewModel.contentnum))
+        val call: Call<String> = retrofit2module.BaseModule().InsertImageAddressToServer(imageAddress+fileName, writeMemoViewModel.email, Integer.parseInt(writeMemoViewModel.contentnum))
 
         call.enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {

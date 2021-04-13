@@ -17,7 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class CategoryViewModel : ViewModel() {
 
-    var retrofit2module = Retrofit2Module()
+    val retrofit2module = Retrofit2Module.getInstance()
 
     var items = ObservableArrayList<CategoryInfo2>()
     var email = ObservableField<String>()
@@ -44,7 +44,7 @@ class CategoryViewModel : ViewModel() {
 
     fun getCategoryList_call(){
 
-        val call: Call<CategoryInfo> = retrofit2module.client.getCategoryList(email.get().toString())
+        val call: Call<CategoryInfo> = retrofit2module.BaseModule().getCategoryList(email.get().toString())
 
         call.enqueue(object : Callback<CategoryInfo> {
             override fun onResponse(call: Call<CategoryInfo>, response: Response<CategoryInfo>) {
@@ -56,6 +56,7 @@ class CategoryViewModel : ViewModel() {
 
                 //Log.i("tag","설명 입니다. ${result?.result?.get(0)?.explanation}")
                 switching()
+                Log.i("tag","싱글톤 객체: ${retrofit2module}")
             }
 
             override fun onFailure(call: Call<CategoryInfo>, t: Throwable) {
@@ -65,7 +66,7 @@ class CategoryViewModel : ViewModel() {
     }
 
     fun DeleteCategory(position: Int){
-        val call: Call<String> = retrofit2module.client.DeleteCategory(Integer.parseInt(items.get(position).catenum))
+        val call: Call<String> = retrofit2module.BaseModule().DeleteCategory(Integer.parseInt(items.get(position).catenum))
 
         call.enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
