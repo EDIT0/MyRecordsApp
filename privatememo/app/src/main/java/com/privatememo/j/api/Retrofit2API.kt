@@ -173,4 +173,11 @@ interface Retrofit2API {
     fun getOnlyPic(
         @Field("email") email: String
     ): Call<OnlyPicInfo>
+
+    @FormUrlEncoded
+    @POST("MyRecords/Search/getSearchResult.php")
+    fun getSearchResult(
+            @Field("email") email: String,
+            @Field("keyword") keyword: String
+    ): Call<SearchInfo>
 }

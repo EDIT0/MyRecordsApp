@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Privatememo" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#22C8FF</item>  <!--#7D8081-->
+        <item name="colorPrimary">#5AD5FD</item>  <!--#22C8FF-->
         <item name="colorPrimaryVariant">@color/black</item>
         <item name="colorOnPrimary">@color/white</item>
         <!--<item name="colorPrimary">@color/purple_500</item>

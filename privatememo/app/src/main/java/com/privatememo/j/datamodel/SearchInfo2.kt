@@ -1,6 +1,8 @@
 package com.privatememo.j.datamodel
 
-data class MemoInfo2(
+import androidx.databinding.ObservableField
+
+data class SearchInfo2(
     var contentnum: Int,
     var title: String,
     var memo: String,
@@ -10,9 +12,9 @@ data class MemoInfo2(
     var revicetime: String,
     var ConBookmark: String,
     var memberlist_email: String,
-    var category_catenum: Int
+    var category_catenum: Int,
+    var catename: String
 ) {
-
 
     fun printDate(): String{
         var re_date = date.split("_")
@@ -43,11 +45,9 @@ data class MemoInfo2(
 
     fun setVisible(): Boolean{
         if(revicedate.length > 3){
-
             return true
         }
         else{
-
             return false
         }
 

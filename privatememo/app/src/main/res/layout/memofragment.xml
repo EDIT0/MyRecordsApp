@@ -11,7 +11,7 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/memofrag"
-        tools:context=".ui.bottombar.MemoFragment"
+        tools:context=".ui.bottombar.memo.MemoFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#83EEF0F1">

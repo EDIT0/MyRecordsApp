@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.privatememo.j.adapter.OnlyPicAdapter
 import com.privatememo.j.R
+import com.privatememo.j.adapter.SearchAdapter
 import com.privatememo.j.adapter.CategoryAdapter
 import com.privatememo.j.adapter.EachMemoAdapter
 import com.privatememo.j.api.AdapterListener
@@ -78,8 +79,6 @@ class EachMemoActivity : AppCompatActivity() {
             else{
                 EachMemoBinding.layout.visibility = View.INVISIBLE
             }
-            /*var act = activity as MainActivity
-            act.mainViewModel.totalConNum.value = adapter.getItemCount()*/
         }
         eachMemoViewModel?.controler?.observe(EachMemoBinding.lifecycleOwner!!, controler)
 
@@ -124,6 +123,14 @@ class EachMemoActivity : AppCompatActivity() {
             }
 
             override fun OnlyPicLongClick(holder: OnlyPicAdapter.ViewHolder?, view: View?, position: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun SearchShortClick(holder: SearchAdapter.ViewHolder?, view: View?, position: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun SearchLongClick(holder: SearchAdapter.ViewHolder?, view: View?, position: Int) {
                 TODO("Not yet implemented")
             }
 

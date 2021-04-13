@@ -1,30 +1,21 @@
 package com.privatememo.j.utility
 
 import android.app.Dialog
-import android.content.Context
-import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
-import android.os.Bundle
 import android.util.Log
-import android.view.Window
-import android.view.WindowManager
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.privatememo.j.R
+import com.privatememo.j.adapter.SearchAdapter
 import com.privatememo.j.adapter.OnlyPicAdapter
 import com.privatememo.j.adapter.CategoryAdapter
 import com.privatememo.j.adapter.EachMemoAdapter
 import com.privatememo.j.datamodel.CategoryInfo2
 import com.privatememo.j.datamodel.MemoInfo2
 import com.privatememo.j.datamodel.OnlyPicInfo2
-import com.privatememo.j.ui.bottombar.MainActivity
-import com.privatememo.j.ui.bottombar.memo.ReviseCategory
+import com.privatememo.j.datamodel.SearchInfo2
 
 object Utility {
 
@@ -70,4 +61,10 @@ object Utility {
         Glide.with(iv.context).load(url).override(1000,1000).error(error).into(iv)
     }
 
+    @BindingAdapter("search_rcv")
+    @JvmStatic
+    fun SearchRcv (rcv: RecyclerView, items : ArrayList<SearchInfo2>){
+        (rcv.adapter as SearchAdapter).items = items
+        rcv.adapter?.notifyDataSetChanged()
+    }
 }

@@ -1,6 +1,7 @@
 package com.privatememo.j.api
 
 import android.view.View
+import com.privatememo.j.adapter.SearchAdapter
 import com.privatememo.j.adapter.OnlyPicAdapter
 import com.privatememo.j.adapter.CategoryAdapter
 import com.privatememo.j.adapter.EachMemoAdapter
@@ -14,5 +15,7 @@ interface AdapterListener {
     fun CategoryLongClick(holder: CategoryAdapter.ViewHolder?, view: View?, position:Int)
     fun OnlyPicShortClick(holder: OnlyPicAdapter.ViewHolder?, view: View?, position:Int)
     fun OnlyPicLongClick(holder: OnlyPicAdapter.ViewHolder?, view: View?, position:Int)
+    fun SearchShortClick(holder: SearchAdapter.ViewHolder?, view: View?, position:Int)
+    fun SearchLongClick(holder: SearchAdapter.ViewHolder?, view: View?, position:Int)
 
 }

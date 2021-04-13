@@ -18,6 +18,7 @@ import com.privatememo.j.adapter.OnlyPicAdapter
 import com.privatememo.j.R
 import com.privatememo.j.adapter.CategoryAdapter
 import com.privatememo.j.adapter.EachMemoAdapter
+import com.privatememo.j.adapter.SearchAdapter
 import com.privatememo.j.api.AdapterListener
 import com.privatememo.j.databinding.CategoryfragmentBinding
 import com.privatememo.j.ui.bottombar.MainActivity
@@ -106,6 +107,14 @@ class CategoryFragment : Fragment() {
             }
 
             override fun OnlyPicLongClick(holder: OnlyPicAdapter.ViewHolder?, view: View?, position: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun SearchShortClick(holder: SearchAdapter.ViewHolder?, view: View?, position: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun SearchLongClick(holder: SearchAdapter.ViewHolder?, view: View?, position: Int) {
                 TODO("Not yet implemented")
             }
 

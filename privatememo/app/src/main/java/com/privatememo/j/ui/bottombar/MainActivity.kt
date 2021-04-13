@@ -4,17 +4,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
-import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.privatememo.j.*
 import com.privatememo.j.databinding.ActivityMainBinding
-import com.privatememo.j.ui.bottombar.memo.CategoryFragment
+import com.privatememo.j.ui.bottombar.memo.MemoFragment
+import com.privatememo.j.ui.bottombar.search.SearchFragment
 import com.privatememo.j.viewmodel.MainViewModel
-import com.privatememo.j.viewmodel.WelcomeViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
