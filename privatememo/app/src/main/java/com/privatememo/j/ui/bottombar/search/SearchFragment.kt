@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.privatememo.j.adapter.CalendarAdapter
 import com.privatememo.j.R
 import com.privatememo.j.adapter.SearchAdapter
 import com.privatememo.j.adapter.CategoryAdapter
@@ -147,6 +148,10 @@ class SearchFragment : Fragment() {
 
             override fun SearchLongClick(holder: SearchAdapter.ViewHolder?, view: View?, position: Int) {
                 showCustomDialog(position)
+            }
+
+            override fun CalendarShortClick(holder: CalendarAdapter.ViewHolder?, view: View?, position: Int) {
+                TODO("Not yet implemented")
             }
 
         }

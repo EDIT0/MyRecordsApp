@@ -180,4 +180,10 @@ interface Retrofit2API {
             @Field("email") email: String,
             @Field("keyword") keyword: String
     ): Call<SearchInfo>
+
+    @FormUrlEncoded
+    @POST("MyRecords/Calendar/getCalendarMemo.php")
+    fun getCalendarMemo(
+        @Field("email") email: String
+    ): Call<MemoInfo>
 }

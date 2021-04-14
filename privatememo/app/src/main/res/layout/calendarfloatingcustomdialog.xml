@@ -3,30 +3,31 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/categorycustomdialog">
+    android:background="@drawable/categorycustomdialog"
+    android:weightSum="10">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="8.5"
         android:orientation="vertical">
 
         <TextView
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="수정"
-            android:id="@+id/CateRevise"
+            android:text="Category List"
             android:textColor="@color/black"
             android:textSize="18dp"
             android:backgroundTint="@color/white"
             android:padding="15dp"/>
 
-        <TextView
+        <ListView
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="삭제"
-            android:id="@+id/CateDelete"
+            android:id="@+id/CateListView"
             android:textColor="@color/black"
             android:backgroundTint="@color/white"
             android:textSize="18dp"
@@ -36,7 +37,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
         android:orientation="vertical">
 
         <TextView

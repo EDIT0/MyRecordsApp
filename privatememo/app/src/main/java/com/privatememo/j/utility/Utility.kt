@@ -8,14 +8,12 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.privatememo.j.adapter.CalendarAdapter
 import com.privatememo.j.adapter.SearchAdapter
 import com.privatememo.j.adapter.OnlyPicAdapter
 import com.privatememo.j.adapter.CategoryAdapter
 import com.privatememo.j.adapter.EachMemoAdapter
-import com.privatememo.j.datamodel.CategoryInfo2
-import com.privatememo.j.datamodel.MemoInfo2
-import com.privatememo.j.datamodel.OnlyPicInfo2
-import com.privatememo.j.datamodel.SearchInfo2
+import com.privatememo.j.datamodel.*
 
 object Utility {
 
@@ -65,6 +63,13 @@ object Utility {
     @JvmStatic
     fun SearchRcv (rcv: RecyclerView, items : ArrayList<SearchInfo2>){
         (rcv.adapter as SearchAdapter).items = items
+        rcv.adapter?.notifyDataSetChanged()
+    }
+
+    @BindingAdapter("calendar_rcv")
+    @JvmStatic
+    fun CalendarRcv (rcv: RecyclerView, items : ArrayList<MemoInfo2>){
+        (rcv.adapter as CalendarAdapter).items = items
         rcv.adapter?.notifyDataSetChanged()
     }
 }

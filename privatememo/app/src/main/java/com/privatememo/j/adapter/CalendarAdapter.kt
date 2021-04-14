@@ -1,4 +1,4 @@
-package com.privatememo.j
+package com.privatememo.j.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -26,7 +26,7 @@ class CalendarAdapter : RecyclerView.Adapter<CalendarAdapter.ViewHolder>() {
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalendarAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         var binding = CalendaradapterBinding.inflate(LayoutInflater.from(parent.context),parent,false)
 
         return ViewHolder(binding)
@@ -36,7 +36,7 @@ class CalendarAdapter : RecyclerView.Adapter<CalendarAdapter.ViewHolder>() {
         return items.size
     }
 
-    override fun onBindViewHolder(holder: CalendarAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(items[position])
     }
 }

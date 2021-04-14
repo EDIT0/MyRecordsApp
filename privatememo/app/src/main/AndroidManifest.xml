@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Privatememo"
         android:usesCleartextTraffic="true">
-        <activity android:name=".adapter.SearchAdapter"></activity>
+        <activity android:name=".adapter.CalendarAdapter"></activity>
+        <activity android:name=".adapter.SearchAdapter" />
         <activity android:name=".adapter.OnlyPicAdapter" />
         <activity android:name=".ui.bottombar.memo.ReviseCategory" />
         <activity android:name=".utility.WholeImageActivity" />
@@ -34,7 +35,7 @@
         <activity android:name=".ui.bottombar.memo.OnlyPicFragment" />
         <activity android:name=".ui.bottombar.memo.CategoryFragment" />
         <activity android:name=".ui.bottombar.SettingFragment" />
-        <activity android:name=".ui.bottombar.CalendarFragment" />
+        <activity android:name=".ui.bottombar.calendar.CalendarFragment" />
         <activity android:name=".ui.bottombar.search.SearchFragment" />
         <activity android:name=".ui.bottombar.memo.MemoFragment" />
         <activity android:name=".ui.bottombar.MainActivity" />

@@ -12,30 +12,19 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import com.privatememo.j.R
-import com.privatememo.j.api.Retrofit2API
 import com.privatememo.j.databinding.WritememoactivityBinding
 import com.privatememo.j.utility.Retrofit2Module
 import com.privatememo.j.viewmodel.WriteMemoViewModel
-import kotlinx.android.synthetic.main.memofragment.*
 import kotlinx.android.synthetic.main.memofragment.backbutton
-import kotlinx.android.synthetic.main.signupactivity.*
 import kotlinx.android.synthetic.main.writememoactivity.*
-import okhttp3.MediaType
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import kotlin.random.Random
 
@@ -85,6 +74,7 @@ class WriteMemoActivity : AppCompatActivity() {
         five.layoutParams = layoutParams
 
         backbutton.setOnClickListener {
+            setResult(154)
             finish()
         }
 
@@ -144,7 +134,7 @@ class WriteMemoActivity : AppCompatActivity() {
             else if(result == "image_no") {
 
             }
-            setResult(RESULT_OK)
+            setResult(153)
             finish()
         }
         writeMemoViewModel?.sendImageToServer?.observe(WriteMemoBinding.lifecycleOwner!!, sendImageToServer)

@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.privatememo.j.*
 import com.privatememo.j.databinding.ActivityMainBinding
+import com.privatememo.j.ui.bottombar.calendar.CalendarFragment
+import com.privatememo.j.ui.bottombar.memo.CategoryFragment
 import com.privatememo.j.ui.bottombar.memo.MemoFragment
 import com.privatememo.j.ui.bottombar.search.SearchFragment
 import com.privatememo.j.viewmodel.MainViewModel
@@ -29,7 +31,6 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         MainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         MainBinding.setLifecycleOwner(this)
         MainBinding.mainViewModel = mainViewModel
-
 
 
         //fm.beginTransaction().replace(R.id.framelayout, fragment2()).commit()
@@ -55,6 +56,9 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 "${getbundle?.getString("motto")} ${getbundle?.getString("picPath")}")
         Log.i("TAG", "넘어온 데이터2 ${mainViewModel.email.getValue()}, ${mainViewModel.nickname.getValue()} ${mainViewModel.motto.getValue()} " +
                 "${mainViewModel.picPath.getValue()}")
+
+
+        mainViewModel.getCategoryList_call()
 
     }
 
@@ -83,7 +87,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             R.id.toolbar_item_calendar -> {
                 fm.beginTransaction().replace(
                     R.id.framelayout,
-                        CalendarFragment()
+                    CalendarFragment()
                 ).commit()
                 return true
             }

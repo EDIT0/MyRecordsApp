@@ -201,6 +201,7 @@ class ShowAndReviseMemo : AppCompatActivity() {
             ShowAndReviseMemoDialog.findViewById<TextView>(R.id.onlypicDelete).setOnClickListener {
                 showAndReviseMemoViewModel.deleteMemo_call(showAndReviseMemoViewModel.contentNum.get()!!)
                 ShowAndReviseMemoDialog.dismiss()
+                setResult(153)
                 finish()
             }
             ShowAndReviseMemoDialog.findViewById<TextView>(R.id.finish).setOnClickListener {
@@ -234,7 +235,7 @@ class ShowAndReviseMemo : AppCompatActivity() {
         five.layoutParams = layoutParams
 
         backbutton.setOnClickListener {
-            setResult(900)
+            setResult(154)
             finish()
         }
 
@@ -331,7 +332,7 @@ class ShowAndReviseMemo : AppCompatActivity() {
             }
 
             Thread.sleep(500)
-            setResult(900)
+            setResult(153)
             finish()
 
             /*showAndReviseMemoViewModel.ViewArray.clear()
