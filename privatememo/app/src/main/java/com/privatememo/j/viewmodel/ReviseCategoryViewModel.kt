@@ -38,9 +38,11 @@ class ReviseCategoryViewModel : ViewModel() {
 
             if(pictureUri.get() != Uri.parse("")){
                 sendImageToServer.value = "image_yes"
+                Log.i("tag","이미지 예스")
             }
             else{
                 sendImageToServer.value = "image_no"
+                Log.i("tag","이미지 노")
             }
 
             Log.i("tag","이거 뭐 나옴?  ${email}")

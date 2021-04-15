@@ -32,7 +32,7 @@ class MemoFragment : Fragment() {
             var intent = Intent(context, MakeCategory::class.java)
             intent.putExtra("email", act.mainViewModel.email.value)
             Log.i("tag", "MakeCategory로 가는 길:  ${act.mainViewModel.email.value}")
-            startActivity(intent)
+            startActivityForResult(intent, 555)
         }
 
         MemoBinding.profilePicture.setOnClickListener {
@@ -49,6 +49,15 @@ class MemoFragment : Fragment() {
         var adapter = MemoViewPagerAdapter(requireActivity())
         viewpager_setting(adapter)
         tablayout_setting()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(resultCode == 555){
+            var act = activity as MainActivity
+            act.mainViewModel.search()
+        }
     }
 
     fun viewpager_setting(adapter : MemoViewPagerAdapter){

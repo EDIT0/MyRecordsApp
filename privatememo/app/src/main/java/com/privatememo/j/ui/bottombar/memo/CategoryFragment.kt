@@ -153,6 +153,7 @@ class CategoryFragment : Fragment() {
             act.mainViewModel.totalCateNum.value = adapter.getItemCount()
             act.mainViewModel.getMemoCount_call()
             adapter.notifyDataSetChanged()
+            act.mainViewModel.search()
         }
         CategoryDialog.findViewById<TextView>(R.id.finish).setOnClickListener {
             CategoryDialog.dismiss()

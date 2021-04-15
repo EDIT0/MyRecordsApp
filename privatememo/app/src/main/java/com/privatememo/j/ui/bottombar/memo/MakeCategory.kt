@@ -75,7 +75,7 @@ class MakeCategory : AppCompatActivity() {
             else if(result == "image_no") {
 
             }
-
+            setResult(555)
             finish()
         }
         makeCategoryViewModel?.sendImageToServer?.observe(MakeCategoryBinding.lifecycleOwner!!, sendImageToServer)

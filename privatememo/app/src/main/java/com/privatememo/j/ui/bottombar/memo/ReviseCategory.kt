@@ -64,6 +64,11 @@ class ReviseCategory : AppCompatActivity() {
             R.drawable.ic_baseline_block_24
         ).into(picture)
 
+        if(getbundle?.getString("catepicPath")!!.length < 70){
+            UriResult = Uri.parse("")
+            reviseMemoViewModel.pictureUri.set(UriResult)
+        }
+
         backbutton.setOnClickListener {
             finish()
         }

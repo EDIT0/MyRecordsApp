@@ -103,6 +103,7 @@
                         <ImageView
                             android:layout_width="100dp"
                             android:layout_height="100dp"
+                            android:scaleType="fitXY"
                             android:id="@+id/profilePicture"
                             memo_profile_image="@{memoViewModel.picPath}"
                             error="@{@drawable/ic_baseline_block_24}"/>

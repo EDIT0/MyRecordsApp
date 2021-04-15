@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         MainBinding.mainViewModel = mainViewModel
 
 
+
         //fm.beginTransaction().replace(R.id.framelayout, fragment2()).commit()
         with(fm.beginTransaction()){
             replace(
@@ -59,7 +60,6 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
 
         mainViewModel.getCategoryList_call()
-
     }
 
     override fun onDestroy() {

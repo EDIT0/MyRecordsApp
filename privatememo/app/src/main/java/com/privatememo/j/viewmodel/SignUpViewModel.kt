@@ -60,11 +60,12 @@ class SignUpViewModel(application: Application) : AndroidViewModel(application) 
 
     var profileComment = ObservableField<String>()
     fun completeButton(){
-        var imageAddress = "http://edit0@edit0.dothome.co.kr/MyRecords/OnlyImage/"
+        var imageAddress = "http://edit0@edit0.dothome.co.kr/MyRecords/OnlyImage/Profile/"
 
         if((email.get() != null && password.get() != null && nickname.get() != null && motto.get() != null) &&
             (email.get() != "" && password.get() != "" && nickname.get() != "" && motto.get() != "") && (duplicate_email_check.getValue() != "true") &&
-            (checkNum.value!!.contains("인증완료"))){
+            (checkNum.value!!.contains("인증완료")) && (pictureUri.get().toString().length > 5)){
+            Log.i("tag","${pictureUri.get().toString().length} / ${pictureUri.get().toString()}")
 
             if(pictureUri.get() != null){
                 sendImageToServer.value = "image_yes"

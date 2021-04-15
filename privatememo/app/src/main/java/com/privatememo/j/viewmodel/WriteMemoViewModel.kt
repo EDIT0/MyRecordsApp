@@ -26,18 +26,29 @@ class WriteMemoViewModel : ViewModel() {
     var uriHash = HashMap<String, Uri>()
     var sendImageToServer = MutableLiveData<String>()
 
+    var FromCalendar = String()
+
+    init {
+        FromCalendar = "000"
+    }
+
 
     var MemoComment = ObservableField<String>()
     fun completeButton(){
         var imageAddress = "http://edit0@edit0.dothome.co.kr/MyRecords/OnlyImage/"
 
-        if(title != null && textMemo.get() != null){
+        if(title != "" && textMemo.get().toString() != "" && textMemo.get() != null){
 
             var dt = Date()
             var date = SimpleDateFormat("yyyy_MM_dd")
             var time = SimpleDateFormat("HH_mm_ss")
             var currentDate = date.format(dt).toString()
             var currentTime = time.format(dt).toString()
+
+            if(FromCalendar != "000"){
+                currentDate = FromCalendar
+                currentTime = "00_00_00"
+            }
 
             MemoInsert_call(title, textMemo.get().toString(), currentDate, currentTime, email, cateNum)
             //http://edit0@edit0.dothome.co.kr/MyRecords/OnlyImage/akdmadl34%40naver.com.png

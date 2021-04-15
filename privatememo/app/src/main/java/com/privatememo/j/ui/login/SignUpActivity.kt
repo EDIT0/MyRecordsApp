@@ -101,7 +101,7 @@ class SignUpActivity : AppCompatActivity() {
             UriResult = data.getData()!!
 
             if (resultCode == Activity.RESULT_OK) {
-                Glide.with(this).load(UriResult).override(100,100).into(picture)
+                Glide.with(this).load(UriResult).override(1000,1000).into(picture)
                 signupViewModel.pictureUri.set(UriResult)
 
             } else if (requestCode == 101 && resultCode == RESULT_CANCELED) {

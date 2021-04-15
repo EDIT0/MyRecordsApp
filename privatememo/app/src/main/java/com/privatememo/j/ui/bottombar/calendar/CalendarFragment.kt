@@ -7,10 +7,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.ListView
-import android.widget.TextView
+import android.widget.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -68,6 +65,8 @@ class CalendarFragment : Fragment() {
         CalendarBinding.setLifecycleOwner(this)
         CalendarBinding.calendarViewModel = calendarViewModel
 
+        CalendarBinding.calendarView.markedDates.removeAdd()
+
         CalendarDialog = Dialog(CalendarBinding.root.context)
         CalendarDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         CalendarDialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -85,6 +84,7 @@ class CalendarFragment : Fragment() {
                 var intent = Intent(context, WriteMemoActivity::class.java)
                 intent.putExtra("email", calendarViewModel.email.get().toString())
                 intent.putExtra("catenum", calendarViewModel.CategoryList_catenum.get(position).toString())
+                intent.putExtra("calendarDate", "${calendarViewModel.ClickedYear.get()}_${calendarViewModel.ClickedMonth.get()}_${calendarViewModel.ClickedDay.get()}")
                 startActivityForResult(intent, 0)
                 CalendarDialog.dismiss()
             }
@@ -99,22 +99,35 @@ class CalendarFragment : Fragment() {
         CalendarBinding.calendarRcv.adapter = adapter
 
 
-        for(i in 0 until act.mainViewModel.items.size){
+        for (i in 0 until act.mainViewModel.items.size) {
             calendarViewModel.CategoryList_catenum.add(act.mainViewModel.items.get(i).catenum)
             calendarViewModel.CategoryList_catename.add(act.mainViewModel.items.get(i).catename)
 
             list.add(calendarViewModel.CategoryList_catename.get(i))
         }
-        Log.i("tag","사이즈: ${calendarViewModel.CategoryList_catename.size} / ${calendarViewModel.CategoryList_catenum.size}")
+        Log.i("tag", "사이즈: ${calendarViewModel.CategoryList_catename.size} / ${calendarViewModel.CategoryList_catenum.size}")
         val category_adapter: ArrayAdapter<String> = ArrayAdapter<String>(CalendarBinding.root.context, android.R.layout.simple_list_item_1, list)
         listview.setAdapter(category_adapter)
 
 
 
 
+
         CalendarBinding.fabMain.setOnClickListener( object : View.OnClickListener {
             override fun onClick(v: View?) {
-                showCustomDialog()
+                if(CalendarBinding.datetext.getText() != "선택된 날짜") {
+                    Log.i("tag","${calendarViewModel.ClickedYear.get().toString().length}")
+                    if(list.isEmpty()){
+                        Toast.makeText(context,"카테고리를 만들어주세요.",Toast.LENGTH_SHORT).show()
+                    }
+                    else{
+                        showCustomDialog()
+                    }
+
+                }
+                else{
+                    Toast.makeText(context,"날짜를 선택해주세요.",Toast.LENGTH_SHORT).show()
+                }
             }
         })
 
@@ -148,6 +161,9 @@ class CalendarFragment : Fragment() {
         }
         calendarViewModel?.CompleteGettingData?.observe(CalendarBinding.lifecycleOwner!!, CompleteGettingData)
 
+        CalendarBinding.ToDay.setOnClickListener {
+            CalendarBinding.calendarView.travelTo(DateData(Year,Month,Day))
+        }
 
         adapter.itemClick = object : AdapterListener {
             override fun CategoryShortClick(holder: CategoryAdapter.ViewHolder?, view: View?, position: Int) {
@@ -230,11 +246,11 @@ class CalendarFragment : Fragment() {
 
         CalendarBinding.calendarView.setOnDateClickListener( object : OnDateClickListener(){
             override fun onDateClick(view: View?, date: DateData?) {
-                var ClickedYear = date?.year
-                var ClickedMonth = date?.month
-                var ClickedDay = date?.day
+                calendarViewModel.ClickedYear.set(date?.year)
+                calendarViewModel.ClickedMonth.set(date?.month)
+                calendarViewModel.ClickedDay.set(date?.day)
 
-                CalendarBinding.datetext.text = "" + ClickedYear + "." + ClickedMonth + "." + ClickedDay
+                CalendarBinding.datetext.text = "" + calendarViewModel.ClickedYear.get() + "." + calendarViewModel.ClickedMonth.get() + "." + calendarViewModel.ClickedDay.get()
 
                 //if(CalendarBinding.calendarView.markedDates.check(DateData(Year, Month, 28))){
 
@@ -252,9 +268,9 @@ class CalendarFragment : Fragment() {
 
                     calendarViewModel.items.clear()
                     for(i in 0 until calendarViewModel.total_items.size){
-                        if(ClickedYear == Integer.parseInt(calendarViewModel.splitDateArray.get(i)[0])
-                            && ClickedMonth == Integer.parseInt(calendarViewModel.splitDateArray.get(i)[1])
-                            && ClickedDay == Integer.parseInt(calendarViewModel.splitDateArray.get(i)[2]))
+                        if(calendarViewModel.ClickedYear.get() == Integer.parseInt(calendarViewModel.splitDateArray.get(i)[0])
+                            && calendarViewModel.ClickedMonth.get() == Integer.parseInt(calendarViewModel.splitDateArray.get(i)[1])
+                            && calendarViewModel.ClickedDay.get() == Integer.parseInt(calendarViewModel.splitDateArray.get(i)[2]))
                         calendarViewModel.items.add(calendarViewModel.total_items.get(i))
                         Log.i("tag","이야 호출  ${calendarViewModel.total_items.get(i).title}")
                     }
@@ -269,9 +285,9 @@ class CalendarFragment : Fragment() {
                 //Log.i("tag","${Save_ClickedYear} ${Save_ClickedMonth} ${Save_ClickedDay}")
 
 
-                Save_ClickedYear = ClickedYear?:Year
-                Save_ClickedMonth = ClickedMonth?:Month
-                Save_ClickedDay = ClickedDay?:Day
+                Save_ClickedYear = calendarViewModel.ClickedYear.get()?:Year
+                Save_ClickedMonth = calendarViewModel.ClickedMonth.get()?:Month
+                Save_ClickedDay = calendarViewModel.ClickedDay.get()?:Day
 
 
 
@@ -302,6 +318,9 @@ class CalendarFragment : Fragment() {
         if(resultCode == 153) {
 
             Log.i("tag","153호출")
+            CalendarBinding.calendarView.markedDates.removeAdd()
+            //.calendarView.unMarkDate(calendarViewModel.ClickedYear.get()!!,calendarViewModel.ClickedMonth.get()!!,calendarViewModel.ClickedDay.get()!!)
+            //Log.i("tag",""+calendarViewModel.ClickedYear.get()!! + "/" + calendarViewModel.ClickedMonth.get()!!+"/"+calendarViewModel.ClickedDay.get()!!)
             calendarViewModel.total_items.clear()
             calendarViewModel.items.clear()
             calendarViewModel.splitDateArray.clear()

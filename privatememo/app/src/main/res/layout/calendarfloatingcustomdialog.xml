@@ -2,15 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/categorycustomdialog"
-    android:weightSum="10">
+    android:layout_height="wrap_content"
+    android:background="@drawable/categorycustomdialog">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="8.5"
-        android:orientation="vertical">
+        android:layout_height="70dp"
+        android:orientation="vertical"
+        android:gravity="center">
 
         <TextView
             android:gravity="center"
@@ -19,27 +18,30 @@
             android:text="Category List"
             android:textColor="@color/black"
             android:textSize="18dp"
-            android:backgroundTint="@color/white"
-            android:padding="15dp"/>
+            android:backgroundTint="@color/white" />
 
-        <ListView
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="삭제"
-            android:id="@+id/CateListView"
-            android:textColor="@color/black"
-            android:backgroundTint="@color/white"
-            android:textSize="18dp"
-            android:padding="15dp"/>
+
 
     </LinearLayout>
 
+
+    <ListView
+        android:id="@+id/CateListView"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:backgroundTint="@color/white"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="삭제"
+        android:textColor="@color/black"
+        android:textSize="18dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.5"
-        android:orientation="vertical">
+        android:layout_height="70dp"
+        android:orientation="vertical"
+        android:gravity="center">
 
         <TextView
             android:gravity="center"
@@ -49,8 +51,7 @@
             android:id="@+id/finish"
             android:textColor="#FF0000"
             android:textSize="18dp"
-            android:backgroundTint="@color/white"
-            android:padding="15dp"/>
+            android:backgroundTint="@color/white" />
 
     </LinearLayout>
 

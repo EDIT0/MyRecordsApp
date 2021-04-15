@@ -26,10 +26,22 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_weight="10">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.5"
+                    android:layout_height="match_parent"
+                    android:textSize="12dp"
+                    android:textColor="@color/black"
+                    android:backgroundTint="@color/white"
+                    android:gravity="center"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="7"
                     android:layout_height="match_parent"
                     android:text="Calendar"
                     android:textColor="@color/black"
@@ -37,6 +49,17 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1.5"
+                    android:layout_height="match_parent"
+                    android:text="Today"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:id="@+id/ToDay"/>
 
             </LinearLayout>
         </com.google.android.material.appbar.AppBarLayout>

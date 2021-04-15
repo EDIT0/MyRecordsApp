@@ -28,6 +28,10 @@ class CalendarViewModel : ViewModel() {
     var CategoryList_catenum = ArrayList<String>()
     var CategoryList_catename = ArrayList<String>()
 
+    var ClickedYear = ObservableField<Int>()
+    var ClickedMonth = ObservableField<Int>()
+    var ClickedDay =ObservableField<Int>()
+
     init {
         controler.value = false
         CompleteGettingData.value = false
@@ -68,7 +72,7 @@ class CalendarViewModel : ViewModel() {
                 CompleteGettingData.value = true
 
                 //Log.i("tag","설명 입니다. ${result?.result?.get(0)?.explanation}")
-                Log.i("tag","싱글톤 객체: ${retrofit2module}")
+                //Log.i("tag","싱글톤 객체: ${retrofit2module}")
             }
 
             override fun onFailure(call: Call<MemoInfo>, t: Throwable) {

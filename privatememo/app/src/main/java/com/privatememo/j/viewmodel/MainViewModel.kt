@@ -33,6 +33,11 @@ class MainViewModel : ViewModel(){
         Log.i("tag","생성자 호출 ${email.getValue()}")
     }
 
+    fun search(){
+        items.clear()
+        getCategoryList_call()
+    }
+
 
     fun getMemoCount_call(){
         val call: Call<MemoCountInfo> = retrofit2module.BaseModule().getMemoCount(email.value?:"")
@@ -53,7 +58,7 @@ class MainViewModel : ViewModel(){
 
     fun getCategoryList_call(){
 
-        val call: Call<CategoryInfo> = retrofit2module.BaseModule().getCategoryList(email.value.toString())
+        val call: Call<CategoryInfo> = retrofit2module.BaseModule().getCategoryList(email.value!!)
 
         call.enqueue(object : Callback<CategoryInfo> {
             override fun onResponse(call: Call<CategoryInfo>, response: Response<CategoryInfo>) {
@@ -61,6 +66,7 @@ class MainViewModel : ViewModel(){
                 for (i in 0 until result?.result?.size!!) {
                     items.add(result.result.get(i))
                 }
+                Log.i("tag","메모장 카테고리 리스트 수: ${items.size}")
             }
             override fun onFailure(call: Call<CategoryInfo>, t: Throwable) {
                 Log.i("??","error")

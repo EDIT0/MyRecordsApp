@@ -26,6 +26,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
+import java.lang.Exception
 import kotlin.random.Random
 
 class WriteMemoActivity : AppCompatActivity() {
@@ -81,6 +82,8 @@ class WriteMemoActivity : AppCompatActivity() {
         var getintent = getIntent()
         writeMemoViewModel.email = getintent.getStringExtra("email")!!
         writeMemoViewModel.cateNum = getintent.getStringExtra("catenum")!!
+        writeMemoViewModel.FromCalendar = getintent.getStringExtra("calendarDate")?:"000"
+        Log.i("tag","프롬캘린더: ${writeMemoViewModel.FromCalendar}")
 
         addImage.setOnClickListener {
             val intent = Intent("com.android.camera.action.CROP")
