@@ -25,7 +25,8 @@
             android:layout_height="0dp"
             android:layout_weight="5"
             android:textSize="60dp"
-            android:text="내 기록장"
+            android:text="MyRecords"
+            android:textStyle="bold"
             android:gravity="center"/>
 
         <LinearLayout

@@ -12,6 +12,8 @@ import com.privatememo.j.datamodel.CategoryInfo2
 import com.privatememo.j.datamodel.MemoInfo2
 import com.privatememo.j.datamodel.OnlyPicInfo2
 import com.privatememo.j.datamodel.SearchInfo2
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 object Utility {
@@ -21,7 +23,7 @@ object Utility {
     @BindingAdapter("memo_profile_image", "error")
     @JvmStatic
     fun Profile_image (iv : ImageView, url : String?, error : Drawable){
-        Glide.with(iv.context).load(url).apply(RequestOptions.circleCropTransform()).override(1000, 1000).error(error).into(iv)
+        Glide.with(iv.context).load(url+ "? ${Date().getTime()}").apply(RequestOptions.circleCropTransform()).override(1000, 1000).error(error).into(iv)
     }
 
     @BindingAdapter("category_rcv")
@@ -41,7 +43,7 @@ object Utility {
     @BindingAdapter("category_rcv_image", "error")
     @JvmStatic
     fun CategoryRcvImage (iv : ImageView, url : String?, error : Drawable){
-        Glide.with(iv.context).load(url).apply(RequestOptions.circleCropTransform()).override(1000,1000).error(error).into(iv)
+        Glide.with(iv.context).load(url+ "? ${Date().getTime()}").apply(RequestOptions.circleCropTransform()).override(1000,1000).error(error).into(iv)
     }
 
     @BindingAdapter("onlypic_rcv")
@@ -54,7 +56,7 @@ object Utility {
     @BindingAdapter("onlypic_rcv_image", "error")
     @JvmStatic
     fun OnlyPicRcvImage (iv : ImageView, url : String?, error : Drawable){
-        Glide.with(iv.context).load(url).override(1000,1000).error(error).into(iv)
+        Glide.with(iv.context).load(url+ "? ${Date().getTime()}").override(1000,1000).error(error).into(iv)
     }
 
     @BindingAdapter("search_rcv")

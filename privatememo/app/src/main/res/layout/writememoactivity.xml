@@ -70,7 +70,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_margin="15dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -85,7 +86,8 @@
                 android:hint="제목"
                 android:id="@+id/title"
                 android:singleLine="true"
-                android:text="@={writeMemoViewModel.title}"/>
+                android:text="@={writeMemoViewModel.title}"
+                android:backgroundTint="#83D1D5D6"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -99,6 +101,7 @@
                     android:id="@+id/textMemo"
                     android:gravity="start"
                     android:text="@={writeMemoViewModel.textMemo}"
+                    android:backgroundTint="#83D1D5D6"
                     />
 
             </LinearLayout>

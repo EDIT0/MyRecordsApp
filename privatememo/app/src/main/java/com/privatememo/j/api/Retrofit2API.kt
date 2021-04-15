@@ -186,4 +186,18 @@ interface Retrofit2API {
     fun getCalendarMemo(
         @Field("email") email: String
     ): Call<MemoInfo>
+
+    @FormUrlEncoded
+    @POST("MyRecords/Setting/getMemberProfile.php")
+    fun getMemberProfile(
+        @Field("email") email: String
+    ): Call<MemberProfileInfo>
+
+    @FormUrlEncoded
+    @POST("MyRecords/Setting/UpdateProfile.php")
+    fun UpdateProfile(
+        @Field("email") email: String,
+        @Field("nickname") nickname: String,
+        @Field("motto") motto: String
+    ): Call<String>
 }

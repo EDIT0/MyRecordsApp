@@ -1,20 +1,15 @@
 package com.privatememo.j.viewmodel
 
-import android.app.Application
 import android.net.Uri
 import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableField
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.bumptech.glide.Glide
 import com.privatememo.j.datamodel.*
-import com.privatememo.j.ui.bottombar.memo.ShowAndReviseMemo
 import com.privatememo.j.utility.Retrofit2Module
-import kotlinx.android.synthetic.main.makecategory.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

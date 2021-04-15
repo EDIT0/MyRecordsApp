@@ -71,7 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_margin="5dp">
+                android:layout_margin="15dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -86,6 +86,7 @@
                         android:id="@+id/email"
                         android:maxLength="50"
                         android:singleLine="true"
+                        android:backgroundTint="#83D1D5D6"
                         android:text="@={SignViewModel.email}"
                         android:focusable="@{SignViewModel.emailStatus ? true : false}"/>
 
@@ -122,6 +123,7 @@
                     android:id="@+id/checknumber"
                     android:singleLine="true"
                     android:text="@={SignViewModel.checkNum}"
+                    android:backgroundTint="#83D1D5D6"
                     />
 
                 <EditText
@@ -132,7 +134,8 @@
                     android:singleLine="true"
                     android:inputType="textPassword"
                     android:text="@={SignViewModel.password}"
-                    android:maxLength="25"/>
+                    android:maxLength="25"
+                    android:backgroundTint="#83D1D5D6"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -174,7 +177,8 @@
                     android:id="@+id/nickname"
                     android:singleLine="true"
                     android:text="@={SignViewModel.nickname}"
-                    android:maxLength="25"/>
+                    android:maxLength="25"
+                    android:backgroundTint="#83D1D5D6"/>
 
                 <EditText
                     android:layout_width="match_parent"
@@ -183,7 +187,8 @@
                     android:id="@+id/motto"
                     android:gravity="start"
                     android:text="@={SignViewModel.motto}"
-                    android:maxLength="250"/>
+                    android:maxLength="250"
+                    android:backgroundTint="#83D1D5D6"/>
 
                 <ImageView
                     android:layout_width="100dp"

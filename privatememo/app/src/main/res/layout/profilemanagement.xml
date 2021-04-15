@@ -5,16 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="reviewCategoryViewModel"
-            type="com.privatememo.j.viewmodel.ReviseCategoryViewModel" />
+            name="profileManageViewModel"
+            type="com.privatememo.j.viewmodel.ProfileManagementViewModel" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.bottombar.memo.ReviseCategory"
-        android:orientation="vertical"
-        android:background="#83EEF0F1">
+        tools:context=".ui.bottombar.setting.ProfileManagement"
+        android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -40,7 +39,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="7"
                     android:layout_height="match_parent"
-                    android:text="수정"
+                    android:text="프로필 관리"
                     android:textColor="@color/black"
                     android:textSize="15dp"
                     android:layout_gravity="center"
@@ -51,13 +50,14 @@
                     android:layout_width="0dp"
                     android:layout_weight="1.5"
                     android:layout_height="match_parent"
-                    android:id="@+id/makeid"
+                    android:id="@+id/reviseProfile"
                     android:text="확인"
-                    android:textSize="12dp"
+                    android:textSize="13dp"
                     android:textColor="@color/black"
                     android:backgroundTint="@color/white"
                     android:gravity="center"
-                    android:onClick="@{()-> reviewCategoryViewModel.completeButton()}"/>
+                    android:onClick="@{()->profileManageViewModel.completeButton()}"
+                    />
 
             </LinearLayout>
 
@@ -66,61 +66,63 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_margin="15dp">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="프로필"
+                android:textStyle="bold"
+                android:paddingRight="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="15dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="@{reviewCategoryViewModel.categoryComment}"/>
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:id="@+id/cateTitle"
-                android:hint="카테고리명"
-                android:singleLine="true"
-                android:maxLength="80"
-                android:text="@={reviewCategoryViewModel.cateName}"/>
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:hint="간단한 설명"
-                android:id="@+id/explanation"
-                android:gravity="start"
-                android:maxLength="250"
-                android:text="@={reviewCategoryViewModel.cateExplanation}"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/imageviewround"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/ic_baseline_add_circle_outline_24"
-                    android:id="@+id/picture" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/deleteimage"
-                    android:layout_gravity="center"
-                    android:text="이미지 지우기"
-                    android:layout_marginLeft="30dp"/>
-            </LinearLayout>
-
+                android:text="@{profileManageViewModel.profileComment}"
+                />
 
         </LinearLayout>
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:hint="닉네임"
+            android:id="@+id/nickname"
+            android:singleLine="true"
+            android:text="@={profileManageViewModel.nickname}"
+            android:maxLength="25"
+            android:layout_margin="15dp"
+            android:backgroundTint="#83D1D5D6"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:hint="Motto / ex)좌우명"
+            android:id="@+id/motto"
+            android:gravity="start"
+            android:text="@={profileManageViewModel.motto}"
+            android:maxLength="250"
+            android:layout_margin="15dp"
+            android:backgroundTint="#83D1D5D6"/>
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/imageviewround"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_baseline_add_circle_outline_24"
+            android:id="@+id/picture"
+            android:layout_margin="15dp"
+            android:backgroundTint="#83EEF0F1"/>
 
 
     </LinearLayout>
 
 </layout>
+

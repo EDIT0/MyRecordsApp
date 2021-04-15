@@ -11,9 +11,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.privatememo.j.*
 import com.privatememo.j.databinding.ActivityMainBinding
 import com.privatememo.j.ui.bottombar.calendar.CalendarFragment
-import com.privatememo.j.ui.bottombar.memo.CategoryFragment
 import com.privatememo.j.ui.bottombar.memo.MemoFragment
 import com.privatememo.j.ui.bottombar.search.SearchFragment
+import com.privatememo.j.ui.bottombar.setting.SettingFragment
 import com.privatememo.j.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             R.id.toolbar_item_setting -> {
                 fm.beginTransaction().replace(
                     R.id.framelayout,
-                        SettingFragment()
+                    SettingFragment()
                 ).commit()
                 return true
             }

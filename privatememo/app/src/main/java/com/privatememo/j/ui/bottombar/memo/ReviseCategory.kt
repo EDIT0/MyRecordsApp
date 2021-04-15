@@ -60,7 +60,7 @@ class ReviseCategory : AppCompatActivity() {
         reviseMemoViewModel.email = getbundle?.getString("email")!!
         reviseMemoViewModel.CateBookmark = getbundle?.getString("CateBookmark")!!
 
-        Glide.with(this).load(reviseMemoViewModel.catepicPath).override(1000,1000).error(
+        Glide.with(this).load(reviseMemoViewModel.catepicPath+ "? ${Date().getTime()}").override(1000,1000).error(
             R.drawable.ic_baseline_block_24
         ).into(picture)
 

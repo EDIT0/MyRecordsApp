@@ -44,6 +44,17 @@ class MemoFragment : Fragment() {
         return MemoBinding.root
     }
 
+    override fun onStart() {
+        super.onStart()
+        Log.i("tag","메모프래그먼트 온 스타트")
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.i("tag","메모프래그먼트 온 리숨")
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         var adapter = MemoViewPagerAdapter(requireActivity())

@@ -11,6 +11,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
@@ -45,6 +46,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.lang.Exception
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.random.Random
 
 class ShowAndReviseMemo : AppCompatActivity() {
@@ -61,6 +64,7 @@ class ShowAndReviseMemo : AppCompatActivity() {
 
     var Original_UriArray = ArrayList<Uri>()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -68,6 +72,8 @@ class ShowAndReviseMemo : AppCompatActivity() {
         ShowAndReviseMemoBinding = DataBindingUtil.setContentView(this, R.layout.showandrevisememo)
         ShowAndReviseMemoBinding.setLifecycleOwner(this)
         ShowAndReviseMemoBinding.showAndReviseMemoViewModel = showAndReviseMemoViewModel
+
+
 
         var getintent = getIntent()
         var getbundle = getintent.getExtras()
@@ -134,47 +140,47 @@ class ShowAndReviseMemo : AppCompatActivity() {
                     when(i){
                         0 -> {
                             oneButton.visibility = View.VISIBLE
-                            Glide.with(this).load(showAndReviseMemoViewModel.items.get(0).imagePath).override(1000,1000).into(oneButton)
+                            Glide.with(this).load(showAndReviseMemoViewModel.items.get(0).imagePath+ "? ${Date().getTime()}").override(1000,1000).into(oneButton)
 
                             showAndReviseMemoViewModel.uriHash.put("one",Uri.parse(showAndReviseMemoViewModel.items.get(0).imagePath))
                             showAndReviseMemoViewModel.ViewArray.add(one)
-                            Glide.with(this).load(showAndReviseMemoViewModel.items.get(0).imagePath).override(1000,1000).into(one)
+                            Glide.with(this).load(showAndReviseMemoViewModel.items.get(0).imagePath+ "? ${Date().getTime()}").override(1000,1000).into(one)
                             showAndReviseMemoViewModel.showImageView.addView(one)
                         }
                         1 -> {
                             twoButton.visibility = View.VISIBLE
-                            Glide.with(this).load(showAndReviseMemoViewModel.items.get(1).imagePath).override(1000,1000).into(twoButton)
+                            Glide.with(this).load(showAndReviseMemoViewModel.items.get(1).imagePath+ "? ${Date().getTime()}").override(1000,1000).into(twoButton)
 
                             showAndReviseMemoViewModel.uriHash.put("two",Uri.parse(showAndReviseMemoViewModel.items.get(1).imagePath))
                             showAndReviseMemoViewModel.ViewArray.add(two)
-                            Glide.with(this).load(showAndReviseMemoViewModel.items.get(1).imagePath).override(1000,1000).into(two)
+                            Glide.with(this).load(showAndReviseMemoViewModel.items.get(1).imagePath+ "? ${Date().getTime()}").override(1000,1000).into(two)
                             showAndReviseMemoViewModel.showImageView.addView(two)
                         }
                         2 -> {
                             threeButton.visibility = View.VISIBLE
-                            Glide.with(this).load(showAndReviseMemoViewModel.items.get(2).imagePath).override(1000,1000).into(threeButton)
+                            Glide.with(this).load(showAndReviseMemoViewModel.items.get(2).imagePath+ "? ${Date().getTime()}").override(1000,1000).into(threeButton)
 
                             showAndReviseMemoViewModel.uriHash.put("three",Uri.parse(showAndReviseMemoViewModel.items.get(2).imagePath))
                             showAndReviseMemoViewModel.ViewArray.add(three)
-                            Glide.with(this).load(showAndReviseMemoViewModel.items.get(2).imagePath).override(1000,1000).into(three)
+                            Glide.with(this).load(showAndReviseMemoViewModel.items.get(2).imagePath+ "? ${Date().getTime()}").override(1000,1000).into(three)
                             showAndReviseMemoViewModel.showImageView.addView(three)
                         }
                         3 -> {
                             fourButton.visibility = View.VISIBLE
-                            Glide.with(this).load(showAndReviseMemoViewModel.items.get(3).imagePath).override(1000,1000).into(fourButton)
+                            Glide.with(this).load(showAndReviseMemoViewModel.items.get(3).imagePath+ "? ${Date().getTime()}").override(1000,1000).into(fourButton)
 
                             showAndReviseMemoViewModel.uriHash.put("four",Uri.parse(showAndReviseMemoViewModel.items.get(3).imagePath))
                             showAndReviseMemoViewModel.ViewArray.add(four)
-                            Glide.with(this).load(showAndReviseMemoViewModel.items.get(3).imagePath).override(1000,1000).into(four)
+                            Glide.with(this).load(showAndReviseMemoViewModel.items.get(3).imagePath+ "? ${Date().getTime()}").override(1000,1000).into(four)
                             showAndReviseMemoViewModel.showImageView.addView(four)
                         }
                         4 -> {
                             fiveButton.visibility = View.VISIBLE
-                            Glide.with(this).load(showAndReviseMemoViewModel.items.get(4).imagePath).override(1000,1000).into(fiveButton)
+                            Glide.with(this).load(showAndReviseMemoViewModel.items.get(4).imagePath+ "? ${Date().getTime()}").override(1000,1000).into(fiveButton)
 
                             showAndReviseMemoViewModel.uriHash.put("five",Uri.parse(showAndReviseMemoViewModel.items.get(4).imagePath))
                             showAndReviseMemoViewModel.ViewArray.add(five)
-                            Glide.with(this).load(showAndReviseMemoViewModel.items.get(4).imagePath).override(1000,1000).into(five)
+                            Glide.with(this).load(showAndReviseMemoViewModel.items.get(4).imagePath+ "? ${Date().getTime()}").override(1000,1000).into(five)
                             showAndReviseMemoViewModel.showImageView.addView(five)
                         }
                     }
