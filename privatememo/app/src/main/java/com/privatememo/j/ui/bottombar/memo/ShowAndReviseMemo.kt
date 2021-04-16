@@ -2,7 +2,6 @@ package com.privatememo.j.ui.bottombar.memo
 
 import android.app.Activity
 import android.app.Dialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.database.Cursor
 import android.graphics.Color
@@ -11,39 +10,29 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
-import android.view.MotionEvent
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import com.privatememo.j.R
 import com.privatememo.j.utility.WholeImageActivity
-import com.privatememo.j.api.Retrofit2API
 import com.privatememo.j.databinding.ShowandrevisememoBinding
 import com.privatememo.j.utility.Retrofit2Module
+import com.privatememo.j.utility.MemberSettingModule
 import com.privatememo.j.viewmodel.ShowAndReviseMemoViewModel
 import kotlinx.android.synthetic.main.showandrevisememo.*
 import kotlinx.android.synthetic.main.showandrevisememo.addImage
 import kotlinx.android.synthetic.main.showandrevisememo.backbutton
-import okhttp3.MediaType
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.lang.Exception
 import java.util.*
@@ -94,6 +83,10 @@ class ShowAndReviseMemo : AppCompatActivity() {
         Log.i("tag","카테 넘버 ${getbundle?.getInt("cateNum")}")
 
         showAndReviseMemoViewModel.getMemoImage_call()
+
+        ShowAndReviseMemoBinding.justshowmemo.setTextSize(MemberSettingModule.ContentSize.toFloat())
+        ShowAndReviseMemoBinding.title.setTextSize(MemberSettingModule.TitleSize.toFloat())
+        ShowAndReviseMemoBinding.textMemo.setTextSize(MemberSettingModule.ContentSize.toFloat())
 
         backbutton.setOnClickListener {
             finish()

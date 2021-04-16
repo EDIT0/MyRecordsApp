@@ -10,10 +10,13 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.privatememo.j.*
 import com.privatememo.j.databinding.ActivityMainBinding
+import com.privatememo.j.database.table.EntityMemberSetting
 import com.privatememo.j.ui.bottombar.calendar.CalendarFragment
 import com.privatememo.j.ui.bottombar.memo.MemoFragment
 import com.privatememo.j.ui.bottombar.search.SearchFragment
 import com.privatememo.j.ui.bottombar.setting.SettingFragment
+import com.privatememo.j.utility.AccessDatabase
+import com.privatememo.j.utility.MemberSettingModule
 import com.privatememo.j.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -60,6 +63,11 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
 
         mainViewModel.getCategoryList_call()
+
+
+        Check_MemberSetting()
+
+
     }
 
     override fun onDestroy() {
@@ -100,5 +108,43 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             }
         }
         return false
+    }
+
+
+    fun Check_MemberSetting(){
+        var DBinstance = AccessDatabase.getInstance()
+        var accessDB = DBinstance.MemberSetting(this)
+
+        var checkEmailValue = accessDB.DaoMemberSetting().checkEmail(mainViewModel.email.value.toString())
+        if(checkEmailValue == null){
+            Log.i("tag","과연 값은? ${checkEmailValue} / ${mainViewModel.email.value}")
+            accessDB.DaoMemberSetting().insert(
+                EntityMemberSetting(
+                    mainViewModel.email.value.toString(),
+                    MemberSettingModule.TitleSize,
+                    MemberSettingModule.ContentSize,
+                    MemberSettingModule.Font
+                )
+            )
+            Log.i("tag","디비 호출")
+
+            var data = accessDB.DaoMemberSetting().getEmailData(mainViewModel.email.value.toString())
+            for(i in data){
+                MemberSettingModule.TitleSize = i.TitleTextSize
+                MemberSettingModule.ContentSize = i.ContentTextSize
+                MemberSettingModule.Font = i.Font
+                Log.i("tag","배열 넣기 null인 경우")
+            }
+        }
+        else{
+            var data = accessDB.DaoMemberSetting().getEmailData(mainViewModel.email.value.toString())
+            for(i in data){
+                MemberSettingModule.TitleSize = i.TitleTextSize
+                MemberSettingModule.ContentSize = i.ContentTextSize
+                MemberSettingModule.Font = i.Font
+                Log.i("tag","배열 넣기 null이 아닌 경우")
+                Log.i("tag","${accessDB.DaoMemberSetting().getAll()}")
+            }
+        }
     }
 }

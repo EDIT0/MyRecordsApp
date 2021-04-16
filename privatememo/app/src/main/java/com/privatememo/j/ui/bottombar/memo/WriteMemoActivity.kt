@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide
 import com.privatememo.j.R
 import com.privatememo.j.databinding.WritememoactivityBinding
 import com.privatememo.j.utility.Retrofit2Module
+import com.privatememo.j.utility.MemberSettingModule
 import com.privatememo.j.viewmodel.WriteMemoViewModel
 import kotlinx.android.synthetic.main.memofragment.backbutton
 import kotlinx.android.synthetic.main.writememoactivity.*
@@ -26,7 +27,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
-import java.lang.Exception
 import kotlin.random.Random
 
 class WriteMemoActivity : AppCompatActivity() {
@@ -50,6 +50,9 @@ class WriteMemoActivity : AppCompatActivity() {
         WriteMemoBinding = DataBindingUtil.setContentView(this, R.layout.writememoactivity)
         WriteMemoBinding.setLifecycleOwner(this)
         WriteMemoBinding.writeMemoViewModel = writeMemoViewModel
+
+        WriteMemoBinding.title.setTextSize(MemberSettingModule.TitleSize.toFloat())
+        WriteMemoBinding.textMemo.setTextSize(MemberSettingModule.ContentSize.toFloat())
 
         showImageView = findViewById(R.id.imagelayout)
         one = ImageView(this)

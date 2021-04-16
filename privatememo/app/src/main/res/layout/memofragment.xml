@@ -154,7 +154,8 @@
                                     android:text="@{Integer.toString(memoViewModel.totalCateNum)}"
                                     android:gravity="center"
                                     android:textStyle="bold"
-                                    android:textColor="@color/black"/>
+                                    android:textColor="@color/black"
+                                    android:id="@+id/cateCount"/>
 
                                 <TextView
                                     android:layout_width="0dp"

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.privatememo.j.api.AdapterListener
 import com.privatememo.j.databinding.CategoryadapterBinding
 import com.privatememo.j.datamodel.CategoryInfo2
+import com.privatememo.j.utility.MemberSettingModule
 import kotlinx.android.synthetic.main.categoryadapter.view.*
 
 class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
@@ -27,6 +28,8 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
                 itemClick.CategoryLongClick(this, itemView, adapterPosition)
                 return@setOnLongClickListener true
             }
+            itemView.cateTitle.setTextSize(MemberSettingModule.TitleSize.toFloat())
+            itemView.cateContent.setTextSize(MemberSettingModule.ContentSize.toFloat())
         }
 
         fun bind(info : CategoryInfo2){

@@ -113,7 +113,7 @@ class ProfileManagement : AppCompatActivity() {
         val file = File(path)
         var fileName = file.getName()
         fileName = "${profileManagementViewModel.email}.png"
-        Log.i("tag","마 ! 이게 사진 제목이다. ${fileName}")
+        Log.i("tag","사진 제목: ${fileName}")
         profileManagementViewModel.pictureAddress.set(fileName)
 
 

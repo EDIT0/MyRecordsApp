@@ -36,7 +36,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="17dp"
+                        android:id="@+id/cateTitle"
                         android:layout_marginLeft="7dp"
                         android:text="@{searchInfo2ViewModel.catename}"
                         android:singleLine="true"/>
@@ -44,7 +44,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="17dp"
+                        android:id="@+id/title"
                         android:textStyle="bold"
                         android:text="@{searchInfo2ViewModel.title}"
                         android:layout_marginLeft="7dp"
@@ -56,7 +56,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="13dp"
+                        android:id="@+id/content"
                         android:text="@{searchInfo2ViewModel.memo}"
                         android:singleLine="true"
                         android:layout_marginLeft="7dp"

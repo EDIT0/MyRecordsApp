@@ -1,11 +1,15 @@
 package com.privatememo.j.adapter
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.privatememo.j.api.AdapterListener
 import com.privatememo.j.databinding.SearchadapterBinding
 import com.privatememo.j.datamodel.SearchInfo2
+import com.privatememo.j.utility.MemberSettingModule
+import kotlinx.android.synthetic.main.searchadapter.view.*
+
 
 class SearchAdapter : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 
@@ -23,6 +27,10 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
                 itemClick.SearchLongClick(this, itemView, adapterPosition)
                 return@setOnLongClickListener true
             }
+            itemView.cateTitle.setTextSize(MemberSettingModule.TitleSize.toFloat())
+            itemView.title.setTextSize(MemberSettingModule.TitleSize.toFloat())
+            itemView.content.setTextSize(MemberSettingModule.TitleSize.toFloat())
+            itemView.cateTitle.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG)
         }
 
         fun bind(info : SearchInfo2){

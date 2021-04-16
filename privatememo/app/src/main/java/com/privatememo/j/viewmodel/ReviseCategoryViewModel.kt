@@ -34,7 +34,7 @@ class ReviseCategoryViewModel : ViewModel() {
 
     fun completeButton(){
         var imageAddress = "http://edit0@edit0.dothome.co.kr/MyRecords/OnlyImage/Category/"
-        if(cateName != null && cateExplanation != null){
+        if((cateName != null && cateExplanation != null) && (cateName != "" && cateExplanation != "")){
 
             if(pictureUri.get() != Uri.parse("")){
                 sendImageToServer.value = "image_yes"

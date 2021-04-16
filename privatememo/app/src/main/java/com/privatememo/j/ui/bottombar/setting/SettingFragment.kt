@@ -30,7 +30,8 @@ class SettingFragment : Fragment() {
         }
 
         rootView.changeTextSize.setOnClickListener {
-            var gotoChangeTextSize = Intent(rootView.context, ProfileManagement::class.java)
+            var gotoChangeTextSize = Intent(rootView.context, ChangeTextSize::class.java)
+            gotoChangeTextSize.putExtra("email",email)
             startActivityForResult(gotoChangeTextSize,602)
         }
 

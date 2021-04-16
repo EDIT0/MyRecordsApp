@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.bottombar.setting.ProfileManagement"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#83EEF0F1">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"

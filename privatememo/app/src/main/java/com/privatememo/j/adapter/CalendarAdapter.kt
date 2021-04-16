@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.privatememo.j.api.AdapterListener
 import com.privatememo.j.databinding.CalendaradapterBinding
 import com.privatememo.j.datamodel.MemoInfo2
+import com.privatememo.j.utility.MemberSettingModule
+import kotlinx.android.synthetic.main.calendaradapter.view.*
 
 class CalendarAdapter : RecyclerView.Adapter<CalendarAdapter.ViewHolder>() {
 
@@ -19,6 +21,8 @@ class CalendarAdapter : RecyclerView.Adapter<CalendarAdapter.ViewHolder>() {
             itemView.setOnClickListener {
                 itemClick.CalendarShortClick(this, itemView, adapterPosition)
             }
+            itemView.title.setTextSize(MemberSettingModule.TitleSize.toFloat())
+            itemView.content.setTextSize(MemberSettingModule.ContentSize.toFloat())
         }
 
         fun bind(info : MemoInfo2){
