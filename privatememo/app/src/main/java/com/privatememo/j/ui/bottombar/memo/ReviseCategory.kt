@@ -18,6 +18,7 @@ import com.google.gson.GsonBuilder
 import com.privatememo.j.R
 import com.privatememo.j.api.Retrofit2API
 import com.privatememo.j.databinding.RevisecategoryBinding
+import com.privatememo.j.utility.ApplyFontModule
 import com.privatememo.j.utility.Retrofit2Module
 import com.privatememo.j.viewmodel.ReviseCategoryViewModel
 import kotlinx.android.synthetic.main.makecategory.*
@@ -42,6 +43,7 @@ class ReviseCategory : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(ApplyFontModule.a.FontCall())
 
         reviseMemoViewModel = ViewModelProvider(this).get(ReviseCategoryViewModel::class.java)
         RevisecategoryBinding = DataBindingUtil.setContentView(this,

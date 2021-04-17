@@ -24,6 +24,7 @@ import com.bumptech.glide.Glide
 import com.privatememo.j.R
 import com.privatememo.j.utility.WholeImageActivity
 import com.privatememo.j.databinding.ShowandrevisememoBinding
+import com.privatememo.j.utility.ApplyFontModule
 import com.privatememo.j.utility.Retrofit2Module
 import com.privatememo.j.utility.MemberSettingModule
 import com.privatememo.j.viewmodel.ShowAndReviseMemoViewModel
@@ -56,6 +57,7 @@ class ShowAndReviseMemo : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(ApplyFontModule.a.FontCall())
 
         showAndReviseMemoViewModel = ViewModelProvider(this).get(ShowAndReviseMemoViewModel::class.java)
         ShowAndReviseMemoBinding = DataBindingUtil.setContentView(this, R.layout.showandrevisememo)

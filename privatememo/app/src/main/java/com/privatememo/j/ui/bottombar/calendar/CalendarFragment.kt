@@ -24,6 +24,7 @@ import com.privatememo.j.databinding.CalendarfragmentBinding
 import com.privatememo.j.ui.bottombar.MainActivity
 import com.privatememo.j.ui.bottombar.memo.ShowAndReviseMemo
 import com.privatememo.j.ui.bottombar.memo.WriteMemoActivity
+import com.privatememo.j.utility.ApplyFontModule
 import com.privatememo.j.viewmodel.CalendarViewModel
 import kotlinx.android.synthetic.main.calendarfragment.*
 import sun.bob.mcalendarview.MarkStyle
@@ -60,6 +61,8 @@ class CalendarFragment : Fragment() {
     var list = ArrayList<String>() //카테고리 리스트
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        getContext()?.getTheme()?.applyStyle(ApplyFontModule.a.FontCall(), true)
+
         CalendarBinding = DataBindingUtil.inflate(inflater, R.layout.calendarfragment, calendarfrag,false)
         calendarViewModel = ViewModelProvider(this).get(CalendarViewModel::class.java)
         CalendarBinding.setLifecycleOwner(this)

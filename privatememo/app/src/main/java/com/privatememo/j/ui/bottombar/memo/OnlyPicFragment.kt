@@ -23,6 +23,7 @@ import com.privatememo.j.adapter.SearchAdapter
 import com.privatememo.j.api.AdapterListener
 import com.privatememo.j.databinding.OnlypicfragmentBinding
 import com.privatememo.j.ui.bottombar.MainActivity
+import com.privatememo.j.utility.ApplyFontModule
 import com.privatememo.j.viewmodel.OnlyPicViewModel
 import kotlinx.android.synthetic.main.onlypicfragment.*
 
@@ -35,6 +36,7 @@ class OnlyPicFragment : Fragment() {
     lateinit var OnlyPicDialog: Dialog
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        getContext()?.getTheme()?.applyStyle(ApplyFontModule.a.FontCall(), true)
         OnlypicfragmentBinding = DataBindingUtil.inflate(inflater, R.layout.onlypicfragment, onlypicfrag,false)
         onlyPicViewModel = ViewModelProvider(this).get(OnlyPicViewModel::class.java)
         OnlypicfragmentBinding.setLifecycleOwner(this)

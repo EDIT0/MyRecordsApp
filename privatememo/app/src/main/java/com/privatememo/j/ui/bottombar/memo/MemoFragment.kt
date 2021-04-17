@@ -16,6 +16,7 @@ import com.privatememo.j.utility.WholeImageActivity
 import com.privatememo.j.adapter.MemoViewPagerAdapter
 import com.privatememo.j.databinding.MemofragmentBinding
 import com.privatememo.j.ui.bottombar.MainActivity
+import com.privatememo.j.utility.ApplyFontModule
 import kotlinx.android.synthetic.main.memofragment.*
 
 class MemoFragment : Fragment() {
@@ -23,6 +24,7 @@ class MemoFragment : Fragment() {
     lateinit var MemoBinding: MemofragmentBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        getContext()?.getTheme()?.applyStyle(ApplyFontModule.a.FontCall(), true)
 
         MemoBinding = DataBindingUtil.inflate(inflater, R.layout.memofragment, memofrag,false)
         var act = activity as MainActivity

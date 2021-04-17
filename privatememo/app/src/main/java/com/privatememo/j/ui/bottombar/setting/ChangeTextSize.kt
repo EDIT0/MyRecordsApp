@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.privatememo.j.R
 import com.privatememo.j.databinding.ChangetextsizeBinding
 import com.privatememo.j.utility.AccessDatabase
+import com.privatememo.j.utility.ApplyFontModule
 import com.privatememo.j.utility.MemberSettingModule
 import com.privatememo.j.viewmodel.ChangeTextSizeViewModel
 
@@ -30,6 +31,7 @@ class ChangeTextSize : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(ApplyFontModule.a.FontCall())
 
         val display = windowManager.defaultDisplay // in case of Activity
         /* val display = activity!!.windowManaver.defaultDisplay */ // in case of Fragment

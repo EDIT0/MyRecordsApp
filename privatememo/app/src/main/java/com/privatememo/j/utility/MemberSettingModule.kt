@@ -5,7 +5,8 @@ class MemberSettingModule {
     companion object {
         var TitleSize = 17
         var ContentSize = 13
-        var Font = ""
+        var Font = "기본체"
+
     }
 
 }

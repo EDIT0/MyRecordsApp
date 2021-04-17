@@ -28,6 +28,7 @@ import com.privatememo.j.api.AdapterListener
 import com.privatememo.j.databinding.SearchfragmentBinding
 import com.privatememo.j.ui.bottombar.MainActivity
 import com.privatememo.j.ui.bottombar.memo.ShowAndReviseMemo
+import com.privatememo.j.utility.ApplyFontModule
 import com.privatememo.j.viewmodel.SearchViewModel
 import kotlinx.android.synthetic.main.searchfragment.*
 
@@ -41,6 +42,7 @@ class SearchFragment : Fragment() {
     lateinit var SearchDialog: Dialog
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        getContext()?.getTheme()?.applyStyle(ApplyFontModule.a.FontCall(), true)
         SearchfragmentBinding = DataBindingUtil.inflate(inflater, R.layout.searchfragment, searchfrag,false)
         searchViewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
         SearchfragmentBinding.setLifecycleOwner(this)

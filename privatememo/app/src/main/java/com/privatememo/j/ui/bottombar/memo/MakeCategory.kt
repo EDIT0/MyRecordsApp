@@ -20,6 +20,7 @@ import com.privatememo.j.R
 import com.privatememo.j.api.Retrofit2API
 import com.privatememo.j.databinding.ActivityMainBinding
 import com.privatememo.j.databinding.MakecategoryBinding
+import com.privatememo.j.utility.ApplyFontModule
 import com.privatememo.j.utility.Retrofit2Module
 import com.privatememo.j.viewmodel.MainViewModel
 import com.privatememo.j.viewmodel.MakeCategoryViewModel
@@ -48,6 +49,7 @@ class MakeCategory : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(ApplyFontModule.a.FontCall())
 
         makeCategoryViewModel = ViewModelProvider(this).get(MakeCategoryViewModel::class.java)
         MakeCategoryBinding = DataBindingUtil.setContentView(this, R.layout.makecategory)

@@ -1,21 +1,24 @@
 package com.privatememo.j.ui.bottombar
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Process
 import android.util.Log
 import android.view.MenuItem
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.privatememo.j.*
-import com.privatememo.j.databinding.ActivityMainBinding
+import com.privatememo.j.R
 import com.privatememo.j.database.table.EntityMemberSetting
+import com.privatememo.j.databinding.ActivityMainBinding
 import com.privatememo.j.ui.bottombar.calendar.CalendarFragment
 import com.privatememo.j.ui.bottombar.memo.MemoFragment
 import com.privatememo.j.ui.bottombar.search.SearchFragment
 import com.privatememo.j.ui.bottombar.setting.SettingFragment
 import com.privatememo.j.utility.AccessDatabase
+import com.privatememo.j.utility.ApplyFontModule
 import com.privatememo.j.utility.MemberSettingModule
 import com.privatememo.j.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -28,7 +31,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_main)
+        setTheme(ApplyFontModule.a.FontCall())
 
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         MainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -145,6 +148,20 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 Log.i("tag","배열 넣기 null이 아닌 경우")
                 Log.i("tag","${accessDB.DaoMemberSetting().getAll()}")
             }
+        }
+    }
+
+    private var backBtnTime: Long = 0
+    override fun onBackPressed() {
+        val curTime = System.currentTimeMillis()
+        val gapTime = curTime - backBtnTime
+        if (0 <= gapTime && 1000 >= gapTime) {
+            moveTaskToBack(true)
+            finish()
+            Process.killProcess(Process.myPid())
+        } else {
+            backBtnTime = curTime
+            Toast.makeText(this, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
         }
     }
 }

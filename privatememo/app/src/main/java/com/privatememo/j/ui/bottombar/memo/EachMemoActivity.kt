@@ -23,6 +23,7 @@ import com.privatememo.j.adapter.CategoryAdapter
 import com.privatememo.j.adapter.EachMemoAdapter
 import com.privatememo.j.api.AdapterListener
 import com.privatememo.j.databinding.EachmemoactivityBinding
+import com.privatememo.j.utility.ApplyFontModule
 import com.privatememo.j.viewmodel.EachMemoViewModel
 import kotlinx.android.synthetic.main.eachmemoactivity.*
 import kotlinx.android.synthetic.main.memofragment.backbutton
@@ -38,6 +39,7 @@ class EachMemoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(ApplyFontModule.a.FontCall())
 
         eachMemoViewModel = ViewModelProvider(this).get(EachMemoViewModel::class.java)
         EachMemoBinding = DataBindingUtil.setContentView(this, R.layout.eachmemoactivity)

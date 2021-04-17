@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.privatememo.j.R
 import com.privatememo.j.databinding.ProfilemanagementBinding
+import com.privatememo.j.utility.ApplyFontModule
 import com.privatememo.j.utility.Retrofit2Module
 import com.privatememo.j.viewmodel.ProfileManagementViewModel
 import kotlinx.android.synthetic.main.profilemanagement.*
@@ -33,6 +34,8 @@ class ProfileManagement : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        setTheme(ApplyFontModule.a.FontCall())
 
         profileManagementViewModel = ViewModelProvider(this).get(ProfileManagementViewModel::class.java)
         ProfilemanageBinding = DataBindingUtil.setContentView(this,
