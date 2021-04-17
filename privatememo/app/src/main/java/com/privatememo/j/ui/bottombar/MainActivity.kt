@@ -74,16 +74,14 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         Check_MemberSetting()
 
 
-    }
-
-    override fun onResume() {
-        super.onResume()
         //AutoLogin
         val sp = getSharedPreferences("AutoLogin", Activity.MODE_PRIVATE)
         val editor = sp.edit() //edit 메소드 호출
         editor.putString("id", mainViewModel.email.value.toString())
         editor.putString("password", mainViewModel.password)
         editor.commit()
+
+
     }
 
     override fun onDestroy() {

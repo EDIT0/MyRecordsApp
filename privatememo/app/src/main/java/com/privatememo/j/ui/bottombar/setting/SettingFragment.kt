@@ -112,6 +112,7 @@ class SettingFragment : Fragment() {
             intent.putExtra("nickname",act.mainViewModel.nickname.value.toString())
             intent.putExtra("motto",act.mainViewModel.motto.value.toString())
             intent.putExtra("picPath",act.mainViewModel.picPath.value.toString())
+            intent.putExtra("password",act.mainViewModel.password)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
