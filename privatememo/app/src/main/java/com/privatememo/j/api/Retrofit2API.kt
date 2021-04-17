@@ -200,4 +200,17 @@ interface Retrofit2API {
         @Field("nickname") nickname: String,
         @Field("motto") motto: String
     ): Call<String>
+
+    @FormUrlEncoded
+    @POST("MyRecords/Setting/ForMatchingpassword.php")
+    fun ForMatchingpassword(
+            @Field("email") email: String,
+            @Field("pw") pw: String
+    ): Call<CheckPWMatching>
+
+    @FormUrlEncoded
+    @POST("MyRecords/Setting/DeleteMember.php")
+    fun DeleteMember(
+            @Field("email") email: String
+    ): Call<String>
 }

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@drawable/categorycustomdialog">
 
     <LinearLayout
@@ -23,11 +23,21 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="로그아웃 하시겠습니까?"
+            android:text="비밀번호 입력 후 확인을 누르면 \n계정이 삭제됩니다."
             android:textStyle="bold"
             android:textSize="18dp"
             android:padding="5dp"
-            android:paddingTop="5dp"/>
+            android:paddingTop="5dp"
+            android:gravity="center"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:backgroundTint="#83D1D5D6"
+            android:id="@+id/passwordfordelete"
+            android:inputType="textPassword"/>
+
 
     </LinearLayout>
 
@@ -43,7 +53,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="아니오" />
+            android:text="취소" />
 
         <TextView
             android:gravity="center"
@@ -51,7 +61,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="네" />
+            android:text="확인" />
     </LinearLayout>
 
 </LinearLayout>
