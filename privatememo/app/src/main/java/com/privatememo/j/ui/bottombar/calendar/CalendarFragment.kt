@@ -1,8 +1,10 @@
 package com.privatememo.j.ui.bottombar.calendar
 
+import android.animation.ObjectAnimator
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.Point
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
@@ -70,18 +72,73 @@ class CalendarFragment : Fragment() {
 
         CalendarBinding.calendarView.markedDates.removeAdd()
 
-        CalendarDialog = Dialog(CalendarBinding.root.context)
+
+        val display = activity!!.windowManager.defaultDisplay
+        val size = Point()
+        display.getRealSize(size)
+        val width = size.x
+        val height = size.y
+
+        val layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                height/2
+        )
+        layoutParams.leftMargin = 50
+        layoutParams.rightMargin = 50
+        CalendarBinding.Categorycontent.layoutParams = layoutParams
+
+        CalendarBinding.boxdown.setOnClickListener {
+            var objectAnimator: ObjectAnimator =
+                    ObjectAnimator.ofFloat(CalendarBinding.Categorycontent, "translationY",0.toFloat())
+            objectAnimator.duration = 300
+            objectAnimator.start()
+            calendarViewModel.categoryToggle.value = false
+        }
+
+        var fontToggle = Observer<Boolean>{ result ->
+            if(result == false){
+                var objectAnimator: ObjectAnimator =
+                        ObjectAnimator.ofFloat(CalendarBinding.Categorycontent, "translationY",0.toFloat())
+                objectAnimator.duration = 300
+                objectAnimator.start()
+            }
+            else if(result == true){
+                var objectAnimator: ObjectAnimator =
+                        ObjectAnimator.ofFloat(CalendarBinding.Categorycontent,"translationY",-height/2.toFloat())
+                objectAnimator.duration = 300
+                objectAnimator.start()
+            }
+        }
+        calendarViewModel.categoryToggle.observe(CalendarBinding.lifecycleOwner!!,fontToggle)
+
+        CalendarBinding.categorylistView.setOnItemClickListener(object : AdapterView.OnItemClickListener {
+            override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                var intent = Intent(context, WriteMemoActivity::class.java)
+                intent.putExtra("email", calendarViewModel.email.get().toString())
+                intent.putExtra("catenum", calendarViewModel.CategoryList_catenum.get(position).toString())
+                intent.putExtra("calendarDate", "${calendarViewModel.ClickedYear.get()}_${calendarViewModel.ClickedMonth.get()}_${calendarViewModel.ClickedDay.get()}")
+                startActivityForResult(intent, 0)
+                //CalendarDialog.dismiss()//구역
+
+                calendarViewModel.categoryToggle.value = false
+            }
+        })
+        val ChangeTextSizeTitle_adapter: ArrayAdapter<String> = ArrayAdapter<String>(CalendarBinding.root.context, android.R.layout.simple_list_item_1, list)
+        CalendarBinding.categorylistView.setAdapter(ChangeTextSizeTitle_adapter)
+
+        //구역
+        /*CalendarDialog = Dialog(CalendarBinding.root.context)
         CalendarDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         CalendarDialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         CalendarDialog.setContentView(R.layout.calendarfloatingcustomdialog);
         var params: WindowManager.LayoutParams = CalendarDialog?.getWindow()?.getAttributes()!!
         params.width = 800
         params.height = WindowManager.LayoutParams.WRAP_CONTENT
-        CalendarDialog?.getWindow()?.setAttributes(params)
+        CalendarDialog?.getWindow()?.setAttributes(params)*/
 
-
-        var listview = CalendarDialog.findViewById<ListView>(R.id.CateListView) //커스텀 다이얼로그 리스트뷰
-
+        //구역
+        /*var listview = CalendarDialog.findViewById<ListView>(R.id.CateListView) //커스텀 다이얼로그 리스트뷰
+        //구역
         listview.setOnItemClickListener(object : AdapterView.OnItemClickListener {
             override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 var intent = Intent(context, WriteMemoActivity::class.java)
@@ -91,7 +148,7 @@ class CalendarFragment : Fragment() {
                 startActivityForResult(intent, 0)
                 CalendarDialog.dismiss()
             }
-        })
+        })*/
 
         var act = activity as MainActivity
         Log.i("tag","이것은 캘린더의 이메일입니다. ${act.mainViewModel.email.value}")
@@ -108,9 +165,10 @@ class CalendarFragment : Fragment() {
 
             list.add(calendarViewModel.CategoryList_catename.get(i))
         }
-        Log.i("tag", "사이즈: ${calendarViewModel.CategoryList_catename.size} / ${calendarViewModel.CategoryList_catenum.size}")
+        //구역
+        /*Log.i("tag", "사이즈: ${calendarViewModel.CategoryList_catename.size} / ${calendarViewModel.CategoryList_catenum.size}")
         val category_adapter: ArrayAdapter<String> = ArrayAdapter<String>(CalendarBinding.root.context, android.R.layout.simple_list_item_1, list)
-        listview.setAdapter(category_adapter)
+        listview.setAdapter(category_adapter)*/
 
 
 
@@ -118,7 +176,19 @@ class CalendarFragment : Fragment() {
 
         CalendarBinding.fabMain.setOnClickListener( object : View.OnClickListener {
             override fun onClick(v: View?) {
-                if(CalendarBinding.datetext.getText() != "선택된 날짜") {
+                if(CalendarBinding.datetext.getText() != "선택된 날짜"){
+                    if(list.isEmpty()){
+                        Toast.makeText(context,"카테고리를 만들어주세요.",Toast.LENGTH_SHORT).show()
+                    }
+                    else{
+                        calendarViewModel.fontButton()
+                    }
+                }
+                else{
+                    Toast.makeText(context,"날짜를 선택해주세요.",Toast.LENGTH_SHORT).show()
+                }
+                //구역
+                /*if(CalendarBinding.datetext.getText() != "선택된 날짜") {
                     Log.i("tag","${calendarViewModel.ClickedYear.get().toString().length}")
                     if(list.isEmpty()){
                         Toast.makeText(context,"카테고리를 만들어주세요.",Toast.LENGTH_SHORT).show()
@@ -130,7 +200,7 @@ class CalendarFragment : Fragment() {
                 }
                 else{
                     Toast.makeText(context,"날짜를 선택해주세요.",Toast.LENGTH_SHORT).show()
-                }
+                }*/
             }
         })
 
@@ -306,13 +376,14 @@ class CalendarFragment : Fragment() {
         return CalendarBinding.root
     }
 
-    fun showCustomDialog(){
+    //구역
+    /*fun showCustomDialog(){
         CalendarDialog.show();
 
         CalendarDialog.findViewById<TextView>(R.id.finish).setOnClickListener {
             CalendarDialog.dismiss()
         }
-    }
+    }*/
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

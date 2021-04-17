@@ -23,6 +23,7 @@ class MainViewModel : ViewModel(){
     var picPath = MutableLiveData<String>()
     var totalCateNum = MutableLiveData<Int>()
     var totalConNum = MutableLiveData<Int>()
+    var password = String()
 
     var items = ObservableArrayList<CategoryInfo2>()
 

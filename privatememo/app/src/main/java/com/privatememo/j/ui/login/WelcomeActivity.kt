@@ -2,9 +2,9 @@ package com.privatememo.j.ui.login
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -16,6 +16,7 @@ import com.privatememo.j.databinding.WelcomeactivityBinding
 import com.privatememo.j.ui.bottombar.MainActivity
 import com.privatememo.j.viewmodel.WelcomeViewModel
 import kotlinx.android.synthetic.main.welcomeactivity.*
+
 
 class WelcomeActivity : AppCompatActivity() {
 
@@ -32,6 +33,17 @@ class WelcomeActivity : AppCompatActivity() {
         WelcomeBinding.setLifecycleOwner(this)
         WelcomeBinding.welcomeViewModel = welcomeViewModel
 
+        //AutoLogin
+        val sp = getSharedPreferences("AutoLogin", Activity.MODE_PRIVATE)
+        if (sp != null) {
+            val id = sp.getString("id", "No data")
+            val password = sp.getString("password", "No data")
+            if(id == "No data" && password == "No data"){ }
+            else{
+                welcomeViewModel.Login_call(id!!, password!!)
+            }
+        }
+
         WelcomeBinding.signup.setOnClickListener{
             var intent = Intent(this, SignUpActivity::class.java)
             startActivityForResult(intent, RESULT_OK)
@@ -45,6 +57,7 @@ class WelcomeActivity : AppCompatActivity() {
                 bundle.putString("nickname",welcomeViewModel.nicknamefromServer.get().toString())
                 bundle.putString("motto",welcomeViewModel.mottofromServer.get().toString())
                 bundle.putString("picPath",welcomeViewModel.picPathfromServer.get().toString())
+                bundle.putString("password",welcomeViewModel.getPasswordfromMember.get().toString())
 
                 Log.i("tag", "보내는 데이터 ${welcomeViewModel.emailfromServer.get().toString()}")
                 intent.putExtras(bundle)

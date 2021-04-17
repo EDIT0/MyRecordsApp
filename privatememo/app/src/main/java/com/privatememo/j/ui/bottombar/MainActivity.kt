@@ -1,5 +1,6 @@
 package com.privatememo.j.ui.bottombar
 
+import android.app.Activity
 import android.os.Bundle
 import android.os.Process
 import android.util.Log
@@ -22,6 +23,7 @@ import com.privatememo.j.utility.ApplyFontModule
 import com.privatememo.j.utility.MemberSettingModule
 import com.privatememo.j.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -58,6 +60,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         mainViewModel.nickname.setValue(getbundle?.getString("nickname"))
         mainViewModel.motto.setValue(getbundle?.getString("motto"))
         mainViewModel.picPath.setValue(getbundle?.getString("picPath"))
+        mainViewModel.password = getbundle?.getString("password")!!
 
         Log.i("TAG", "넘어온 데이터1 ${getbundle?.getString("email")}, ${getbundle?.getString("nickname")} " +
                 "${getbundle?.getString("motto")} ${getbundle?.getString("picPath")}")
@@ -71,6 +74,16 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         Check_MemberSetting()
 
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        //AutoLogin
+        val sp = getSharedPreferences("AutoLogin", Activity.MODE_PRIVATE)
+        val editor = sp.edit() //edit 메소드 호출
+        editor.putString("id", mainViewModel.email.value.toString())
+        editor.putString("password", mainViewModel.password)
+        editor.commit()
     }
 
     override fun onDestroy() {

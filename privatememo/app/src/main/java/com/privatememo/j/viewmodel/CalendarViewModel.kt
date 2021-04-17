@@ -32,9 +32,21 @@ class CalendarViewModel : ViewModel() {
     var ClickedMonth = ObservableField<Int>()
     var ClickedDay =ObservableField<Int>()
 
+    var categoryToggle = MutableLiveData<Boolean>()
+
     init {
         controler.value = false
         CompleteGettingData.value = false
+        categoryToggle.value = false
+    }
+
+    fun fontButton(){
+        if(categoryToggle.value == false){
+            categoryToggle.value = true
+        }
+        else if(categoryToggle.value == true){
+            categoryToggle.value = false
+        }
     }
 
     fun switching(){

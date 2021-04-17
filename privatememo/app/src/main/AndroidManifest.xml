@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Privatememo"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ChangeFont"></activity>
+        <activity android:name=".ui.bottombar.setting.ChangeFont"></activity>
         <activity android:name=".ui.bottombar.setting.ChangeTextSize" />
         <activity android:name=".ui.bottombar.setting.ProfileManagement" />
         <activity android:name=".adapter.CalendarAdapter" />

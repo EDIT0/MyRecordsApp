@@ -1,12 +1,9 @@
-package com.privatememo.j
+package com.privatememo.j.ui.bottombar.setting
 
 import android.animation.ObjectAnimator
-import android.content.Intent
 import android.graphics.Point
-import android.graphics.fonts.Font
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -15,16 +12,12 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.privatememo.j.R
 import com.privatememo.j.databinding.ChangefontBinding
-import com.privatememo.j.databinding.ChangetextsizeBinding
-import com.privatememo.j.ui.bottombar.MainActivity
-import com.privatememo.j.ui.bottombar.setting.SettingFragment
 import com.privatememo.j.utility.AccessDatabase
 import com.privatememo.j.utility.ApplyFontModule
 import com.privatememo.j.utility.MemberSettingModule
 import com.privatememo.j.viewmodel.ChangeFontViewModel
-import com.privatememo.j.viewmodel.ChangeTextSizeViewModel
-import kotlinx.android.synthetic.main.changefont.*
 
 class ChangeFont : AppCompatActivity() {
 
@@ -109,12 +102,6 @@ class ChangeFont : AppCompatActivity() {
                 Toast.makeText(ChangeFontBinding.root.context,"${FontModule.Font}로 변경", Toast.LENGTH_SHORT).show()
                 changeFontViewModel.fontToggle.value = false
                 ChangeFontSetting()
-
-                //var intent = Intent(ChangeFontBinding.root.context,SettingFragment::class.java)
-                //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                //intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                //startActivity(intent)
 
                 setResult(6031)
                 finish()
