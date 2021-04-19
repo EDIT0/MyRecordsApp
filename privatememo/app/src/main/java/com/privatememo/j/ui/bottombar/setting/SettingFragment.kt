@@ -19,6 +19,7 @@ import com.privatememo.j.ui.bottombar.memo.ReviseCategory
 import com.privatememo.j.ui.login.WelcomeActivity
 import com.privatememo.j.utility.ApplyFontModule
 import com.privatememo.j.utility.Retrofit2Module
+import com.privatememo.j.utility.Utility
 import kotlinx.android.synthetic.main.settingfragment.*
 import kotlinx.android.synthetic.main.settingfragment.view.*
 import retrofit2.Call
@@ -40,6 +41,9 @@ class SettingFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         getContext()?.getTheme()?.applyStyle(ApplyFontModule.a.FontCall(), true)
+
+        Utility.OnlyPicLoadMore.FirstStart = 1
+
         rootView = inflater.inflate(R.layout.settingfragment, settingfrag, false)
 
         var act = activity as MainActivity

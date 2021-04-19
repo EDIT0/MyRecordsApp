@@ -27,6 +27,7 @@ import com.privatememo.j.ui.bottombar.MainActivity
 import com.privatememo.j.ui.bottombar.memo.ShowAndReviseMemo
 import com.privatememo.j.ui.bottombar.memo.WriteMemoActivity
 import com.privatememo.j.utility.ApplyFontModule
+import com.privatememo.j.utility.Utility
 import com.privatememo.j.viewmodel.CalendarViewModel
 import kotlinx.android.synthetic.main.calendarfragment.*
 import sun.bob.mcalendarview.MarkStyle
@@ -64,6 +65,8 @@ class CalendarFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         getContext()?.getTheme()?.applyStyle(ApplyFontModule.a.FontCall(), true)
+
+        Utility.OnlyPicLoadMore.FirstStart = 1
 
         CalendarBinding = DataBindingUtil.inflate(inflater, R.layout.calendarfragment, calendarfrag,false)
         calendarViewModel = ViewModelProvider(this).get(CalendarViewModel::class.java)

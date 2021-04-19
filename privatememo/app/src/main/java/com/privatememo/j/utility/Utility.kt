@@ -72,4 +72,32 @@ object Utility {
         (rcv.adapter as CalendarAdapter).items = items
         rcv.adapter?.notifyDataSetChanged()
     }
+
+    object EachMemoLoadMore{
+        var EachMemoMin = 0
+        var EachMemoMid = 0
+        var EachMemoMax = 10
+    }
+
+    object EachMemoSort{
+        var SortState = 0
+    }
+
+    object EachMemoFloating{
+        var FloatingState = 0
+    }
+
+    object SearchLoadMore{
+        var SearchMin = 0
+        var SearchMid = 0
+        var SearchMax = 10
+    }
+
+    object OnlyPicLoadMore{
+        var OnlyPicMin = 0
+        var OnlyPicMid = 0
+        var OnlyPicMax = 6
+        var FirstStart = 1
+        var isChanged = 0
+    }
 }

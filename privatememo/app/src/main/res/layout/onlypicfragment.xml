@@ -21,12 +21,34 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/onlypicRcv"
-                onlypic_rcv="@{onlyPicViewModel.items}"
-                android:visibility="@{onlyPicViewModel.controler ? View.VISIBLE : View.INVISIBLE}"/>
+                android:orientation="vertical"
+                android:visibility="@{onlyPicViewModel.controler ? View.VISIBLE : View.INVISIBLE}">
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/onlypicRcv"
+                    onlypic_rcv="@{onlyPicViewModel.items}"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:id="@+id/loadmore"
+                    android:textSize="20dp"
+                    android:text="더보기"
+                    android:textStyle="bold"
+                    android:background="#83B7BDBF"/>
+
+
+            </LinearLayout>
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"

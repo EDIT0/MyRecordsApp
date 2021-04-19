@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.TextView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -24,6 +25,7 @@ import com.privatememo.j.api.AdapterListener
 import com.privatememo.j.databinding.OnlypicfragmentBinding
 import com.privatememo.j.ui.bottombar.MainActivity
 import com.privatememo.j.utility.ApplyFontModule
+import com.privatememo.j.utility.Utility
 import com.privatememo.j.viewmodel.OnlyPicViewModel
 import kotlinx.android.synthetic.main.onlypicfragment.*
 
@@ -52,12 +54,28 @@ class OnlyPicFragment : Fragment() {
         OnlyPicDialog?.getWindow()?.setAttributes(params)
 
         var act = activity as MainActivity
-        Log.i("tag","이것은 카테고리프래그먼트의 이메일입니다. ${act.mainViewModel.email.value}")
+        Log.i("tag","이것은 온리픽프래그먼트의 이메일입니다. ${act.mainViewModel.email.value}")
         onlyPicViewModel.email.set(act.mainViewModel.email.value)
 
         var layoutmanager = GridLayoutManager(OnlypicfragmentBinding.root.context, 3, LinearLayoutManager.VERTICAL, false)
         OnlypicfragmentBinding.onlypicRcv.layoutManager = layoutmanager
         OnlypicfragmentBinding.onlypicRcv.adapter = adapter
+
+        OnlypicfragmentBinding.loadmore.setOnClickListener {
+            with(Utility.OnlyPicLoadMore){
+                if(OnlyPicMax < 6){
+                    if(isChanged > 0){
+                        onlyPicViewModel.search(0, OnlyPicMax+isChanged)
+                        isChanged = 0
+                    }
+                }
+                else {
+                    OnlyPicMid += 6
+                    OnlyPicMax = OnlyPicMid + 6
+                    onlyPicViewModel.whenScrolled(OnlyPicMid, OnlyPicMax)
+                }
+            }
+        }
 
 
         var controler = Observer<Boolean> { result ->
@@ -151,7 +169,15 @@ class OnlyPicFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        onlyPicViewModel.search()
+        with(Utility.OnlyPicLoadMore){
+            if(FirstStart == 1) {
+                FirstStart = 0
+                onlyPicViewModel.search(OnlyPicMin, OnlyPicMax+ isChanged)
+                isChanged = 0
+                Log.i("tag","온리픽프레그먼트의 getOnlyPic 호출")
+            }
+        }
+
         Log.i("tag","온리픽프레그먼트 온스타트")
     }
 

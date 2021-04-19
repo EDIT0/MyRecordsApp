@@ -95,7 +95,10 @@ interface Retrofit2API {
     @FormUrlEncoded
     @POST("MyRecords/Memo/getMemoList.php")
     fun getMemoList(
-        @Field("category_catenum") catenum: Int
+        @Field("category_catenum") catenum: Int,
+        @Field("start") start: Int,
+        @Field("end") end: Int,
+        @Field("SortState") sortstate: Int
     ): Call<MemoInfo>
 
     @FormUrlEncoded
@@ -171,14 +174,18 @@ interface Retrofit2API {
     @FormUrlEncoded
     @POST("MyRecords/Memo/getOnlyPic.php")
     fun getOnlyPic(
-        @Field("email") email: String
+        @Field("email") email: String,
+        @Field("start") start: Int,
+        @Field("end") end: Int
     ): Call<OnlyPicInfo>
 
     @FormUrlEncoded
     @POST("MyRecords/Search/getSearchResult.php")
     fun getSearchResult(
             @Field("email") email: String,
-            @Field("keyword") keyword: String
+            @Field("keyword") keyword: String,
+            @Field("start") start: Int,
+            @Field("end") end: Int
     ): Call<SearchInfo>
 
     @FormUrlEncoded

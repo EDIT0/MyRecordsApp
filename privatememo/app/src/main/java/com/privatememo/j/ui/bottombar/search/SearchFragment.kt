@@ -1,6 +1,7 @@
 package com.privatememo.j.ui.bottombar.search
 
 import android.app.Dialog
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -18,6 +19,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.privatememo.j.adapter.CalendarAdapter
 import com.privatememo.j.R
 import com.privatememo.j.adapter.SearchAdapter
@@ -29,8 +31,10 @@ import com.privatememo.j.databinding.SearchfragmentBinding
 import com.privatememo.j.ui.bottombar.MainActivity
 import com.privatememo.j.ui.bottombar.memo.ShowAndReviseMemo
 import com.privatememo.j.utility.ApplyFontModule
+import com.privatememo.j.utility.Utility
 import com.privatememo.j.viewmodel.SearchViewModel
 import kotlinx.android.synthetic.main.searchfragment.*
+import okhttp3.internal.Util
 
 
 class SearchFragment : Fragment() {
@@ -43,6 +47,9 @@ class SearchFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         getContext()?.getTheme()?.applyStyle(ApplyFontModule.a.FontCall(), true)
+
+        Utility.OnlyPicLoadMore.FirstStart = 1
+
         SearchfragmentBinding = DataBindingUtil.inflate(inflater, R.layout.searchfragment, searchfrag,false)
         searchViewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
         SearchfragmentBinding.setLifecycleOwner(this)
@@ -70,9 +77,11 @@ class SearchFragment : Fragment() {
         SearchfragmentBinding.edittext.setOnEditorActionListener(OnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 if(SearchfragmentBinding.edittext.text.length >= 1) {
-                    searchViewModel.getSearchResult_call()
+                    searchViewModel.getSearchResult_call(Utility.SearchLoadMore.SearchMin, 10)
                     searchViewModel.items.clear()
-                    adapter.notifyDataSetChanged()
+                    //adapter.notifyDataSetChanged()
+                    Utility.SearchLoadMore.SearchMid = 0
+                    Utility.SearchLoadMore.SearchMax = 10
                     try {
                         keypad.hideSoftInputFromWindow(
                             activity!!.currentFocus!!.windowToken,
@@ -96,6 +105,8 @@ class SearchFragment : Fragment() {
             else{
                 SearchfragmentBinding.layout.visibility = View.INVISIBLE
             }
+            Thread.sleep(200)
+            //adapter.notifyDataSetChanged()
         }
         searchViewModel?.controler?.observe(SearchfragmentBinding.lifecycleOwner!!, controler)
 
@@ -159,6 +170,32 @@ class SearchFragment : Fragment() {
         }
 
 
+        SearchfragmentBinding.searchRcv.setOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (!SearchfragmentBinding.searchRcv.canScrollVertically(-1)) {
+                    Log.i("SearchFragment", "Top of list.")
+                } else if (!SearchfragmentBinding.searchRcv.canScrollVertically(1)) {
+                    Log.i("SearchFragment", "End of list.")
+
+                    if((Utility.SearchLoadMore.SearchMax > adapter.itemCount)){
+
+                    }
+                    else{
+                        Utility.SearchLoadMore.SearchMid += 10
+                        Utility.SearchLoadMore.SearchMax = Utility.SearchLoadMore.SearchMid + 10
+                        searchViewModel.controler.value = false
+                        searchViewModel.whenScrolled(Utility.SearchLoadMore.SearchMid, Utility.SearchLoadMore.SearchMax)
+                    }
+                    Log.i("SearchFragment","max: ${Utility.SearchLoadMore.SearchMax} mid: ${Utility.SearchLoadMore.SearchMid}")
+
+                } else {
+                    Log.i("SearchFragment", "idle.")
+                }
+            }
+        })
+
+
 
         return SearchfragmentBinding.root
     }
@@ -174,6 +211,14 @@ class SearchFragment : Fragment() {
         }
         SearchDialog.findViewById<TextView>(R.id.finish).setOnClickListener {
             SearchDialog.dismiss()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(resultCode == 153 && requestCode == 600){
+            searchViewModel.search(Utility.SearchLoadMore.SearchMin, Utility.SearchLoadMore.SearchMax)
         }
     }
 

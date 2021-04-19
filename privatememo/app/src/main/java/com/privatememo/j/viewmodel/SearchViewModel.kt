@@ -34,10 +34,19 @@ class SearchViewModel : ViewModel() {
         }
     }
 
+    fun search(Min:Int, Max: Int){
+        items.clear()
+        getSearchResult_call(Min, Max)
+    }
 
-    fun getSearchResult_call(){
+    fun whenScrolled(Mid:Int, Max: Int){
+        getSearchResult_call(Mid, Max)
+    }
 
-        val call: Call<SearchInfo> = retrofit2module.BaseModule().getSearchResult(email.get().toString(), keyword)
+
+    fun getSearchResult_call(start:Int, end: Int){
+
+        val call: Call<SearchInfo> = retrofit2module.BaseModule().getSearchResult(email.get().toString(), keyword, start, end)
 
         Log.i("tag","getSearchResult 호출 ${email.get().toString()}  ${keyword}")
         call.enqueue(object : Callback<SearchInfo> {

@@ -22,11 +22,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.privatememo.j.R
-import com.privatememo.j.utility.WholeImageActivity
 import com.privatememo.j.databinding.ShowandrevisememoBinding
-import com.privatememo.j.utility.ApplyFontModule
-import com.privatememo.j.utility.Retrofit2Module
-import com.privatememo.j.utility.MemberSettingModule
+import com.privatememo.j.utility.*
 import com.privatememo.j.viewmodel.ShowAndReviseMemoViewModel
 import kotlinx.android.synthetic.main.showandrevisememo.*
 import kotlinx.android.synthetic.main.showandrevisememo.addImage
@@ -331,7 +328,7 @@ class ShowAndReviseMemo : AppCompatActivity() {
             else if(result == "image_no") {
 
             }
-
+            //Utility.OnlyPicLoadMore.isChanged = 1
             Thread.sleep(500)
             setResult(153)
             finish()

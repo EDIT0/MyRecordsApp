@@ -10,6 +10,7 @@ import com.privatememo.j.datamodel.CategoryInfo2
 import com.privatememo.j.datamodel.OnlyPicInfo
 import com.privatememo.j.datamodel.OnlyPicInfo2
 import com.privatememo.j.utility.Retrofit2Module
+import com.privatememo.j.utility.Utility
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,15 +36,19 @@ class OnlyPicViewModel : ViewModel(){
         }
     }
 
-    fun search(){
+    fun search(Min: Int, Max: Int){
         items.clear()
-        getOnlyPic_call()
+        getOnlyPic_call(Min, Max)
+    }
+
+    fun whenScrolled(Mid: Int, Max: Int){
+        getOnlyPic_call(Mid, Max)
     }
 
 
-    fun getOnlyPic_call(){
+    fun getOnlyPic_call(start: Int, end: Int){
 
-        val call: Call<OnlyPicInfo> = retrofit2module.BaseModule().getOnlyPic(email.get().toString())
+        val call: Call<OnlyPicInfo> = retrofit2module.BaseModule().getOnlyPic(email.get().toString(), start, end)
 
         call.enqueue(object : Callback<OnlyPicInfo> {
             override fun onResponse(call: Call<OnlyPicInfo>, response: Response<OnlyPicInfo>) {
@@ -52,6 +57,9 @@ class OnlyPicViewModel : ViewModel(){
                 for (i in 0 until result?.result?.size!!) {
                     items.add(result.result.get(i))
                 }
+
+                Utility.OnlyPicLoadMore.OnlyPicMax = items.size
+                Utility.OnlyPicLoadMore.OnlyPicMid = Utility.OnlyPicLoadMore.OnlyPicMax - 6
 
                 //Log.i("tag","설명 입니다. ${result?.result?.get(0)?.explanation}")
                 switching()

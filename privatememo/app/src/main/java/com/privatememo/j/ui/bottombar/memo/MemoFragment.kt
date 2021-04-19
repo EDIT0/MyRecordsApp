@@ -17,6 +17,7 @@ import com.privatememo.j.adapter.MemoViewPagerAdapter
 import com.privatememo.j.databinding.MemofragmentBinding
 import com.privatememo.j.ui.bottombar.MainActivity
 import com.privatememo.j.utility.ApplyFontModule
+import com.privatememo.j.utility.Utility
 import kotlinx.android.synthetic.main.memofragment.*
 
 class MemoFragment : Fragment() {
@@ -61,6 +62,8 @@ class MemoFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         Log.i("tag","메모프래그먼트 온 리숨")
+        Utility.EachMemoLoadMore.EachMemoMax = 10
+        Utility.EachMemoLoadMore.EachMemoMid = 0
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
