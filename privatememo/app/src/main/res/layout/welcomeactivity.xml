@@ -19,7 +19,13 @@
         android:background="#83EEF0F1">
 
 
-        <TextView
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:src="@drawable/logoandtitle"/>
+
+        <!--<TextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -27,7 +33,7 @@
             android:textSize="60dp"
             android:text="MyRecords"
             android:textStyle="bold"
-            android:gravity="center"/>
+            android:gravity="center"/>-->
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -30,8 +30,10 @@ import com.privatememo.j.api.AdapterListener
 import com.privatememo.j.databinding.SearchfragmentBinding
 import com.privatememo.j.ui.bottombar.MainActivity
 import com.privatememo.j.ui.bottombar.memo.ShowAndReviseMemo
+import com.privatememo.j.ui.login.WelcomeActivity
 import com.privatememo.j.utility.ApplyFontModule
 import com.privatememo.j.utility.Utility
+import com.privatememo.j.utility.Utility.CheckNetworkState
 import com.privatememo.j.viewmodel.SearchViewModel
 import kotlinx.android.synthetic.main.searchfragment.*
 import okhttp3.internal.Util
@@ -44,6 +46,7 @@ class SearchFragment : Fragment() {
     var adapter = SearchAdapter()
 
     lateinit var SearchDialog: Dialog
+    lateinit var progressDialog:ProgressDialog
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         getContext()?.getTheme()?.applyStyle(ApplyFontModule.a.FontCall(), true)
@@ -55,14 +58,9 @@ class SearchFragment : Fragment() {
         SearchfragmentBinding.setLifecycleOwner(this)
         SearchfragmentBinding.searchViewModel = searchViewModel
 
-        SearchDialog = Dialog(SearchfragmentBinding.root.context)
-        SearchDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        SearchDialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        SearchDialog.setContentView(R.layout.onlypiccustomdialog);
-        var params: WindowManager.LayoutParams = SearchDialog?.getWindow()?.getAttributes()!!
-        params.width = 600
-        params.height = WindowManager.LayoutParams.WRAP_CONTENT
-        SearchDialog?.getWindow()?.setAttributes(params)
+        progressDialog = ProgressDialog(SearchfragmentBinding.root.context, android.R.style.Theme_Material_Dialog_Alert)
+
+        SearchDialog = Utility.NormalDialogSetting(SearchfragmentBinding.root.context, R.layout.onlypiccustomdialog, 600)
 
         var layoutmanager = LinearLayoutManager(SearchfragmentBinding.searchRcv.context)
         SearchfragmentBinding.searchRcv.layoutManager = layoutmanager
@@ -105,8 +103,9 @@ class SearchFragment : Fragment() {
             else{
                 SearchfragmentBinding.layout.visibility = View.INVISIBLE
             }
-            Thread.sleep(200)
-            //adapter.notifyDataSetChanged()
+            //Thread.sleep(200)
+            adapter.notifyDataSetChanged()
+            progressDialog.dismiss()
         }
         searchViewModel?.controler?.observe(SearchfragmentBinding.lifecycleOwner!!, controler)
 
@@ -182,9 +181,10 @@ class SearchFragment : Fragment() {
 
                     }
                     else{
+                        progressDialog.setMessage("Loading..")
+                        progressDialog.show()
                         Utility.SearchLoadMore.SearchMid += 10
                         Utility.SearchLoadMore.SearchMax = Utility.SearchLoadMore.SearchMid + 10
-                        searchViewModel.controler.value = false
                         searchViewModel.whenScrolled(Utility.SearchLoadMore.SearchMid, Utility.SearchLoadMore.SearchMax)
                     }
                     Log.i("SearchFragment","max: ${Utility.SearchLoadMore.SearchMax} mid: ${Utility.SearchLoadMore.SearchMid}")
@@ -219,6 +219,20 @@ class SearchFragment : Fragment() {
 
         if(resultCode == 153 && requestCode == 600){
             searchViewModel.search(Utility.SearchLoadMore.SearchMin, Utility.SearchLoadMore.SearchMax)
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.i("tag","서치프래그먼트 온 스타트")
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.i("tag","서치프래그먼트 온 리숨")
+        if(Utility.NetworkState.off == true){
+            Utility.NetworkUnavailable(SearchfragmentBinding.root.context)
         }
     }
 

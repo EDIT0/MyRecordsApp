@@ -44,14 +44,7 @@ class OnlyPicFragment : Fragment() {
         OnlypicfragmentBinding.setLifecycleOwner(this)
         OnlypicfragmentBinding.onlyPicViewModel = onlyPicViewModel
 
-        OnlyPicDialog = Dialog(OnlypicfragmentBinding.root.context)
-        OnlyPicDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        OnlyPicDialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        OnlyPicDialog.setContentView(R.layout.onlypiccustomdialog);
-        var params: WindowManager.LayoutParams = OnlyPicDialog?.getWindow()?.getAttributes()!!
-        params.width = 600
-        params.height = WindowManager.LayoutParams.WRAP_CONTENT
-        OnlyPicDialog?.getWindow()?.setAttributes(params)
+        OnlyPicDialog = Utility.NormalDialogSetting(OnlypicfragmentBinding.root.context, R.layout.onlypiccustomdialog, 600)
 
         var act = activity as MainActivity
         Log.i("tag","이것은 온리픽프래그먼트의 이메일입니다. ${act.mainViewModel.email.value}")

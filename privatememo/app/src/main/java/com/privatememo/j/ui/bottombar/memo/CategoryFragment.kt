@@ -25,6 +25,7 @@ import com.privatememo.j.api.AdapterListener
 import com.privatememo.j.databinding.CategoryfragmentBinding
 import com.privatememo.j.ui.bottombar.MainActivity
 import com.privatememo.j.utility.ApplyFontModule
+import com.privatememo.j.utility.Utility
 import com.privatememo.j.utility.WholeImageActivity
 import com.privatememo.j.viewmodel.CategoryViewModel
 import kotlinx.android.synthetic.main.categoryfragment.*
@@ -45,16 +46,7 @@ class CategoryFragment : Fragment() {
         CategoryBinding.setLifecycleOwner(this)
         CategoryBinding.categoryViewModel = categoryViewModel
 
-        CategoryDialog = Dialog(CategoryBinding.root.context)
-        CategoryDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        CategoryDialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        CategoryDialog.setContentView(R.layout.categorycustomdialog);
-        var params: WindowManager.LayoutParams = CategoryDialog?.getWindow()?.getAttributes()!!
-        params.width = 600
-        params.height = WindowManager.LayoutParams.WRAP_CONTENT
-        CategoryDialog?.getWindow()?.setAttributes(params)
-
-
+        CategoryDialog = Utility.NormalDialogSetting(CategoryBinding.root.context, R.layout.categorycustomdialog, 600)
 
         var act = activity as MainActivity
         Log.i("tag","이것은 카테고리프래그먼트의 이메일입니다. ${act.mainViewModel.email.value}")

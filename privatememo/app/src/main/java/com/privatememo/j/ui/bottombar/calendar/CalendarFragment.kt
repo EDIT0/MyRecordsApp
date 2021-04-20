@@ -388,6 +388,19 @@ class CalendarFragment : Fragment() {
         }
     }*/
 
+    override fun onStart() {
+        super.onStart()
+        Log.i("tag","캘린더프래그먼트 온 스타트")
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.i("tag","캘린더프래그먼트 온 리숨")
+        if(Utility.NetworkState.off == true){
+            Utility.NetworkUnavailable(CalendarBinding.root.context)
+        }
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

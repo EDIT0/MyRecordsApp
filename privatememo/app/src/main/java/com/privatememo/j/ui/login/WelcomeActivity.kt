@@ -13,6 +13,7 @@ import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import com.privatememo.j.R
 import com.privatememo.j.databinding.WelcomeactivityBinding
+import com.privatememo.j.service.NetworkService
 import com.privatememo.j.ui.bottombar.MainActivity
 import com.privatememo.j.viewmodel.WelcomeViewModel
 import kotlinx.android.synthetic.main.welcomeactivity.*
@@ -32,6 +33,9 @@ class WelcomeActivity : AppCompatActivity() {
         WelcomeBinding = DataBindingUtil.setContentView(this, R.layout.welcomeactivity)
         WelcomeBinding.setLifecycleOwner(this)
         WelcomeBinding.welcomeViewModel = welcomeViewModel
+
+        var Serviceintent = Intent(applicationContext,NetworkService::class.java)
+        startService(Serviceintent)
 
         //AutoLogin
         val sp = getSharedPreferences("AutoLogin", Activity.MODE_PRIVATE)
@@ -86,10 +90,13 @@ class WelcomeActivity : AppCompatActivity() {
             override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
                 //Toast.makeText(this@WelcomeActivity, "권한 거부", Toast.LENGTH_SHORT) .show()
                 ActivityCompat.finishAffinity(this@WelcomeActivity) // 권한 거부시 앱 종료
+
+
             }
         }
         TedPermission.with(this)
             .setPermissionListener(permis)
+            .setDeniedMessage("권한이 허가되지 않는다면, 서비스를 이용하실 수 없습니다.\n\n [설정] > [권한]에서 권한을 허가해주세요.")
             .setPermissions(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
             .setPermissions(android.Manifest.permission.READ_EXTERNAL_STORAGE)
             .check()

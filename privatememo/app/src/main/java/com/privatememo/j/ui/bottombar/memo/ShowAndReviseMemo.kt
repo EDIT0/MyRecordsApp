@@ -185,15 +185,7 @@ class ShowAndReviseMemo : AppCompatActivity() {
         deletememo.setOnClickListener {
             lateinit var ShowAndReviseMemoDialog: Dialog
 
-            ShowAndReviseMemoDialog = Dialog(ShowAndReviseMemoBinding.root.context)
-            ShowAndReviseMemoDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            ShowAndReviseMemoDialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            ShowAndReviseMemoDialog.setContentView(R.layout.onlypiccustomdialog);
-            var params: WindowManager.LayoutParams = ShowAndReviseMemoDialog?.getWindow()?.getAttributes()!!
-            params.width = 600
-            params.height = WindowManager.LayoutParams.WRAP_CONTENT
-            ShowAndReviseMemoDialog?.getWindow()?.setAttributes(params)
-
+            ShowAndReviseMemoDialog = Utility.NormalDialogSetting(ShowAndReviseMemoBinding.root.context, R.layout.onlypiccustomdialog, 600)
             ShowAndReviseMemoDialog.show();
 
             ShowAndReviseMemoDialog.findViewById<TextView>(R.id.onlypicDelete).setOnClickListener {

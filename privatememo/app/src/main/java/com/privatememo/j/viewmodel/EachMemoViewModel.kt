@@ -83,7 +83,6 @@ class EachMemoViewModel : ViewModel() {
                 }
 
                 if(Utility.EachMemoFloating.FloatingState == 1){
-                    Utility.EachMemoFloating.FloatingState = 0
                     Collections.reverse(items)
                 }
 

@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -62,8 +63,12 @@ class MemoFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         Log.i("tag","메모프래그먼트 온 리숨")
+        if(Utility.NetworkState.off == true){
+            Utility.NetworkUnavailable(MemoBinding.root.context)
+        }
         Utility.EachMemoLoadMore.EachMemoMax = 10
         Utility.EachMemoLoadMore.EachMemoMid = 0
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

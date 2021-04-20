@@ -80,15 +80,22 @@ class SettingFragment : Fragment() {
         return rootView
     }
 
+    override fun onStart() {
+        super.onStart()
+        Log.i("tag","셋팅프래그먼트 온 스타트")
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.i("tag","셋팅프래그먼트 온 리숨")
+        if(Utility.NetworkState.off == true){
+            Utility.NetworkUnavailable(rootView.context)
+        }
+    }
+
     fun showLogoutDialog(){
-        LogoutDialog = Dialog(rootView.context)
-        LogoutDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        LogoutDialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        LogoutDialog.setContentView(R.layout.logoutcustomdialog);
-        var params: WindowManager.LayoutParams = LogoutDialog?.getWindow()?.getAttributes()!!
-        params.width = 800
-        params.height = WindowManager.LayoutParams.WRAP_CONTENT
-        LogoutDialog?.getWindow()?.setAttributes(params)
+        LogoutDialog = Utility.NormalDialogSetting(rootView.context, R.layout.logoutcustomdialog, 800)
         LogoutDialog.show();
 
         LogoutDialog.findViewById<TextView>(R.id.yes).setOnClickListener {
@@ -109,14 +116,7 @@ class SettingFragment : Fragment() {
     }
 
     fun showDeleteMemberDialog(email: String){
-        DeleteDialog = Dialog(rootView.context)
-        DeleteDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        DeleteDialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        DeleteDialog.setContentView(R.layout.deletemembercustomdialog);
-        var params: WindowManager.LayoutParams = DeleteDialog?.getWindow()?.getAttributes()!!
-        params.width = 800
-        params.height = WindowManager.LayoutParams.WRAP_CONTENT
-        DeleteDialog?.getWindow()?.setAttributes(params)
+        DeleteDialog = Utility.NormalDialogSetting(rootView.context, R.layout.deletemembercustomdialog, 800)
         DeleteDialog.show();
 
         DeleteDialog.findViewById<TextView>(R.id.yes).setOnClickListener {
@@ -165,14 +165,7 @@ class SettingFragment : Fragment() {
                 var returnValue = result?.returnvalue
 
                 if(returnValue == "true"){
-                    GoodbyeDialog = Dialog(rootView.context)
-                    GoodbyeDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-                    GoodbyeDialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                    GoodbyeDialog.setContentView(R.layout.goodbyecustomdialog);
-                    var params: WindowManager.LayoutParams = GoodbyeDialog?.getWindow()?.getAttributes()!!
-                    params.width = 800
-                    params.height = WindowManager.LayoutParams.WRAP_CONTENT
-                    GoodbyeDialog?.getWindow()?.setAttributes(params)
+                    GoodbyeDialog = Utility.NormalDialogSetting(rootView.context, R.layout.goodbyecustomdialog, 800)
                     GoodbyeDialog.show();
 
                     //삭제호출
@@ -191,14 +184,7 @@ class SettingFragment : Fragment() {
                     }
                 }
                 else if(returnValue == "false"){
-                    NotMatchDialog = Dialog(rootView.context)
-                    NotMatchDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-                    NotMatchDialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                    NotMatchDialog.setContentView(R.layout.notmatchcustomdialog);
-                    var params: WindowManager.LayoutParams = NotMatchDialog?.getWindow()?.getAttributes()!!
-                    params.width = 800
-                    params.height = WindowManager.LayoutParams.WRAP_CONTENT
-                    NotMatchDialog?.getWindow()?.setAttributes(params)
+                    NotMatchDialog = Utility.NormalDialogSetting(rootView.context, R.layout.notmatchcustomdialog, 800)
                     NotMatchDialog.show();
 
                     NotMatchDialog.findViewById<TextView>(R.id.check).setOnClickListener {

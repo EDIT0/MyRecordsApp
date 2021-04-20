@@ -66,14 +66,7 @@ class EachMemoActivity : AppCompatActivity() {
 
         progressDialog = ProgressDialog(EachMemoBinding.root.context, android.R.style.Theme_Material_Dialog_Alert)
 
-        EachMemoDialog = Dialog(EachMemoBinding.root.context)
-        EachMemoDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        EachMemoDialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        EachMemoDialog.setContentView(R.layout.onlypiccustomdialog);
-        var params: WindowManager.LayoutParams = EachMemoDialog?.getWindow()?.getAttributes()!!
-        params.width = 600
-        params.height = WindowManager.LayoutParams.WRAP_CONTENT
-        EachMemoDialog?.getWindow()?.setAttributes(params)
+        EachMemoDialog = Utility.NormalDialogSetting(EachMemoBinding.root.context, R.layout.onlypiccustomdialog, 600)
 
         var getintent = getIntent()
         eachMemoViewModel.email = getintent.getStringExtra("email")!!
