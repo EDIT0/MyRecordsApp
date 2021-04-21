@@ -4,18 +4,13 @@ import android.animation.ObjectAnimator
 import android.app.Dialog
 import android.app.ProgressDialog
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.Point
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.view.Window
-import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -98,11 +93,9 @@ class EachMemoActivity : AppCompatActivity() {
             else{
                 EachMemoBinding.layout.visibility = View.INVISIBLE
             }
-            Thread.sleep(200)
-            adapter.notifyDataSetChanged()
+            /*Thread.sleep(200)
+            adapter.notifyDataSetChanged()*/
             progressDialog.dismiss()
-            Log.i("tag","호출됩니까? 안될거같은데")
-
         }
         eachMemoViewModel?.controler?.observe(EachMemoBinding.lifecycleOwner!!, controler)
 
@@ -193,7 +186,6 @@ class EachMemoActivity : AppCompatActivity() {
                 }
                 eachMemoViewModel.controler.value = false
                 eachMemoViewModel.search(Utility.EachMemoLoadMore.EachMemoMin,Utility.EachMemoLoadMore.EachMemoMax,Utility.EachMemoSort.SortState)
-                //Toast.makeText(EachMemoBinding.root.context,"${FontModule.Font}로 변경", Toast.LENGTH_SHORT).show()
                 eachMemoViewModel.sortToggle.value = false
             }
         })
@@ -222,10 +214,8 @@ class EachMemoActivity : AppCompatActivity() {
                         Utility.EachMemoLoadMore.EachMemoMax = Utility.EachMemoLoadMore.EachMemoMid + 10
                         eachMemoViewModel.whenScrolled(Utility.EachMemoLoadMore.EachMemoMid, Utility.EachMemoLoadMore.EachMemoMax, Utility.EachMemoSort.SortState)
                     }
-                    Log.i("CategoryFragment","max: ${Utility.EachMemoLoadMore.EachMemoMax} mid: ${Utility.EachMemoLoadMore.EachMemoMid}")
-
                 } else {
-                    Log.i("CategoryFragment", "idle.")
+
                 }
             }
         })
@@ -261,18 +251,6 @@ class EachMemoActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         Log.i("tag","온스타트 onStart()")
-
-        /*var withTime = Thread()
-        withTime.run {
-            try {
-                Thread.sleep(200)
-            }catch (e:Exception){
-
-            }
-        }*/
-
-
-
     }
 
 

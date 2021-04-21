@@ -3,8 +3,6 @@ package com.privatememo.j.ui.bottombar.setting
 import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -13,9 +11,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.privatememo.j.R
 import com.privatememo.j.datamodel.CheckPWMatching
-import com.privatememo.j.datamodel.MemoCountInfo
 import com.privatememo.j.ui.bottombar.MainActivity
-import com.privatememo.j.ui.bottombar.memo.ReviseCategory
 import com.privatememo.j.ui.login.WelcomeActivity
 import com.privatememo.j.utility.ApplyFontModule
 import com.privatememo.j.utility.Retrofit2Module

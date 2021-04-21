@@ -57,8 +57,6 @@ class SearchViewModel : ViewModel() {
                     items.add(result.result.get(i))
                     Log.i("tag","검색 결과 값: ${result.result.get(i).title}")
                 }
-
-                //Log.i("tag","설명 입니다. ${result?.result?.get(0)?.explanation}")
                 switching()
             }
 
@@ -74,11 +72,7 @@ class SearchViewModel : ViewModel() {
         call.enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 val result: String? = response.body()
-
                 Log.i("tag","이거 출력됩니까?")
-
-                //Log.i("tag","설명 입니다. ${result?.result?.get(0)?.explanation}")
-
             }
 
             override fun onFailure(call: Call<String>, t: Throwable) {

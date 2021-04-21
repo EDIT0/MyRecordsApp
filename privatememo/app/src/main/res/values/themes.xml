@@ -3,7 +3,7 @@
     <style name="Theme.Privatememo" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#5AD5FD</item>  <!--#22C8FF-->
-        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorPrimaryVariant">#AFAFAF</item>
         <item name="colorOnPrimary">@color/white</item>
         <!--<item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -24,7 +24,7 @@
     <style name="custom1" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#5AD5FD</item>  <!--#22C8FF-->
-        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorPrimaryVariant">#AFAFAF</item>
         <item name="colorOnPrimary">@color/white</item>
         <!--<item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -43,7 +43,7 @@
     <style name="custom2" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#5AD5FD</item>  <!--#22C8FF-->
-        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorPrimaryVariant">#AFAFAF</item>
         <item name="colorOnPrimary">@color/white</item>
         <!--<item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -63,7 +63,7 @@
     <style name="custom3" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#5AD5FD</item>  <!--#22C8FF-->
-        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorPrimaryVariant">#AFAFAF</item>
         <item name="colorOnPrimary">@color/white</item>
         <!--<item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -82,7 +82,7 @@
     <style name="custom4" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#5AD5FD</item>  <!--#22C8FF-->
-        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorPrimaryVariant">#AFAFAF</item>
         <item name="colorOnPrimary">@color/white</item>
         <!--<item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>

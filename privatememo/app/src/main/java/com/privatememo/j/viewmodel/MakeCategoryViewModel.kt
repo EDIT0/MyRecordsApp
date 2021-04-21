@@ -42,13 +42,11 @@ class MakeCategoryViewModel : ViewModel() {
                 sendImageToServer.value = "image_no"
             }
 
-            Log.i("tag","이거 뭐 나옴?  ${email.get().toString()}")
-
             CategoryInsert_call(email.get().toString(), cateName.get().toString(),
                 cateExplanation.get().toString(), imageAddress+pictureAddress.get().toString())
             //http://edit0@edit0.dothome.co.kr/MyRecords/OnlyImage/akdmadl34%40naver.com.png
 
-            Log.i("TAG","보내자")
+            Log.i("TAG","보냄")
         }
         else{
             categoryComment.set("프로필을 완성해주세요.")

@@ -67,7 +67,7 @@ class ProfileManagementViewModel : ViewModel() {
 
             completeWorking.value = true
 
-            Log.i("TAG","보내자")
+            Log.i("TAG","보냄")
         }
         else{
             profileComment.set("프로필을 완성해주세요.")

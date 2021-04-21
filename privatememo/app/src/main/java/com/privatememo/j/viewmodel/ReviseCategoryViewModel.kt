@@ -45,8 +45,6 @@ class ReviseCategoryViewModel : ViewModel() {
                 Log.i("tag","이미지 노")
             }
 
-            Log.i("tag","이거 뭐 나옴?  ${email}")
-
             UpdateCategoryImageDelete_call()
 
             Thread.sleep(300)
@@ -55,7 +53,7 @@ class ReviseCategoryViewModel : ViewModel() {
                 cateExplanation, imageAddress+pictureAddress.get().toString(), cateNum.get().toString(), CateBookmark)
             //http://edit0@edit0.dothome.co.kr/MyRecords/OnlyImage/akdmadl34%40naver.com.png
 
-            Log.i("TAG","보내자")
+            Log.i("TAG","보냄")
         }
         else{
             categoryComment.set("프로필을 완성해주세요.")

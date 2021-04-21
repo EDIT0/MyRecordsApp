@@ -5,14 +5,11 @@ import android.app.Dialog
 import android.content.Intent
 import android.database.Cursor
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
-import android.view.Window
-import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -230,7 +227,7 @@ class ShowAndReviseMemo : AppCompatActivity() {
         }
 
         addImage.setOnClickListener {
-            val intent = Intent("com.android.camera.action.CROP")
+            val intent = Intent()
             intent.type = "image/*"
             intent.action = Intent.ACTION_PICK
             startActivityForResult(Intent.createChooser(intent, "선택"), 111)
@@ -355,10 +352,6 @@ class ShowAndReviseMemo : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if(requestCode == 111 && resultCode == RESULT_OK && data != null) {
-            //Toast.makeText(applicationContext, "" + data.clipData?.itemCount,Toast.LENGTH_SHORT).show()
-
-            /*if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE){
-                result = CropImage.getActivityResult(data)*/
             var result = data.getData()
 
             if(resultCode == Activity.RESULT_OK){
@@ -367,7 +360,7 @@ class ShowAndReviseMemo : AppCompatActivity() {
                     showAndReviseMemoViewModel.ViewArray.add(one)
                     Glide.with(this).load(result).override(1000,1000).into(one)
                     showAndReviseMemoViewModel.showImageView.addView(one)
-                    println("1 파일이름을 찾아라! / ${result}")
+                    println("1 / ${result}")
                 }
                 else if(!showAndReviseMemoViewModel.ViewArray.contains(two)){
                     showAndReviseMemoViewModel.uriHash.put("two",result!!)
@@ -400,7 +393,6 @@ class ShowAndReviseMemo : AppCompatActivity() {
             }
         }
         else if(requestCode == 111 && resultCode == RESULT_CANCELED){
-            //Toast.makeText(this,"취소", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -444,7 +436,6 @@ class ShowAndReviseMemo : AppCompatActivity() {
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 if (response?.isSuccessful) {
                     Log.d("레트로핏 결과2",""+response?.body().toString())
-                    //image.setImageURI(uri)
                 } else {
                 }
             }

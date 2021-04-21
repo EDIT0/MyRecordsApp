@@ -70,7 +70,7 @@
                             android:layout_width="0dp"
                             android:layout_weight="6"
                             android:layout_height="match_parent"
-                            android:text="My Records"
+                            android:text="기록이"
                             android:textSize="15dp"
                             android:layout_gravity="center"
                             android:gravity="center"

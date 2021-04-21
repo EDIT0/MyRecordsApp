@@ -6,10 +6,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.privatememo.j.R
@@ -45,11 +43,6 @@ class MemoFragment : Fragment() {
             intent.putExtra("imageUri", act.mainViewModel.picPath.value)
             startActivity(intent)
         }
-
-        /*var totalCateNum = Observer<Int>{ result ->
-            MemoBinding.cateCount.setText(act.mainViewModel.totalCateNum.value.toString())
-        }
-        act.mainViewModel.totalCateNum.observe(MemoBinding.lifecycleOwner!!,totalCateNum)*/
 
         return MemoBinding.root
     }

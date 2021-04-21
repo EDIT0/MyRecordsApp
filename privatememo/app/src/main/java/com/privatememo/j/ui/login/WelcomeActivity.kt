@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
+import com.privatememo.j.FindAccount
 import com.privatememo.j.R
 import com.privatememo.j.databinding.WelcomeactivityBinding
 import com.privatememo.j.service.NetworkService
@@ -53,6 +54,11 @@ class WelcomeActivity : AppCompatActivity() {
             startActivityForResult(intent, RESULT_OK)
         }
 
+        WelcomeBinding.findidpw.setOnClickListener {
+            var intent = Intent(this, FindAccount::class.java)
+            startActivityForResult(intent, 100)
+        }
+
         var communication_check = Observer<Boolean>{ result ->
             if(result == true && (welcomeViewModel.login_check.get() == "true")){
                 var intent = Intent(this, MainActivity::class.java)
@@ -85,13 +91,9 @@ class WelcomeActivity : AppCompatActivity() {
     fun settingPermission(){
         var permis = object  : PermissionListener {
             override fun onPermissionGranted() {
-                //Toast.makeText(this@WelcomeActivity, "권한 허가", Toast.LENGTH_SHORT) .show()
             }
             override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
-                //Toast.makeText(this@WelcomeActivity, "권한 거부", Toast.LENGTH_SHORT) .show()
                 ActivityCompat.finishAffinity(this@WelcomeActivity) // 권한 거부시 앱 종료
-
-
             }
         }
         TedPermission.with(this)

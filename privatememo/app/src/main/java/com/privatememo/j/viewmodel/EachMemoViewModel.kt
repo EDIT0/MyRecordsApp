@@ -2,11 +2,8 @@ package com.privatememo.j.viewmodel
 
 import android.util.Log
 import androidx.databinding.ObservableArrayList
-import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.privatememo.j.datamodel.CategoryInfo
-import com.privatememo.j.datamodel.CategoryInfo2
 import com.privatememo.j.datamodel.MemoInfo
 import com.privatememo.j.datamodel.MemoInfo2
 import com.privatememo.j.utility.Retrofit2Module
@@ -86,7 +83,6 @@ class EachMemoViewModel : ViewModel() {
                     Collections.reverse(items)
                 }
 
-                //Log.i("tag","설명 입니다. ${result?.result?.get(0)?.explanation}")
                 switching()
             }
 
@@ -102,11 +98,7 @@ class EachMemoViewModel : ViewModel() {
         call.enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 val result: String? = response.body()
-
                 Log.i("tag","이거 출력됩니까?")
-
-                //Log.i("tag","설명 입니다. ${result?.result?.get(0)?.explanation}")
-
             }
 
             override fun onFailure(call: Call<String>, t: Throwable) {

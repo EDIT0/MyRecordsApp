@@ -53,7 +53,7 @@ class WriteMemoViewModel : ViewModel() {
             MemoInsert_call(title, textMemo.get().toString(), currentDate, currentTime, email, cateNum)
             //http://edit0@edit0.dothome.co.kr/MyRecords/OnlyImage/akdmadl34%40naver.com.png
 
-            Log.i("TAG","보내자")
+            Log.i("TAG","보냄")
         }
         else{
             MemoComment.set("제목과 내용을 적어주세요.")
@@ -88,7 +88,7 @@ class WriteMemoViewModel : ViewModel() {
                 val result: ContentNumberInfo? = response.body()
 
                 contentnum = result?.contentnum!!
-                Log.i("tag","콘텐트 넘버 씨이이이이바바아아아 ${contentnum}")
+                Log.i("tag","콘텐트 넘버 ${contentnum}")
 
                 //만약 첫번째 사진이 null이 아니라면 .. 사진 하나라도 있다는 것이니,,
                 if(uriHash.size > 0){

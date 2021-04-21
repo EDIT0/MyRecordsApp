@@ -13,22 +13,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import com.privatememo.j.R
-import com.privatememo.j.api.Retrofit2API
 import com.privatememo.j.databinding.SignupactivityBinding
 import com.privatememo.j.utility.Retrofit2Module
 import com.privatememo.j.viewmodel.SignUpViewModel
 import kotlinx.android.synthetic.main.signupactivity.*
-import okhttp3.MediaType
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 
 class SignUpActivity : AppCompatActivity() {
@@ -52,7 +44,7 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         SignUpBinding.picture.setOnClickListener {
-            val intent = Intent("com.android.camera.action.CROP")
+            val intent = Intent()
             intent.type = "image/*"
             intent.action = Intent.ACTION_PICK
             startActivityForResult(Intent.createChooser(intent, "선택"), 101)
@@ -71,7 +63,6 @@ class SignUpActivity : AppCompatActivity() {
             if(signupViewModel.duplicate_email_check.getValue() == "false"){
                 signupViewModel.emailStatus.set(false)
                 signupViewModel.email_certificate.set(true)
-                Log.i("tag","라이브데이터 호출?")
                 SignUpBinding.emailComment.text = "이메일이 확인되었습니다. 인증번호를 받으세요."
             }
             else{
@@ -113,13 +104,13 @@ class SignUpActivity : AppCompatActivity() {
 
     fun send_images_testRetrofit(){
 
-        Log.i("TAG","아아아아아"+signupViewModel.pictureUri.get()!!)
+        Log.i("TAG","아아"+signupViewModel.pictureUri.get()!!)
         var path = absolutelyPath(signupViewModel.pictureUri.get()!!)
-        println("경로 받아라 ! "+path)
+        println("경로 "+path)
         val file = File(path)
         var fileName = file.getName()
         fileName = "${signupViewModel.email.get().toString()}.png"
-        Log.i("tag","마 ! 이게 사진 제목이다. ${fileName}")
+        Log.i("tag","사진 제목 ${fileName}")
         signupViewModel.pictureAddress.set(fileName)
 
 
@@ -132,11 +123,8 @@ class SignUpActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 if (response?.isSuccessful) {
-                    //Toast.makeText(getApplicationContext(), "File Uploaded Successfully...", Toast.LENGTH_LONG).show();
                     Log.d("레트로핏 결과2",""+response?.body().toString())
-
                 } else {
-                    //Toast.makeText(getApplicationContext(), "Some error occurred...", Toast.LENGTH_LONG).show();
                 }
             }
         })

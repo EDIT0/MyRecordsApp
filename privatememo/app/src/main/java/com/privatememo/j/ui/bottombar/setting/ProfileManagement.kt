@@ -50,7 +50,7 @@ class ProfileManagement : AppCompatActivity() {
         }
 
         ProfilemanageBinding.picture.setOnClickListener {
-            val intent = Intent("com.android.camera.action.CROP")
+            val intent = Intent()
             intent.type = "image/*"
             intent.action = Intent.ACTION_PICK
             startActivityForResult(Intent.createChooser(intent, "선택"), 101)
@@ -100,6 +100,7 @@ class ProfileManagement : AppCompatActivity() {
             if (resultCode == Activity.RESULT_OK) {
                 Glide.with(this).load(UriResult).override(1000,1000).into(picture)
                 profileManagementViewModel.pictureUri.set(UriResult)
+                Log.i("tag","pictureUri: ${profileManagementViewModel.pictureUri.get().toString()}")
 
             } else if (requestCode == 101 && resultCode == RESULT_CANCELED) {
                 Toast.makeText(this, "취소", Toast.LENGTH_SHORT).show();
@@ -110,9 +111,9 @@ class ProfileManagement : AppCompatActivity() {
 
     fun send_images_testRetrofit(){
 
-        Log.i("TAG","아아아아아"+profileManagementViewModel.pictureUri.get()!!)
+        Log.i("TAG","아아"+profileManagementViewModel.pictureUri.get()!!)
         var path = absolutelyPath(profileManagementViewModel.pictureUri.get()!!)
-        println("경로 받아라 ! "+path)
+        println("경로 "+path)
         val file = File(path)
         var fileName = file.getName()
         fileName = "${profileManagementViewModel.email}.png"
@@ -129,11 +130,8 @@ class ProfileManagement : AppCompatActivity() {
 
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 if (response?.isSuccessful) {
-                    //Toast.makeText(getApplicationContext(), "File Uploaded Successfully...", Toast.LENGTH_LONG).show();
                     Log.d("레트로핏 결과2",""+response?.body().toString())
-
                 } else {
-                    //Toast.makeText(getApplicationContext(), "Some error occurred...", Toast.LENGTH_LONG).show();
                 }
             }
         })

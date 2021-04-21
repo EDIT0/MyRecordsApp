@@ -43,11 +43,6 @@ class ShowAndReviseMemoViewModel : ViewModel() {
     lateinit var showImageView: LinearLayout
     var ViewArray = ArrayList<View>()
 
-    /*var save_original_pic1 = Uri.parse("")
-    var save_original_pic2 = Uri.parse("")
-    var save_original_pic3 = Uri.parse("")
-    var save_original_pic4 = Uri.parse("")
-    var save_original_pic5 = Uri.parse("")*/
     var save_original_pic_array = ArrayList<Uri>()
 
 
@@ -95,16 +90,6 @@ class ShowAndReviseMemoViewModel : ViewModel() {
                 for(i in 0 until items.size){
                     Log.i("tag","이미지 목록: ${items.get(i).imagePath}")
                 }
-                /*try {
-                    save_original_pic1 = Uri.parse(items.get(0).imagePath)
-                    save_original_pic2 = Uri.parse(items.get(1).imagePath)
-                    save_original_pic3 = Uri.parse(items.get(2).imagePath)
-                    save_original_pic4 = Uri.parse(items.get(3).imagePath)
-                    save_original_pic5 = Uri.parse(items.get(4).imagePath)
-                }catch (e: Exception){
-
-                }*/
-
                 connectionFinish.value = true
 
             }
@@ -123,11 +108,7 @@ class ShowAndReviseMemoViewModel : ViewModel() {
         call.enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 val result: String? = response.body()
-
                 Log.i("tag","이거 출력됩니까?")
-
-                //Log.i("tag","설명 입니다. ${result?.result?.get(0)?.explanation}")
-
             }
 
             override fun onFailure(call: Call<String>, t: Throwable) {
@@ -152,13 +133,10 @@ class ShowAndReviseMemoViewModel : ViewModel() {
             var currentDate = r_date.format(dt).toString()
             var currentTime = r_time.format(dt).toString()
 
-            //MemoInsert_call(title, memo, currentDate, currentTime, email, cateNum)
-            //http://edit0@edit0.dothome.co.kr/MyRecords/OnlyImage/akdmadl34%40naver.com.png
-
             //contentnum(int), title, memo, date, revicedate, time, revicetime, ConBookmark, memberlist_email, category_catenum(int)
             UpdateMemo_call(contentNum.get().toString(), title, memo, date, currentDate, time, currentTime, ConBookmark, email, cateNum.get().toString())
 
-            Log.i("TAG","보내자!")
+            Log.i("TAG","보냄")
         }
         else{
             MemoComment.set("제목과 내용을 적어주세요.")
@@ -192,12 +170,6 @@ class ShowAndReviseMemoViewModel : ViewModel() {
                         Log.i("tag","viewmodel 삭제될 이미지 uri ${i.toString()}")
                     }
                     Log.i("tag","아니 이거 실행이,, ${save_original_pic_array.size}")
-                    /*ViewArray.clear()
-                    uriHash.clear()
-                    showImageView.removeAllViews()
-                    connectionFinish.value = false
-                    save_original_pic_array.clear()
-                    items.clear()*/
                 }
             }
         })

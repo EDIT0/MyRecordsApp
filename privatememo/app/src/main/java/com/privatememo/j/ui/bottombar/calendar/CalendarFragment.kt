@@ -5,7 +5,6 @@ import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Point
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -44,11 +43,6 @@ class CalendarFragment : Fragment() {
     var adapter = CalendarAdapter()
 
     var dt = Date()
-    /*var date = SimpleDateFormat("yyyy_MM_dd")
-    var time = SimpleDateFormat("HH_mm_ss")
-    var currentDate = date.format(dt).toString()
-    var currentTime = time.format(dt).toString()*/
-
     var t_year = SimpleDateFormat("yyyy")
     var t_month = SimpleDateFormat("MM")
     var t_day = SimpleDateFormat("dd")

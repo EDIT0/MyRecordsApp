@@ -5,8 +5,6 @@ import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.privatememo.j.datamodel.CategoryInfo
-import com.privatememo.j.datamodel.CategoryInfo2
 import com.privatememo.j.datamodel.OnlyPicInfo
 import com.privatememo.j.datamodel.OnlyPicInfo2
 import com.privatememo.j.utility.Retrofit2Module
@@ -61,9 +59,7 @@ class OnlyPicViewModel : ViewModel(){
                 Utility.OnlyPicLoadMore.OnlyPicMax = items.size
                 Utility.OnlyPicLoadMore.OnlyPicMid = Utility.OnlyPicLoadMore.OnlyPicMax - 6
 
-                //Log.i("tag","설명 입니다. ${result?.result?.get(0)?.explanation}")
                 switching()
-                Log.i("tag","싱글톤 객체: ${retrofit2module}")
             }
 
             override fun onFailure(call: Call<OnlyPicInfo>, t: Throwable) {
@@ -79,11 +75,7 @@ class OnlyPicViewModel : ViewModel(){
         call.enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 val result: String? = response.body()
-
                 Log.i("tag","이거 출력됩니까?")
-
-                //Log.i("tag","설명 입니다. ${result?.result?.get(0)?.explanation}")
-
             }
 
             override fun onFailure(call: Call<String>, t: Throwable) {

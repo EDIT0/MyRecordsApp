@@ -13,23 +13,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import com.privatememo.j.R
-import com.privatememo.j.api.Retrofit2API
 import com.privatememo.j.databinding.RevisecategoryBinding
 import com.privatememo.j.utility.ApplyFontModule
 import com.privatememo.j.utility.Retrofit2Module
 import com.privatememo.j.viewmodel.ReviseCategoryViewModel
 import kotlinx.android.synthetic.main.makecategory.*
-import okhttp3.MediaType
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -76,7 +68,7 @@ class ReviseCategory : AppCompatActivity() {
         }
 
         RevisecategoryBinding.picture.setOnClickListener {
-            val intent = Intent("com.android.camera.action.CROP")
+            val intent = Intent()
             intent.type = "image/*"
             intent.action = Intent.ACTION_PICK
             startActivityForResult(Intent.createChooser(intent, "선택"), 101)
@@ -104,9 +96,6 @@ class ReviseCategory : AppCompatActivity() {
         }
         reviseMemoViewModel?.sendImageToServer?.observe(RevisecategoryBinding.lifecycleOwner!!, sendImageToServer)
 
-
-
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -120,7 +109,6 @@ class ReviseCategory : AppCompatActivity() {
                 reviseMemoViewModel.pictureUri.set(UriResult)
 
             } else if (requestCode == 101 && resultCode == RESULT_CANCELED) {
-                Toast.makeText(this, "취소", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -131,13 +119,13 @@ class ReviseCategory : AppCompatActivity() {
         date = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss")
         println(date.format(dt).toString())
         //var date_filename = date.format(dt).toString()
-        Log.i("TAG","아아아아아"+reviseMemoViewModel.pictureUri.get()!!)
+        Log.i("TAG","아아"+reviseMemoViewModel.pictureUri.get()!!)
         var path = absolutelyPath(reviseMemoViewModel.pictureUri.get()!!)
-        println("경로 받아라 ! "+path)
+        println("경로 "+path)
         val file = File(path)
         var fileName = file.getName()
         fileName = "Category_${reviseMemoViewModel.email}_${date.format(dt).toString()}_.png"
-        Log.i("tag","마 ! 이게 사진 제목이다. ${fileName}")
+        Log.i("tag","사진 제목 ${fileName}")
         reviseMemoViewModel.pictureAddress.set(fileName)
 
 
@@ -150,11 +138,9 @@ class ReviseCategory : AppCompatActivity() {
 
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 if (response?.isSuccessful) {
-                    //Toast.makeText(getApplicationContext(), "File Uploaded Successfully...", Toast.LENGTH_LONG).show();
                     Log.d("레트로핏 결과2",""+response?.body().toString())
 
                 } else {
-                    //Toast.makeText(getApplicationContext(), "Some error occurred...", Toast.LENGTH_LONG).show();
                 }
             }
         })

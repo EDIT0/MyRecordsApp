@@ -40,8 +40,6 @@ class SignUpViewModel(application: Application) : AndroidViewModel(application) 
 
     fun duplicateButton(){
         SignUpEmailCheck_call(email.get().toString())
-        Log.i("TAG","이거 어디 나오는거야 "+duplicate_email_check.getValue())
-
     }
 
 
@@ -78,7 +76,7 @@ class SignUpViewModel(application: Application) : AndroidViewModel(application) 
                 nickname.get().toString(), motto.get().toString(), imageAddress+pictureAddress.get().toString())
             //http://edit0@edit0.dothome.co.kr/MyRecords/OnlyImage/akdmadl34%40naver.com.png
 
-            Log.i("TAG","보내자")
+            Log.i("TAG","보냄")
         }
         else{
             profileComment.set("프로필을 완성해주세요.")

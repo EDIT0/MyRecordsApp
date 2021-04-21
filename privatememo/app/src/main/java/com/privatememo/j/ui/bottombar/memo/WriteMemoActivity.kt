@@ -92,7 +92,7 @@ class WriteMemoActivity : AppCompatActivity() {
         Log.i("tag","프롬캘린더: ${writeMemoViewModel.FromCalendar}")
 
         addImage.setOnClickListener {
-            val intent = Intent("com.android.camera.action.CROP")
+            val intent = Intent()
             intent.type = "image/*"
             intent.action = Intent.ACTION_PICK
             startActivityForResult(Intent.createChooser(intent, "선택"), 111)
@@ -107,28 +107,24 @@ class WriteMemoActivity : AppCompatActivity() {
 
         two.setOnClickListener {
             ViewArray.remove(two)
-            //uri_array.remove(uri_array_name[1])
             writeMemoViewModel.uriHash.remove("two")
             RecallImage()
         }
 
         three.setOnClickListener {
             ViewArray.remove(three)
-            //uri_array.remove(uri_array_name[2])
             writeMemoViewModel.uriHash.remove("three")
             RecallImage()
         }
 
         four.setOnClickListener {
             ViewArray.remove(four)
-            //uri_array.remove(uri_array_name[3])
             writeMemoViewModel.uriHash.remove("four")
             RecallImage()
         }
 
         five.setOnClickListener {
             ViewArray.remove(five)
-            //uri_array.remove(uri_array_name[4])
             writeMemoViewModel.uriHash.remove("five")
             RecallImage()
         }
@@ -164,10 +160,6 @@ class WriteMemoActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if(requestCode == 111 && resultCode == RESULT_OK && data != null) {
-            //Toast.makeText(applicationContext, "" + data.clipData?.itemCount,Toast.LENGTH_SHORT).show()
-
-            /*if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE){
-                result = CropImage.getActivityResult(data)*/
             var result = data.getData()
 
             if(resultCode == Activity.RESULT_OK){
@@ -176,7 +168,7 @@ class WriteMemoActivity : AppCompatActivity() {
                     ViewArray.add(one)
                     Glide.with(this).load(result).override(1000,1000).into(one)
                     showImageView.addView(one)
-                    println("1 파일이름을 찾아라! / ${result}")
+                    println("1 / ${result}")
                 }
                 else if(!ViewArray.contains(two)){
                     writeMemoViewModel.uriHash.put("two",result!!)
@@ -209,7 +201,6 @@ class WriteMemoActivity : AppCompatActivity() {
             }
         }
         else if(requestCode == 111 && resultCode == RESULT_CANCELED){
-            //Toast.makeText(this,"취소", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -231,7 +222,7 @@ class WriteMemoActivity : AppCompatActivity() {
         count++
 
         var path = absolutelyPath(uri)
-        println("경로 받아라 ! "+path)
+        println("경로 "+path)
         val file = File(path)
         var fileName = file.getName()
         var random = Random
@@ -251,7 +242,6 @@ class WriteMemoActivity : AppCompatActivity() {
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 if (response?.isSuccessful) {
                     Log.d("레트로핏 결과2",""+response?.body().toString())
-                    //image.setImageURI(uri)
                 } else {
                 }
             }

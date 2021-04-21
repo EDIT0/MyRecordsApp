@@ -5,7 +5,6 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.privatememo.j.datamodel.MemberInfo
-import com.privatememo.j.datamodel.ReturnCheck
 import com.privatememo.j.utility.Retrofit2Module
 import retrofit2.Call
 import retrofit2.Callback
@@ -52,9 +51,6 @@ class WelcomeViewModel : ViewModel() {
                 picPathfromServer.set(result?.picPath)
 
                 communication_check.setValue(true)
-
-                Log.i("tag","통신으로 받은 데이터 ${result?.email}")
-                Log.i("tag","통신으로 받은 데이터 ${emailfromServer.get().toString()}")
 
             }
 

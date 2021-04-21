@@ -21,8 +21,8 @@ class NetworkService : Service() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {    //LOLLIPOP Version 이상..
             if(networkConnectionCheck==null){
-                networkConnectionCheck= NetworkCallBack(applicationContext);
-                networkConnectionCheck!!.register();
+                networkConnectionCheck= NetworkCallBack(applicationContext)
+                networkConnectionCheck!!.register()
             }
         }
     }

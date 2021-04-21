@@ -1,7 +1,5 @@
 package com.privatememo.j.datamodel
 
-import androidx.databinding.ObservableField
-
 data class SearchInfo2(
     var contentnum: Int,
     var title: String,

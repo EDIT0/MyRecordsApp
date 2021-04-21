@@ -4,8 +4,6 @@ import android.app.Dialog
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -30,13 +28,10 @@ import com.privatememo.j.api.AdapterListener
 import com.privatememo.j.databinding.SearchfragmentBinding
 import com.privatememo.j.ui.bottombar.MainActivity
 import com.privatememo.j.ui.bottombar.memo.ShowAndReviseMemo
-import com.privatememo.j.ui.login.WelcomeActivity
 import com.privatememo.j.utility.ApplyFontModule
 import com.privatememo.j.utility.Utility
-import com.privatememo.j.utility.Utility.CheckNetworkState
 import com.privatememo.j.viewmodel.SearchViewModel
 import kotlinx.android.synthetic.main.searchfragment.*
-import okhttp3.internal.Util
 
 
 class SearchFragment : Fragment() {
@@ -187,10 +182,7 @@ class SearchFragment : Fragment() {
                         Utility.SearchLoadMore.SearchMax = Utility.SearchLoadMore.SearchMid + 10
                         searchViewModel.whenScrolled(Utility.SearchLoadMore.SearchMid, Utility.SearchLoadMore.SearchMax)
                     }
-                    Log.i("SearchFragment","max: ${Utility.SearchLoadMore.SearchMax} mid: ${Utility.SearchLoadMore.SearchMid}")
-
                 } else {
-                    Log.i("SearchFragment", "idle.")
                 }
             }
         })

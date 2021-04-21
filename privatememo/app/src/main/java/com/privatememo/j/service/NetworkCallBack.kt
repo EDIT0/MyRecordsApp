@@ -35,13 +35,11 @@ class NetworkCallBack : ConnectivityManager.NetworkCallback {
     override fun onAvailable(network: Network) {
         super.onAvailable(network)
         // 네트워크가 연결되었을 때 할 동작
-        //Toast.makeText(this.context, "network available", Toast.LENGTH_SHORT).show()
     }
 
     override fun onLost(network: Network) {
         super.onLost(network)
         // 네트워크 연결이 끊겼을 때 할 동작
-        //Toast.makeText(this.context, "network lost", Toast.LENGTH_SHORT).show()
 
         /*var view1 = LayoutInflater.from(context).inflate(R.layout.networkcustomdialog,null)
 

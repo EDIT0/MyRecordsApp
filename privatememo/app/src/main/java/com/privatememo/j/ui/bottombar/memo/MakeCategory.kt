@@ -1,7 +1,6 @@
 package com.privatememo.j.ui.bottombar.memo
 
 import android.app.Activity
-import android.content.ContentProvider
 import android.content.Intent
 import android.database.Cursor
 import android.net.Uri
@@ -14,28 +13,16 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import com.privatememo.j.R
-import com.privatememo.j.api.Retrofit2API
-import com.privatememo.j.databinding.ActivityMainBinding
 import com.privatememo.j.databinding.MakecategoryBinding
 import com.privatememo.j.utility.ApplyFontModule
 import com.privatememo.j.utility.Retrofit2Module
-import com.privatememo.j.viewmodel.MainViewModel
 import com.privatememo.j.viewmodel.MakeCategoryViewModel
-import kotlinx.android.synthetic.main.makecategory.*
 import kotlinx.android.synthetic.main.makecategory.backbutton
 import kotlinx.android.synthetic.main.makecategory.picture
-import kotlinx.android.synthetic.main.signupactivity.*
-import okhttp3.MediaType
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -64,7 +51,7 @@ class MakeCategory : AppCompatActivity() {
         }
 
         MakeCategoryBinding.picture.setOnClickListener {
-            val intent = Intent("com.android.camera.action.CROP")
+            val intent = Intent()
             intent.type = "image/*"
             intent.action = Intent.ACTION_PICK
             startActivityForResult(Intent.createChooser(intent, "선택"), 101)
@@ -96,7 +83,6 @@ class MakeCategory : AppCompatActivity() {
                 makeCategoryViewModel.pictureUri.set(UriResult)
 
             } else if (requestCode == 101 && resultCode == RESULT_CANCELED) {
-                Toast.makeText(this, "취소", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -108,13 +94,13 @@ class MakeCategory : AppCompatActivity() {
         date = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss")
         println(date.format(dt).toString())
         //var date_filename = date.format(dt).toString()
-        Log.i("TAG","아아아아아"+makeCategoryViewModel.pictureUri.get()!!)
+        Log.i("TAG","아아"+makeCategoryViewModel.pictureUri.get()!!)
         var path = absolutelyPath(makeCategoryViewModel.pictureUri.get()!!)
         println("경로 받아라 ! "+path)
         val file = File(path)
         var fileName = file.getName()
         fileName = "Category_${makeCategoryViewModel.email.get().toString()}_${date.format(dt).toString()}_.png"
-        Log.i("tag","마 ! 이게 사진 제목이다. ${fileName}")
+        Log.i("tag","사진 제목 ${fileName}")
         makeCategoryViewModel.pictureAddress.set(fileName)
 
         val retrofit2module = Retrofit2Module.getInstance()
@@ -126,11 +112,9 @@ class MakeCategory : AppCompatActivity() {
 
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 if (response?.isSuccessful) {
-                    //Toast.makeText(getApplicationContext(), "File Uploaded Successfully...", Toast.LENGTH_LONG).show();
                     Log.d("레트로핏 결과2",""+response?.body().toString())
 
                 } else {
-                    //Toast.makeText(getApplicationContext(), "Some error occurred...", Toast.LENGTH_LONG).show();
                 }
             }
         })

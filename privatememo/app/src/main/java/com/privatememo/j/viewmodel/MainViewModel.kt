@@ -2,7 +2,6 @@ package com.privatememo.j.viewmodel
 
 import android.util.Log
 import androidx.databinding.ObservableArrayList
-import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.privatememo.j.datamodel.CategoryInfo

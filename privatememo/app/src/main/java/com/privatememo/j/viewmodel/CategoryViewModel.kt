@@ -7,13 +7,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.privatememo.j.datamodel.CategoryInfo
 import com.privatememo.j.datamodel.CategoryInfo2
-import com.privatememo.j.datamodel.MemoCountInfo
 import com.privatememo.j.utility.Retrofit2Module
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class CategoryViewModel : ViewModel() {
 
@@ -54,9 +51,7 @@ class CategoryViewModel : ViewModel() {
                     items.add(result.result.get(i))
                 }
 
-                //Log.i("tag","설명 입니다. ${result?.result?.get(0)?.explanation}")
                 switching()
-                Log.i("tag","싱글톤 객체: ${retrofit2module}")
             }
 
             override fun onFailure(call: Call<CategoryInfo>, t: Throwable) {
