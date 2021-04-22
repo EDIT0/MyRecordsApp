@@ -6,9 +6,7 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.privatememo.j.datamodel.CategoryInfo
-import com.privatememo.j.datamodel.CategoryInfo2
 import com.privatememo.j.datamodel.MemoInfo
-import com.privatememo.j.datamodel.MemoInfo2
 import com.privatememo.j.utility.Retrofit2Module
 import retrofit2.Call
 import retrofit2.Callback
@@ -18,8 +16,8 @@ class CalendarViewModel : ViewModel() {
 
     val retrofit2module = Retrofit2Module.getInstance()
 
-    var items = ObservableArrayList<MemoInfo2>()
-    var total_items = ObservableArrayList<MemoInfo2>()
+    var items = ObservableArrayList<MemoInfo.MemoInfo2>()
+    var total_items = ObservableArrayList<MemoInfo.MemoInfo2>()
     var splitDateArray = ArrayList<List<String>>()
     var email = ObservableField<String>()
     var controler = MutableLiveData<Boolean>()

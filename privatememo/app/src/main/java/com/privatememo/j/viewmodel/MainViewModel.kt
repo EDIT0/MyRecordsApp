@@ -5,7 +5,6 @@ import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.privatememo.j.datamodel.CategoryInfo
-import com.privatememo.j.datamodel.CategoryInfo2
 import com.privatememo.j.datamodel.MemoCountInfo
 import com.privatememo.j.utility.Retrofit2Module
 import retrofit2.Call
@@ -24,7 +23,7 @@ class MainViewModel : ViewModel(){
     var totalConNum = MutableLiveData<Int>()
     var password = String()
 
-    var items = ObservableArrayList<CategoryInfo2>()
+    var items = ObservableArrayList<CategoryInfo.CategoryInfo2>()
 
     init {
         totalCateNum.value = 0

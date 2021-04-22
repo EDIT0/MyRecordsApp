@@ -5,7 +5,6 @@ import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.privatememo.j.datamodel.MemoInfo
-import com.privatememo.j.datamodel.MemoInfo2
 import com.privatememo.j.utility.Retrofit2Module
 import com.privatememo.j.utility.Utility
 import retrofit2.Call
@@ -21,7 +20,7 @@ class EachMemoViewModel : ViewModel() {
     var email = String()
     var cateNum = String()
 
-    var items = ObservableArrayList<MemoInfo2>()
+    var items = ObservableArrayList<MemoInfo.MemoInfo2>()
     var controler = MutableLiveData<Boolean>()
     var sortToggle = MutableLiveData<Boolean>()
 

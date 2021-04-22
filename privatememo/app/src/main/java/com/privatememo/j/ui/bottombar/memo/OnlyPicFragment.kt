@@ -150,7 +150,7 @@ class OnlyPicFragment : Fragment() {
             onlyPicViewModel.items.removeAt(position)
             var act = activity as MainActivity
             act.mainViewModel.getMemoCount_call()
-            adapter.notifyDataSetChanged()
+            //adapter.notifyDataSetChanged()
         }
         OnlyPicDialog.findViewById<TextView>(R.id.finish).setOnClickListener {
             OnlyPicDialog.dismiss()

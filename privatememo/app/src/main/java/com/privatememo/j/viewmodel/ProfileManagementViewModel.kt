@@ -7,7 +7,6 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.privatememo.j.datamodel.MemberProfileInfo
-import com.privatememo.j.datamodel.MemberProfileInfo2
 import com.privatememo.j.utility.Retrofit2Module
 import retrofit2.Call
 import retrofit2.Callback
@@ -17,7 +16,7 @@ class ProfileManagementViewModel : ViewModel() {
 
     val retrofit2module = Retrofit2Module.getInstance()
 
-    var items = ObservableArrayList<MemberProfileInfo2>()
+    var items = ObservableArrayList<MemberProfileInfo.MemberProfileInfo2>()
 
     var email = String()
     var nickname = MutableLiveData<String>()

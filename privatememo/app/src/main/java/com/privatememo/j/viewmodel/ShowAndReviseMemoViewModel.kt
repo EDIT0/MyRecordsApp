@@ -34,7 +34,7 @@ class ShowAndReviseMemoViewModel : ViewModel() {
     var cateNum = ObservableField<Int>()
 
     var controler = MutableLiveData<Boolean>()
-    var items = ObservableArrayList<MemoImageInfo2>()
+    var items = ObservableArrayList<MemoImageInfo.MemoImageInfo2>()
     var connectionFinish = MutableLiveData<Boolean>()
 
     var uriHash = HashMap<String, Uri>()

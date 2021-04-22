@@ -99,7 +99,7 @@ class SearchFragment : Fragment() {
                 SearchfragmentBinding.layout.visibility = View.INVISIBLE
             }
             //Thread.sleep(200)
-            adapter.notifyDataSetChanged()
+            //adapter.notifyDataSetChanged()
             progressDialog.dismiss()
         }
         searchViewModel?.controler?.observe(SearchfragmentBinding.lifecycleOwner!!, controler)
@@ -199,7 +199,7 @@ class SearchFragment : Fragment() {
             searchViewModel.deleteMemo_call(searchViewModel.items.get(position).contentnum)
             SearchDialog.dismiss()
             searchViewModel.items.removeAt(position)
-            adapter.notifyDataSetChanged()
+            //adapter.notifyDataSetChanged()
         }
         SearchDialog.findViewById<TextView>(R.id.finish).setOnClickListener {
             SearchDialog.dismiss()

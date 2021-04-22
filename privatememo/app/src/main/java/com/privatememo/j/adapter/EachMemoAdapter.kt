@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.privatememo.j.api.AdapterListener
 import com.privatememo.j.databinding.EachmemoadapterBinding
-import com.privatememo.j.datamodel.MemoInfo2
+import com.privatememo.j.datamodel.MemoInfo
 import com.privatememo.j.utility.MemberSettingModule
 import kotlinx.android.synthetic.main.eachmemoadapter.view.*
 
@@ -13,7 +13,7 @@ class EachMemoAdapter : RecyclerView.Adapter<EachMemoAdapter.ViewHolder>() {
 
     var textSizeModule = MemberSettingModule
 
-    var items = ArrayList<MemoInfo2>()
+    var items = ArrayList<MemoInfo.MemoInfo2>()
     lateinit var itemClick: AdapterListener
 
     inner class ViewHolder(binding : EachmemoadapterBinding): RecyclerView.ViewHolder(binding.root){
@@ -31,7 +31,7 @@ class EachMemoAdapter : RecyclerView.Adapter<EachMemoAdapter.ViewHolder>() {
             itemView.content.setTextSize(textSizeModule.ContentSize.toFloat())
         }
 
-        fun bind(info : MemoInfo2){
+        fun bind(info : MemoInfo.MemoInfo2){
             binding.memoInfo2Model = info
         }
     }

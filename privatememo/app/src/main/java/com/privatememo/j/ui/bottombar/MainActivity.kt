@@ -21,8 +21,10 @@ import com.privatememo.j.ui.bottombar.setting.SettingFragment
 import com.privatememo.j.utility.AccessDatabase
 import com.privatememo.j.utility.ApplyFontModule
 import com.privatememo.j.utility.MemberSettingModule
+import com.privatememo.j.utility.Utility
 import com.privatememo.j.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.concurrent.thread
 
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -40,7 +42,13 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         MainBinding.setLifecycleOwner(this)
         MainBinding.mainViewModel = mainViewModel
 
-
+        with(Utility.OnlyPicLoadMore){
+            OnlyPicMid = 0
+            OnlyPicMid = 0
+            OnlyPicMax = 6
+            FirstStart = 1
+            isChanged = 0
+        }
 
         //fm.beginTransaction().replace(R.id.framelayout, fragment2()).commit()
         with(fm.beginTransaction()){
@@ -75,11 +83,14 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
 
         //AutoLogin
-        val sp = getSharedPreferences("AutoLogin", Activity.MODE_PRIVATE)
-        val editor = sp.edit() //edit 메소드 호출
-        editor.putString("id", mainViewModel.email.value.toString())
-        editor.putString("password", mainViewModel.password)
-        editor.commit()
+        thread(start = true){
+            val sp = getSharedPreferences("AutoLogin", Activity.MODE_PRIVATE)
+            val editor = sp.edit() //edit 메소드 호출
+            editor.putString("id", mainViewModel.email.value.toString())
+            editor.putString("password", mainViewModel.password)
+            editor.commit()
+        }
+
 
 
     }

@@ -241,7 +241,7 @@ class EachMemoActivity : AppCompatActivity() {
             eachMemoViewModel.deleteMemo_call(eachMemoViewModel.items.get(position).contentnum)
             EachMemoDialog.dismiss()
             eachMemoViewModel.items.removeAt(position)
-            adapter.notifyDataSetChanged()
+            //adapter.notifyDataSetChanged()
         }
         EachMemoDialog.findViewById<TextView>(R.id.finish).setOnClickListener {
             EachMemoDialog.dismiss()

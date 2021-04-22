@@ -6,7 +6,6 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.privatememo.j.datamodel.CategoryInfo
-import com.privatememo.j.datamodel.CategoryInfo2
 import com.privatememo.j.utility.Retrofit2Module
 import retrofit2.Call
 import retrofit2.Callback
@@ -16,7 +15,7 @@ class CategoryViewModel : ViewModel() {
 
     val retrofit2module = Retrofit2Module.getInstance()
 
-    var items = ObservableArrayList<CategoryInfo2>()
+    var items = ObservableArrayList<CategoryInfo.CategoryInfo2>()
     var email = ObservableField<String>()
     var controler = MutableLiveData<Boolean>()
 

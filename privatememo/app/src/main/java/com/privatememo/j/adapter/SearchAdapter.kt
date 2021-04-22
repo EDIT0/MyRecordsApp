@@ -6,14 +6,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.privatememo.j.api.AdapterListener
 import com.privatememo.j.databinding.SearchadapterBinding
-import com.privatememo.j.datamodel.SearchInfo2
+import com.privatememo.j.datamodel.SearchInfo
 import com.privatememo.j.utility.MemberSettingModule
 import kotlinx.android.synthetic.main.searchadapter.view.*
 
 
 class SearchAdapter : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 
-    var items = ArrayList<SearchInfo2>()
+    var items = ArrayList<SearchInfo.SearchInfo2>()
     lateinit var itemClick: AdapterListener
 
     inner class ViewHolder(binding : SearchadapterBinding): RecyclerView.ViewHolder(binding.root){
@@ -33,7 +33,7 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
             itemView.cateTitle.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG)
         }
 
-        fun bind(info : SearchInfo2){
+        fun bind(info : SearchInfo.SearchInfo2){
             binding.searchInfo2ViewModel = info
         }
     }

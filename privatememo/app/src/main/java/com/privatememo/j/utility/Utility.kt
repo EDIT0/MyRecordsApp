@@ -18,10 +18,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.privatememo.j.R
 import com.privatememo.j.adapter.*
-import com.privatememo.j.datamodel.CategoryInfo2
-import com.privatememo.j.datamodel.MemoInfo2
-import com.privatememo.j.datamodel.OnlyPicInfo2
-import com.privatememo.j.datamodel.SearchInfo2
+import com.privatememo.j.datamodel.CategoryInfo
+import com.privatememo.j.datamodel.MemoInfo
+import com.privatememo.j.datamodel.OnlyPicInfo
+import com.privatememo.j.datamodel.SearchInfo
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -38,14 +38,14 @@ object Utility {
 
     @BindingAdapter("category_rcv")
     @JvmStatic
-    fun CategoryRcv (rcv: RecyclerView, items : ArrayList<CategoryInfo2>){
+    fun CategoryRcv (rcv: RecyclerView, items : ArrayList<CategoryInfo.CategoryInfo2>){
         (rcv.adapter as CategoryAdapter).items = items
         rcv.adapter?.notifyDataSetChanged()
     }
 
     @BindingAdapter("memo_rcv")
     @JvmStatic
-    fun MemoRcv (rcv: RecyclerView, items : ArrayList<MemoInfo2>){
+    fun MemoRcv (rcv: RecyclerView, items : ArrayList<MemoInfo.MemoInfo2>){
         (rcv.adapter as EachMemoAdapter).items = items
         rcv.adapter?.notifyDataSetChanged()
     }
@@ -58,7 +58,7 @@ object Utility {
 
     @BindingAdapter("onlypic_rcv")
     @JvmStatic
-    fun OnlyPicRcv (rcv: RecyclerView, items : ArrayList<OnlyPicInfo2>){
+    fun OnlyPicRcv (rcv: RecyclerView, items : ArrayList<OnlyPicInfo.OnlyPicInfo2>){
         (rcv.adapter as OnlyPicAdapter).items = items
         rcv.adapter?.notifyDataSetChanged()
     }
@@ -71,14 +71,14 @@ object Utility {
 
     @BindingAdapter("search_rcv")
     @JvmStatic
-    fun SearchRcv (rcv: RecyclerView, items : ArrayList<SearchInfo2>){
+    fun SearchRcv (rcv: RecyclerView, items : ArrayList<SearchInfo.SearchInfo2>){
         (rcv.adapter as SearchAdapter).items = items
         rcv.adapter?.notifyDataSetChanged()
     }
 
     @BindingAdapter("calendar_rcv")
     @JvmStatic
-    fun CalendarRcv (rcv: RecyclerView, items : ArrayList<MemoInfo2>){
+    fun CalendarRcv (rcv: RecyclerView, items : ArrayList<MemoInfo.MemoInfo2>){
         (rcv.adapter as CalendarAdapter).items = items
         rcv.adapter?.notifyDataSetChanged()
     }

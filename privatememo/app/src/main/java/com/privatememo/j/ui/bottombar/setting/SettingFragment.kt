@@ -21,6 +21,7 @@ import kotlinx.android.synthetic.main.settingfragment.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.concurrent.thread
 
 
 class SettingFragment : Fragment() {
@@ -96,10 +97,13 @@ class SettingFragment : Fragment() {
 
         LogoutDialog.findViewById<TextView>(R.id.yes).setOnClickListener {
             //AutoLogin
-            val sp = activity!!.getSharedPreferences("AutoLogin", Activity.MODE_PRIVATE)
-            val editor = sp.edit()
-            editor.clear()
-            editor.commit()
+            thread(start = true){
+                val sp = activity!!.getSharedPreferences("AutoLogin", Activity.MODE_PRIVATE)
+                val editor = sp.edit()
+                editor.clear()
+                editor.commit()
+            }
+
 
             var intent = Intent(context, WelcomeActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_SINGLE_TOP + Intent.FLAG_ACTIVITY_CLEAR_TOP)

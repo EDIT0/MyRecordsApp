@@ -6,7 +6,6 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.privatememo.j.datamodel.OnlyPicInfo
-import com.privatememo.j.datamodel.OnlyPicInfo2
 import com.privatememo.j.utility.Retrofit2Module
 import com.privatememo.j.utility.Utility
 import retrofit2.Call
@@ -17,7 +16,7 @@ class OnlyPicViewModel : ViewModel(){
 
     val retrofit2module = Retrofit2Module.getInstance()
 
-    var items = ObservableArrayList<OnlyPicInfo2>()
+    var items = ObservableArrayList<OnlyPicInfo.OnlyPicInfo2>()
     var email = ObservableField<String>()
     var controler = MutableLiveData<Boolean>()
 

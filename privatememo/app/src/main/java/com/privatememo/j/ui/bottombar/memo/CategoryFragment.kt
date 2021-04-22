@@ -146,7 +146,7 @@ class CategoryFragment : Fragment() {
             var act = activity as MainActivity
             act.mainViewModel.totalCateNum.value = adapter.getItemCount()
             act.mainViewModel.getMemoCount_call()
-            adapter.notifyDataSetChanged()
+            //adapter.notifyDataSetChanged()
             act.mainViewModel.search()
         }
         CategoryDialog.findViewById<TextView>(R.id.finish).setOnClickListener {
@@ -178,7 +178,7 @@ class CategoryFragment : Fragment() {
         act.mainViewModel.getMemoCount_call()
 
 
-        var withTime = Thread()
+        /*var withTime = Thread()
         withTime.run {
             try {
                 Thread.sleep(200)
@@ -186,7 +186,7 @@ class CategoryFragment : Fragment() {
 
             }
         }
-        adapter.notifyDataSetChanged()
+        adapter.notifyDataSetChanged()*/
     }
 
     override fun onResume() {

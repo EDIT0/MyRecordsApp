@@ -5,13 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.privatememo.j.api.AdapterListener
 import com.privatememo.j.databinding.CalendaradapterBinding
-import com.privatememo.j.datamodel.MemoInfo2
+import com.privatememo.j.datamodel.MemoInfo
 import com.privatememo.j.utility.MemberSettingModule
 import kotlinx.android.synthetic.main.calendaradapter.view.*
 
 class CalendarAdapter : RecyclerView.Adapter<CalendarAdapter.ViewHolder>() {
 
-    var items = ArrayList<MemoInfo2>()
+    var items = ArrayList<MemoInfo.MemoInfo2>()
     lateinit var itemClick: AdapterListener
 
     inner class ViewHolder(binding : CalendaradapterBinding): RecyclerView.ViewHolder(binding.root){
@@ -25,7 +25,7 @@ class CalendarAdapter : RecyclerView.Adapter<CalendarAdapter.ViewHolder>() {
             itemView.content.setTextSize(MemberSettingModule.ContentSize.toFloat())
         }
 
-        fun bind(info : MemoInfo2){
+        fun bind(info : MemoInfo.MemoInfo2){
             binding.memoInfo2ViewModel = info
         }
     }

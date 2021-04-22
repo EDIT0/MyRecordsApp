@@ -15,7 +15,7 @@ class SearchViewModel : ViewModel() {
 
     val retrofit2module = Retrofit2Module.getInstance()
 
-    var items = ObservableArrayList<SearchInfo2>()
+    var items = ObservableArrayList<SearchInfo.SearchInfo2>()
     var email = ObservableField<String>()
     var controler = MutableLiveData<Boolean>()
     var keyword = String()

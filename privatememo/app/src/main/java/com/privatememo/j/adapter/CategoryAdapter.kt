@@ -5,13 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.privatememo.j.api.AdapterListener
 import com.privatememo.j.databinding.CategoryadapterBinding
-import com.privatememo.j.datamodel.CategoryInfo2
+import com.privatememo.j.datamodel.CategoryInfo
 import com.privatememo.j.utility.MemberSettingModule
 import kotlinx.android.synthetic.main.categoryadapter.view.*
 
 class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
-    var items = ArrayList<CategoryInfo2>()
+    var items = ArrayList<CategoryInfo.CategoryInfo2>()
     lateinit var itemClick: AdapterListener
 
     inner class ViewHolder(binding : CategoryadapterBinding): RecyclerView.ViewHolder(binding.root){
@@ -32,7 +32,7 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
             itemView.cateContent.setTextSize(MemberSettingModule.ContentSize.toFloat())
         }
 
-        fun bind(info : CategoryInfo2){
+        fun bind(info : CategoryInfo.CategoryInfo2){
             binding.categoryInfo2Model = info
         }
     }

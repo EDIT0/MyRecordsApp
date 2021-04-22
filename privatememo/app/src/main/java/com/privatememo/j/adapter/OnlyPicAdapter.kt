@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.privatememo.j.api.AdapterListener
 import com.privatememo.j.databinding.OnlypicadapterBinding
-import com.privatememo.j.datamodel.OnlyPicInfo2
+import com.privatememo.j.datamodel.OnlyPicInfo
 
 class OnlyPicAdapter : RecyclerView.Adapter<OnlyPicAdapter.ViewHolder>() {
 
-    var items = ArrayList<OnlyPicInfo2>()
+    var items = ArrayList<OnlyPicInfo.OnlyPicInfo2>()
     lateinit var itemClick: AdapterListener
 
     inner class ViewHolder(binding : OnlypicadapterBinding): RecyclerView.ViewHolder(binding.root){
@@ -25,7 +25,7 @@ class OnlyPicAdapter : RecyclerView.Adapter<OnlyPicAdapter.ViewHolder>() {
             }
         }
 
-        fun bind(info : OnlyPicInfo2){
+        fun bind(info : OnlyPicInfo.OnlyPicInfo2){
             binding.onlyPicInfo2Model = info
         }
     }
